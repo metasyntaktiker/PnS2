@@ -84,6 +84,23 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     
     if (!path) return;
 
-    await this.actor.update({ [path]: updateValue });
+    const updateData = { [path]: updateValue };
+
+    // Check if the changed path is a value or modifier of a main stat.
+    const statMatch = path.match(/^system\.([a-zA-Z]+)\.(value|modifier)$/);
+
+    if (statMatch) {
+      const statName = statMatch[1];
+      const stat = this.actor.system[statName];
+
+      // Ensure the stat and its properties exist
+      if (stat && typeof stat.value === 'number' && typeof stat.modifier === 'number') {
+        const currentValue = (path.endsWith('.value')) ? updateValue : stat.value;
+        const currentModifier = (path.endsWith('.modifier')) ? updateValue : stat.modifier;
+        updateData[`system.${statName}.total`] = Number(currentValue) + Number(currentModifier);
+      }
+    }
+
+    await this.actor.update(updateData);
   }
 }
