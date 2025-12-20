@@ -5,6 +5,13 @@
     <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
   </header>
     <div class="character-stats">
+      <!-- ######## Base Stats ######## -->
+      <div class="character-row">
+        <label title="{{localize "PnS2.STR_MouseOver"}}">{{localize "PnS2.STR"}}</label>
+        <input type="number" name="system.str.value" value="{{system.str.value}}" />
+        <input type="number" name="system.str.modifier" value="{{system.str.modifier}}" />
+        <span>{{system.str.value}} / {{system.str.modifier}}</span>
+      </div>
       <!-- HP -->
       <div class="character-row">
         <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>

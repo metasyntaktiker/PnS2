@@ -10,69 +10,80 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
       // Strength
       str: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // Agility
       agi: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })        
       }),
       
       // Precision
       pre: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
       
       // Constitution
       con: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // Intelligence
       int: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
       
       // Charisma
       cha: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // Will
       wil: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // --- Sensory stats ---
       // See
       see: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // Hear
       hear: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // Smell
       small: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0, max: 100 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // --- Extra stats ---
       // Experience
       xp: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // Luck
@@ -83,6 +94,7 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
       hp: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
         modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 }),
         max: new foundry.data.fields.NumberField({ initial: 10, min: 0 })
       }),
 
@@ -90,6 +102,7 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
       ep: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
         modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 }),
         max: new foundry.data.fields.NumberField({ initial: 10, min: 0 })
       }),
 
@@ -97,6 +110,7 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
       mp: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
         modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 }),
         max: new foundry.data.fields.NumberField({ initial: 10, min: 0 })
       }),
 
@@ -104,6 +118,7 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
       kp: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
         modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 }),
         max: new foundry.data.fields.NumberField({ initial: 10, min: 0 })
       }),
 
@@ -111,31 +126,36 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
       sp: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
         modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 }),
         max: new foundry.data.fields.NumberField({ initial: 10, min: 0 })
       }),
 
       // Magic Resistance
       rst: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // Mental Resistance
       res: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
 
       // Physical Resistance
       tou: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
       
       // Speed
       speed: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 10, min: 0 }),
-        modifier: new foundry.data.fields.NumberField({ initial: 0 })
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
     };
   }
