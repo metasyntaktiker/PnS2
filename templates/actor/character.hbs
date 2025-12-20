@@ -1,19 +1,25 @@
 <section class="character-section">
-  <h1>{{actor.name}}</h1>
-  <!-- Image here -->
-  <div class="character-row">
-    <label title="{{localize "PnS2.HP_Description"}}">{{localize "PnS2.HP"}}</label>
-    <input type="number" name="system.hp.value" value="{{system.hp.value}}" />
-    <span>/ {{system.hp.max}}</span>
-    <progress value="{{system.hp.value}}" max="{{system.hp.max}}"/>
-  </div>
-  <div class="character-row">
-    <label title="{{localize "PnS2.MP_Description"}}">{{localize "PnS2.MP"}}</label>
-    <input type="number" name="system.mp.value" value="{{system.mp.value}}" />
-    <span>/ {{system.mp.max}}</span>
-    <progress value="{{system.mp.value}}" max="{{system.mp.max}}"/>
-  </div>
-
+  <header>
+    <h1>{{actor.name}}</h1>
+    <!-- Character Image -->
+    <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
+  </header>
+    <div class="character-stats">
+      <!-- HP -->
+      <div class="character-row">
+        <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>
+        <input type="number" name="system.hp.value" value="{{system.hp.value}}" />
+        <span>/ {{system.hp.max}}</span>
+        <progress value="{{system.hp.value}}" max="{{system.hp.max}}"/>
+      </div>
+      <!-- MP -->
+      <div class="character-row">
+        <label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>
+        <input type="number" name="system.mp.value" value="{{system.mp.value}}" />
+        <span>/ {{system.mp.max}}</span>
+        <progress value="{{system.mp.value}}" max="{{system.mp.max}}"/>
+      </div>
+    </div>
   <!--div class="character-row2">
     {{localize "PnS2.HPPercent"}}: {{system.hpPercent}}%
   </div-->

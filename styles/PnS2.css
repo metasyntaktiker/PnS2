@@ -1,3 +1,16 @@
+.profile-img {
+  flex: 0 0 100px;
+  height: 100px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  position: relative;
+  overflow: hidden;
+}
+
+.character-stats {
+  flex-grow: 1;
+}
+
 .character-section
 {
   /* background: #ec4343; */

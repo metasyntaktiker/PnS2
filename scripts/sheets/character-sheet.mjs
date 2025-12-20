@@ -27,13 +27,17 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
 
+    context.actor = this.actor;
     context.system = this.actor.system;
-    context.system.hp ??= { value: 10, max: 10 };
+    context.img = this.actor.img;
 
-    context.system.hpPercent =
-      context.system.hp.max > 0
-        ? Math.round((context.system.hp.value / context.system.hp.max) * 100)
-        : 0;
+
+    // context.system.hp ??= { value: 10, max: 10 };
+
+    // context.system.hpPercent =
+    //   context.system.hp.max > 0
+    //     ? Math.round((context.system.hp.value / context.system.hp.max) * 100)
+    //     : 0;
 
     return context;
   }
@@ -44,6 +48,17 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
 
     html.querySelectorAll("input[name]").forEach(input => {
       input.addEventListener("change", this._onInputChange.bind(this));
+    });
+
+    /* Click to open file picker */
+    html.querySelector(".profile-img")?.addEventListener("click", () => {
+      if (!this.actor.isOwner) return;
+
+      new FilePicker({
+        type: "image",
+        current: this.actor.img,
+        callback: path => this.actor.update({ img: path })
+      }).render(true);
     });
   }
 
