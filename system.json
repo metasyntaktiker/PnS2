@@ -1,0 +1,35 @@
+{
+  "id": "PnS2",
+  "title": "Pen and Syntax 2",
+  "description": "PnS2 — A clean, data-first tabletop RPG system.",
+  "version": "0.1.0",
+
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+
+  "authors": [
+    { "name": "Metasyntaktiker" }
+  ],
+
+  "esmodules": [
+    "scripts/system.js"
+  ],
+
+  "styles": [
+    "styles/PnS2.css"
+  ],
+
+  "languages": [
+    { "lang": "en", "name": "English", "path": "lang/en.json" },
+    { "lang": "de", "name": "Deutsch", "path": "lang/de.json" }
+  ],
+
+  "documentTypes": {
+    "Actor": {
+      "character": {}
+    },
+    "Item": {}
+  }
+}

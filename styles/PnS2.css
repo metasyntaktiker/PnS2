@@ -1,0 +1,13 @@
+.PnS2.sheet.actor {
+  background: #1b1b1b;
+  color: #e0e0e0;
+  padding: 1rem;
+  font-family: system-ui;
+}
+
+.PnS2 .field {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

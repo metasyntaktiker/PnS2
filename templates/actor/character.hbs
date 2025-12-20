@@ -1,0 +1,21 @@
+<section class="sheet-body">
+  <h1>{{actor.name}}</h1>
+
+  <div class="field">
+    <label>HP</label>
+    <input
+      type="number"
+      name="system.hp.value"
+      value="{{system.hp.value}}"
+    />
+    <span>/ {{system.hp.max}}</span>
+    <progress
+      value="{{system.hp.value}}"
+      max="{{system.hp.max}}">
+    </progress>
+  </div>
+
+  <div class="field">
+    HP Percent: {{system.hpPercent}}%
+  </div>
+</section>
