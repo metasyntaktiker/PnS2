@@ -1,7 +1,5 @@
-export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsApplicationMixin(
-  foundry.applications.sheets.ActorSheetV2
-) {
-
+export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) 
+{
   // constructor(...args) 
   // {
   //   super(...args);
@@ -18,27 +16,26 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["PnS2", "sheet", "actor", "character"],
       width: 600,
-      height: 400,
-      submitOnChange: false,   // IMPORTANT
-      submitOnClose: false     // IMPORTANT
+      height: "auto",
+      submitOnChange: false,    // IMPORTANT
+      submitOnClose: false,     // IMPORTANT
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "stats" }]
     });
   }
 
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
-
+    
     context.actor = this.actor;
     context.system = this.actor.system;
     context.img = this.actor.img;
-
-
+    
     // context.system.hp ??= { value: 10, max: 10 };
 
     // context.system.hpPercent =
     //   context.system.hp.max > 0
     //     ? Math.round((context.system.hp.value / context.system.hp.max) * 100)
     //     : 0;
-
     return context;
   }
 
@@ -54,11 +51,20 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     html.querySelector(".profile-img")?.addEventListener("click", () => {
       if (!this.actor.isOwner) return;
 
-      new FilePicker({
+      new foundry.applications.apps.FilePicker.implementation({
         type: "image",
         current: this.actor.img,
         callback: path => this.actor.update({ img: path })
       }).render(true);
+    });
+
+    /* Drag & drop image */
+    html.querySelector(".profile-img")?.addEventListener("drop", async event => {
+      event.preventDefault();
+      const data = TextEditor.getDragEventData(event);
+      if (data?.type === "Image") {
+        await this.actor.update({ img: data.src });
+      }
     });
   }
 
@@ -68,10 +74,16 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
 
     const input = event.currentTarget;
     const path = input.name;
-    const value = Number(input.value);
+    const value = input.type === "checkbox" ? input.checked : input.value;
+    const dataType = input.dataset.dtype;
 
+    let updateValue = value;
+    if (dataType === "Number") {
+      updateValue = Number(value);
+    }
+    
     if (!path) return;
 
-    await this.actor.update({ [path]: value });
+    await this.actor.update({ [path]: updateValue });
   }
 }
