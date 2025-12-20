@@ -2,6 +2,12 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   foundry.applications.sheets.ActorSheetV2
 ) {
 
+  // constructor(...args) 
+  // {
+  //   super(...args);
+  //   console.log("PnS2CharacterSheet opened for actor:", this.document.name);
+  // }
+
   static PARTS = {
     main: {
       template: "systems/PnS2/templates/actor/character.hbs"

@@ -1,21 +1,20 @@
-<section class="sheet-body">
+<section class="character-section">
   <h1>{{actor.name}}</h1>
-
-  <div class="field">
-    <label>HP</label>
-    <input
-      type="number"
-      name="system.hp.value"
-      value="{{system.hp.value}}"
-    />
+  <!-- Image here -->
+  <div class="character-row">
+    <label title="{{localize "PnS2.HP_Description"}}">{{localize "PnS2.HP"}}</label>
+    <input type="number" name="system.hp.value" value="{{system.hp.value}}" />
     <span>/ {{system.hp.max}}</span>
-    <progress
-      value="{{system.hp.value}}"
-      max="{{system.hp.max}}">
-    </progress>
+    <progress value="{{system.hp.value}}" max="{{system.hp.max}}"/>
+  </div>
+  <div class="character-row">
+    <label title="{{localize "PnS2.MP_Description"}}">{{localize "PnS2.MP"}}</label>
+    <input type="number" name="system.mp.value" value="{{system.mp.value}}" />
+    <span>/ {{system.mp.max}}</span>
+    <progress value="{{system.mp.value}}" max="{{system.mp.max}}"/>
   </div>
 
-  <div class="field">
-    HP Percent: {{system.hpPercent}}%
-  </div>
+  <!--div class="character-row2">
+    {{localize "PnS2.HPPercent"}}: {{system.hpPercent}}%
+  </div-->
 </section>
