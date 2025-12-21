@@ -47,6 +47,10 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       input.addEventListener("change", this._onInputChange.bind(this));
     });
 
+    html.querySelectorAll(".rollable").forEach(label => {
+      label.addEventListener("click", this._onRoll.bind(this));
+    });
+
     /* Click to open file picker */
     html.querySelector(".profile-img")?.addEventListener("click", () => {
       if (!this.actor.isOwner) return;
@@ -68,14 +72,20 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     });
   }
 
-  /** Handle changes */
+  // Textbox changes
   async _onInputChange(event) {
     event.preventDefault();
-
+    if (activateLogging) { console.log("--- Input change event triggered: ", this.document.name); }
     const input = event.currentTarget;
     const path = input.name;
     const value = input.type === "checkbox" ? input.checked : input.value;
     const dataType = input.dataset.dtype;
+    if (activateLogging) {
+      console.log("-- input: ", input);
+      console.log("-- path: ", path);
+      console.log("-- value: ", value);
+      console.log("-- dataType: ", dataType);
+    }
 
     let updateValue = value;
     if (dataType === "Number") {
@@ -102,5 +112,39 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     }
 
     await this.actor.update(updateData);
+  }
+
+  // Roll event
+  async _onRoll(event) {
+    if (activateLogging) { console.log("--- rollable event triggered: ", this.document.name); }
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    if (activateLogging) {
+      console.log("-- element: ", element);
+      console.log("-- dataset: ", dataset);
+    }
+
+    if (dataset.roll) {
+      const roll = new Roll(dataset.roll, this.actor.getRollData());
+      // const rollResult = await roll.roll(); // roll.toMessage() does the roll
+      const attributeKey = dataset.key.toUpperCase();
+      const attributeLabel = game.i18n.localize(`PnS2.${attributeKey}`);
+      const attributeTotal = this.actor.system[dataset.key].total;
+      
+      if (activateLogging) {
+        console.log("-- attributeKey: ", attributeKey);
+        console.log("-- attributeLabel: ", attributeLabel);
+        console.log("-- attributeTotal: ", attributeTotal);
+        console.log("-- roll: ", roll);
+      }
+
+      const messageData = {
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        flavor: `${attributeLabel} ${game.i18n.localize(`PnS2.Roll`)} (${game.i18n.localize(`PnS2.RollTarget`)}: ${attributeTotal})`
+      };
+      
+      roll.toMessage(messageData);
+    }
   }
 }

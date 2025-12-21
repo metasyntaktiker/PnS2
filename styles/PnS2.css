@@ -71,6 +71,15 @@ progress:after {
   content: attr(value)' / ' attr(max);
 } 
 
+.rollable {
+  cursor: pointer;
+}
+
+.rollable:hover {
+  cursor: pointer;
+  text-shadow: 0 0 15px rgb(255, 255, 0);
+}
+
 /*
 .barLeft {
 	border-top-left-radius: 10px;
