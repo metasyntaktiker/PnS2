@@ -18,27 +18,39 @@
   color: #e0e0e0;
 }
 
-.character-section .character-row {
+.character-section .character-basestats-row {
   /* background: #83d378; */
-  margin-bottom: 0.5rem;
+  margin-bottom: 3px;
   display: grid;
   align-items: center;
   /* gap: 0.5rem; */
   /* grid-template-columns: repeat(4, 10%); */
-  grid-template-columns: 20% 8% 8% 20%;
-  grid-template-rows: repeat(1, 24px);
+  grid-template-columns: 20% 8% 8% 14% 20%;
+  grid-template-rows: repeat(1, 22px);
 }
 
-.character-section .character-row2 {
-  background: #9878d3;
-  margin-bottom: 0.5rem;
-  display: flex;
+.character-section .character-basestats-row input[type=number], 
+.character-section .character-basestats-row input[type=text]
+{
+  width: 40px;
+  height: 20px;
+	margin: 0px;
+  text-align: center;
+}
+
+.character-section .character-calculated-row {
+  /* background: #83d378; */
+  margin-bottom: 3px;
+  display: grid;
   align-items: center;
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
+  /* grid-template-columns: repeat(4, 10%); */
+  grid-template-columns: 20% 8% 8% 8% 16% 20%;
+  grid-template-rows: repeat(1, 22px);
 }
 
-.character-section .character-row input[type=number],
-.character-section .character-row input[type=text]
+.character-section .character-calculated-row input[type=number], 
+.character-section .character-calculated-row input[type=text]
 {
   width: 40px;
   height: 20px;
@@ -159,11 +171,11 @@ progress:after {
             <div class="calculatedAttributesHeader" data-tooltip="{{localize 'PnS.HitPoints'}}">{{localize 'PnS.HP'}}</div>
             <div class="calculatedAttributesHeader">
               <div class="healthbar barLeft soloBar" data-tooltip="{{localize 'PnS.HitPoints'}}">
-                <div class="bar hp" style="--a: {{data.system.attribs.hp.value}}; --b: {{data.system.attribs.hp.max}};"></div>
+                <div class="bar hp" style="--a: {{data.system.attribs.hp.value}}; --b: {{data.system.attribs.hp.total}};"></div>
                 <div class="barLabel">
                     <input type="number" name="system.attribs.hp.value" data-dtype="Number" value="{{data.system.attribs.hp.value}}" /> /
-                    <input type="number" name="system.attribs.hp.max" data-dtype="Number" value="{{data.system.attribs.hp.max}}" />
-                    <!--span data-tooltip="max">{{data.system.attribs.hp.max}}</span-->
+                    <input type="number" name="system.attribs.hp.total" data-dtype="Number" value="{{data.system.attribs.hp.total}}" />
+                    <!--span data-tooltip="total">{{data.system.attribs.hp.total}}</span-->
                 </div>
               </div>
             </div>

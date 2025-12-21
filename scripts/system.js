@@ -23,7 +23,7 @@ Hooks.on("preCreateActor", (actor) => {
   if (actor.type === "character") {
     actor.update({
       "system.hp.value": actor.system.hp?.value ?? 10,
-      "system.hp.max": actor.system.hp?.max ?? 10
+      "system.hp.total": actor.system.hp?.total ?? 10
     });
   }
 });

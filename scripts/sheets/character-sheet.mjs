@@ -30,11 +30,11 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     context.system = this.actor.system;
     context.img = this.actor.img;
     
-    // context.system.hp ??= { value: 10, max: 10 };
+    // context.system.hp ??= { value: 10, total: 10 };
 
     // context.system.hpPercent =
-    //   context.system.hp.max > 0
-    //     ? Math.round((context.system.hp.value / context.system.hp.max) * 100)
+    //   context.system.hp.total > 0
+    //     ? Math.round((context.system.hp.value / context.system.hp.total) * 100)
     //     : 0;
     return context;
   }
