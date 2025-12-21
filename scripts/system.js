@@ -1,3 +1,5 @@
+globalThis.activateLogging = true;
+
 import { PnS2CharacterData } from "./data/character.mjs";
 import { PnS2CharacterSheet } from "./sheets/character-sheet.mjs";
 
