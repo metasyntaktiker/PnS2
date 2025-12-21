@@ -67,17 +67,48 @@ progress
   align-content: center;
 }
 
-progress:after {
+progress:after 
+{
   content: attr(value)' / ' attr(max);
 } 
 
-.rollable {
+.rollable 
+{
   cursor: pointer;
 }
 
-.rollable:hover {
+.rollable:hover 
+{
   cursor: pointer;
   text-shadow: 0 0 15px rgb(255, 255, 0);
+}
+
+.roll-success
+{
+  height: 20px;
+  margin: auto;
+  display: inline-block;
+}
+
+.roll-fail
+{
+  height: 20px;
+  margin: auto;
+  display: inline-block;
+}
+
+.roll-critical-success
+{
+  height: 20px;
+  margin: auto;
+  display: inline-block;
+}
+
+.roll-critical-fail
+{
+  height: 20px;
+  margin: auto;
+  display: inline-block;
 }
 
 /*

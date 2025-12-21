@@ -2,6 +2,7 @@
 
 ## System Overview
 - **Target Platform**: Foundry VTT (Verified v13)
+- **Documentation Target Platform**: https://foundryvtt.com/api/index.html
 - **System ID**: `PnS2`
 - **Manifest**: `system.json`
 

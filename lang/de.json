@@ -1,13 +1,15 @@
 {
-  "Charactersheet": "------------USELESS-Charakterbogen------------",
   "PnS2.Current": "Aktuell",
   "PnS2.Base": "Basis",
   "PnS2.Modifier": "Modifikator",
   "PnS2.Roll": "Wurf",
   "PnS2.RollTarget": "Zielwert",
+  "PnS2.SUCCESS": "ERFOLG!",
+  "PnS2.FAIL": "FEHLSCHLAG!",
+  "PnS2.CRITICALSUCCESS": "KRITISCHER ERFOLG!",
+  "PnS2.CRITICALFAIL": "KRITISCHER FEHLSCHLAG!",
   "PnS2.Portrait_MouseOver": "Klicken um das Charakterbild zu ändern.",
 
-  "": "------------USELESS-Charakterbogen------------",
   "PnS2.STR": "Stärke",
   "PnS2.STR_MouseOver": "Beschreibt die Muskelkraft die der Charakter aufbringen kann.",
   "PnS2.AGI": "Gewandtheit",
