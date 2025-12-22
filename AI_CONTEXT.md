@@ -33,3 +33,6 @@
 - **Data Models**: Used for Actor system data (`CONFIG.Actor.dataModels`).
 - **Hooks**: Used for lifecycle events (`init`, `preCreateActor`).
 - **ESM**: All scripts are modules; imports are relative.
+
+## Important 
+- Never delete any kind of logging mechanisms
