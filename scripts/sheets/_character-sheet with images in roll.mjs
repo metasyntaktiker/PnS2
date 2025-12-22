@@ -126,23 +126,18 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     }
 
     if (dataset.roll) {
-      const roll = new Roll("1d100",{},{rollMode: game.settings.get("core", "rollMode")});
-      if (activateLogging) { console.log("-- roll: ", roll); }
-      let resultString;
-      let resultIcon;
-      const dice = roll.dice[0];
-      const attributeKey = dataset.key;
-      const attributeLabel = game.i18n.localize(`PnS2.${attributeKey.toUpperCase()}`);
-      const attributeTotal = this.actor.system[dataset.key].total;
-      const stat = this.actor.system[attributeKey];
-      const value = Number(stat.value);
-      const modifier = Number(stat.modifier);
-      const total = Number(stat.total);
-      
+      const roll = new Roll(dataset.roll, this.actor.getRollData());
       await roll.evaluate();
 
-      const isCriticalSuccess = roll.total <= 2;
-      const isCriticalFail = roll.total >= 98;
+      const attributeKey = dataset.key.toUpperCase();
+      const attributeLabel = game.i18n.localize(`PnS2.${attributeKey}`);
+      const attributeTotal = this.actor.system[dataset.key].total;
+      
+      let resultString;
+      let resultIcon;
+
+      const isCriticalSuccess = roll.total <= 5;
+      const isCriticalFail = roll.total >= 96;
       const isSuccess = roll.total <= attributeTotal;
 
       if (activateLogging) { console.log("-- roll.total: ", roll.total); }
@@ -163,27 +158,14 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         resultString = `<strong>${game.i18n.localize("PnS2.SUCCESS")}</strong>`;
         //resultIcon = `<img src="systems/PnS2/assets/success.svg" title="${roll.formula}" style="vertical-align: middle; height: 2em; border: none;"/>`;
         resultIcon = `<div> <img class="roll-success" src="systems/PnS2/assets/success.svg"/></div>`;
-      } 
-      else 
-      {
+      } else {
         resultString = `<strong>${game.i18n.localize("PnS2.FAIL")}</strong>`;
         //resultIcon = `<img src="systems/PnS2/assets/fail.svg" title="${roll.formula}" style="vertical-align: middle; height: 2em; border: none;"/>`;
         resultIcon = `<div> <img class="roll-fail" src="systems/PnS2/assets/fail.svg"/> </div>`;
       }
 
-      dice.options.flavor = `
-        ${attributeKey}
-        ${value} (value) + ${modifier} (modifier) = ${total}
-      `;
-      dice.options.label = resultIcon;
-
-      const rollHtml = await roll.render();
       const flavor = `${attributeLabel} ${game.i18n.localize(`PnS2.Roll`)} (${game.i18n.localize(`PnS2.RollTarget`)}: ${attributeTotal})`;
-      /* This part into the content will include the "normal" drop down behaviour
-      <br/>
-      ${rollHtml}
-      <br/>
-      */
+      
       const content = `
         <div class="dice-roll">
             <div class="dice-result">
@@ -194,19 +176,20 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         <p>${resultString}</p>
       `;
 
-      ChatMessage.create({
+      const messageData = {
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
         flavor: flavor,
         content: content,
-        rolls: [roll],              // THIS enables click-to-inspect
-        flags: {
-          PnS2: {
-            attribute: attributeKey,
-            target: total,
-            isSuccess
-          }
+        flags: { // Store roll data in flags for other modules to use if needed
+            "PnS2": {
+                "roll": roll.toJSON(),
+                "isSuccess": isSuccess
+            }
         }
-      });
+      };
+      
+      //ChatMessage.create(messageData); This is just for the message itself
+      roll.toMessage(messageData);
     }
   }
 }

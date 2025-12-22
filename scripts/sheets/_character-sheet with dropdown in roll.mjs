@@ -126,78 +126,65 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     }
 
     if (dataset.roll) {
-      const roll = new Roll("1d100",{},{rollMode: game.settings.get("core", "rollMode")});
-      if (activateLogging) { console.log("-- roll: ", roll); }
-      let resultString;
-      let resultIcon;
+      // const roll = new Roll("1d100");
+      const roll = new Roll(
+        "1d100",
+        {},
+        {
+          flavor: `${dataset.key.toUpperCase()} Check`,
+          rollMode: game.settings.get("core", "rollMode")
+        }
+      );
+
       const dice = roll.dice[0];
       const attributeKey = dataset.key;
       const attributeLabel = game.i18n.localize(`PnS2.${attributeKey.toUpperCase()}`);
-      const attributeTotal = this.actor.system[dataset.key].total;
+
       const stat = this.actor.system[attributeKey];
       const value = Number(stat.value);
       const modifier = Number(stat.modifier);
       const total = Number(stat.total);
+
+      const isCriticalSuccess = roll.total <= 5;
+      const isCriticalFail = roll.total >= 96;
+      const isSuccess = roll.total <= total;
       
-      await roll.evaluate();
-
-      const isCriticalSuccess = roll.total <= 2;
-      const isCriticalFail = roll.total >= 98;
-      const isSuccess = roll.total <= attributeTotal;
-
-      if (activateLogging) { console.log("-- roll.total: ", roll.total); }
-      if (activateLogging) { console.log("-- attributeTotal: ", attributeTotal); }
-
-      if (isCriticalSuccess) 
-      {
-        resultString = `<strong>${game.i18n.localize("PnS2.CRITICALSUCCESS")}</strong>`;
-        resultIcon = `<div><img class="roll-critical-success" src="systems/PnS2/assets/success.svg"/><img class="roll-critical-success" src="systems/PnS2/assets/success.svg"/><img class="roll-critical-success" src="systems/PnS2/assets/success.svg"/></div>`;
-      }
-      else if (isCriticalFail) 
-      {
-        resultString = `<strong>${game.i18n.localize("PnS2.CRITICALFAIL")}</strong>`;
-        resultIcon = `<div><img class="roll-critical-fail" src="systems/PnS2/assets/fail.svg"/><img class="roll-critical-fail" src="systems/PnS2/assets/fail.svg"/><img class="roll-critical-fail" src="systems/PnS2/assets/fail.svg"/></div>`;
-      }
-      else if (isSuccess) 
-      {
-        resultString = `<strong>${game.i18n.localize("PnS2.SUCCESS")}</strong>`;
-        //resultIcon = `<img src="systems/PnS2/assets/success.svg" title="${roll.formula}" style="vertical-align: middle; height: 2em; border: none;"/>`;
-        resultIcon = `<div> <img class="roll-success" src="systems/PnS2/assets/success.svg"/></div>`;
-      } 
-      else 
-      {
-        resultString = `<strong>${game.i18n.localize("PnS2.FAIL")}</strong>`;
-        //resultIcon = `<img src="systems/PnS2/assets/fail.svg" title="${roll.formula}" style="vertical-align: middle; height: 2em; border: none;"/>`;
-        resultIcon = `<div> <img class="roll-fail" src="systems/PnS2/assets/fail.svg"/> </div>`;
-      }
-
+      
       dice.options.flavor = `
-        ${attributeKey}
+        ${dataset.key.toUpperCase()}
         ${value} (value) + ${modifier} (modifier) = ${total}
       `;
-      dice.options.label = resultIcon;
 
-      const rollHtml = await roll.render();
-      const flavor = `${attributeLabel} ${game.i18n.localize(`PnS2.Roll`)} (${game.i18n.localize(`PnS2.RollTarget`)}: ${attributeTotal})`;
-      /* This part into the content will include the "normal" drop down behaviour
-      <br/>
-      ${rollHtml}
-      <br/>
-      */
-      const content = `
-        <div class="dice-roll">
-            <div class="dice-result">
-                <h4 class="dice-formula">${resultIcon}</h4>
-                <h4 class="dice-total">${roll.total}</h4>
-            </div>
+      /* ✅ Correct async evaluation */
+      await roll.evaluate();
+
+      /* ---------- RESULT LABEL ---------- */
+      let resultString;
+      if (isCriticalSuccess) resultString = game.i18n.localize("PnS2.CRITICALSUCCESS");
+      else if (isCriticalFail) resultString = game.i18n.localize("PnS2.CRITICALFAIL");
+      else if (isSuccess) resultString = game.i18n.localize("PnS2.SUCCESS");
+      else resultString = game.i18n.localize("PnS2.FAIL");
+
+      /* ---------- STAT BREAKDOWN ---------- */
+      const breakdown = `
+        <div class="pns2-roll-breakdown">
+          <strong>${attributeLabel}</strong><br/>
+          ${value} (value) + ${modifier} (modifier) = <strong>${total}</strong>
         </div>
-        <p>${resultString}</p>
+      `;
+
+      /* ---------- ROLL HTML (CLICKABLE) ---------- */
+      const rollHtml = await roll.render();
+
+      const content = `
+        ${rollHtml}
+        ${breakdown}
+        <p><strong>${resultString}</strong></p>
       `;
 
       ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        flavor: flavor,
-        content: content,
+        content,
         rolls: [roll],              // THIS enables click-to-inspect
         flags: {
           PnS2: {
