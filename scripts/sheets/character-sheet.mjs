@@ -114,6 +114,20 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     const input = event.currentTarget;
     const path = input.name;
     const value = input.type === "checkbox" ? input.checked : input.value;
+
+    // Handle updates to talents specifically
+    const talentMatch = path.match(/^system\.talents\.(\d+)\.value$/);
+    if (talentMatch) {
+      const index = Number(talentMatch[1]);
+      const talents = foundry.utils.deepClone(this.actor.system.talents);
+      if (talents[index]) {
+        talents[index].value = Number(value);
+        this._focusTab = "talents"; // Set the focus tab to "talents"
+        return this.actor.update({ "system.talents": talents });
+      }
+    }
+
+    // Generic update logic for other fields
     const dataType = input.dataset.dtype;
     if (activateLogging) {
       console.log("-- input: ", input);
@@ -140,9 +154,9 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
 
       // Ensure the stat and its properties exist
       if (stat && typeof stat.value === 'number' && typeof stat.modifier === 'number') {
-        const currentValue = (path.endsWith('.value')) ? updateValue : stat.value;
-        const currentModifier = (path.endsWith('.modifier')) ? updateValue : stat.modifier;
-        updateData[`system.${statName}.total`] = Number(currentValue) + Number(currentModifier);
+        const currentValue = (path.endsWith('.value')) ? Number(updateValue) : stat.value;
+        const currentModifier = (path.endsWith('.modifier')) ? Number(updateValue) : stat.modifier;
+        updateData[`system.${statName}.total`] = currentValue + currentModifier;
       }
     }
 
