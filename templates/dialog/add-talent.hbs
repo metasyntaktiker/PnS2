@@ -1,0 +1,33 @@
+<form>
+    <div class="form-group">
+        <label>{{localize "PNS.Talent.Name"}}</label>
+        <input type="text" name="name" />
+    </div>
+    <div class="form-group">
+        <label>{{localize "PNS.Talent.BaseValue1"}}</label>
+        <select name="base1">
+            <option value=""></option>
+            {{#each baseValues as |name key|}}
+            <option value="{{key}}">{{localize name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>{{localize "PNS.Talent.BaseValue2"}}</label>
+        <select name="base2">
+            <option value=""></option>
+            {{#each baseValues as |name key|}}
+            <option value="{{key}}">{{localize name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>{{localize "PNS.Talent.BaseValue3"}}</label>
+        <select name="base3">
+            <option value=""></option>
+            {{#each baseValues as |name key|}}
+            <option value="{{key}}">{{localize name}}</option>
+            {{/each}}
+        </select>
+    </div>
+</form>

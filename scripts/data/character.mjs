@@ -158,6 +158,14 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
         modifier: new foundry.data.fields.NumberField({ initial: 0 }),
         total: new foundry.data.fields.NumberField({ initial: 0 })
       }),
+
+      talents: new foundry.data.fields.ArrayField(new foundry.data.fields.ObjectField({
+        name: new foundry.data.fields.StringField({ initial: "" }),
+        base1: new foundry.data.fields.StringField({ initial: "" }),
+        base2: new foundry.data.fields.StringField({ initial: "" }),
+        base3: new foundry.data.fields.StringField({ initial: "" }),
+        value: new foundry.data.fields.NumberField({ initial: 0 })
+      }))
     };
   }
 }

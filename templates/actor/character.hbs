@@ -188,9 +188,26 @@
       </div>
     </div>
     <div class="tab" data-group="primary" data-tab="talente">
-      <h2>{{localize "PnS2.Talente"}}</h2>
-      <div style="color: red; font-size: 24px;">
-        TALENTE TAB IS WORKING
+      <div class="talents-header">
+        <div class="talent-name">{{localize "PNS.Talent.Name"}}</div>
+        <div>{{localize "PNS.Talent.baseSum"}}</div>
+        <div>{{localize "PNS.Talent.talentValue"}}</div>
+        <div>{{localize "PNS.Talent.sum"}}</div>
+        <div></div>
+      </div>
+      <div class="talents-list">
+        {{#each system.talents as |talent id|}}
+          <div class="talent-row" data-talent-id="{{id}}">
+            <div class="talent-name">{{talent.name}}</div>
+            <div class="talent-base">{{talent.baseSum}}</div>
+            <input class="talent-value" type="number" name="system.talents.{{id}}.value" value="{{talent.value}}" />
+            <div class="talent-total">{{talent.total}}</div>
+            <a class="talent-delete" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></a>
+          </div>
+        {{/each}}
+      </div>
+      <div class="add-talent-button">
+          <a class="add-talent"><i class="fas fa-plus"></i> {{localize "PNS.Talent.Add"}}</a>
       </div>
     </div>
   </div>

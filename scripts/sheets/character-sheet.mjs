@@ -3,7 +3,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   constructor(...args) 
   {
     super(...args);
-    if (activateLogging) { console.log("----PnS2CharacterSheet opened for actor:", this.document.name); }
+    // if (activateLogging) { console.log("----PnS2CharacterSheet opened for actor:", this.document.name); }
     
   }
 
@@ -32,6 +32,17 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     context.actor = this.actor;
     context.system = this.actor.system;
     context.img = this.actor.img;
+
+    // Prepare talents
+    if (context.system.talents) {
+      context.system.talents.forEach(talent => {
+        const base1 = context.system[talent.base1]?.total || 0;
+        const base2 = context.system[talent.base2]?.total || 0;
+        const base3 = context.system[talent.base3]?.total || 0;
+        talent.baseSum = Math.round((base1 + base2 + base3) / 3);
+        talent.total = talent.baseSum + talent.value;
+      });
+    }
   
     return context;
   }
@@ -47,6 +58,13 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     html.querySelectorAll(".rollable").forEach(label => {
       label.addEventListener("click", this._onRoll.bind(this));
     });
+
+    // Talents
+    html.querySelector(".add-talent")?.addEventListener("click", this._onAddTalent.bind(this));
+    html.querySelectorAll(".talent-delete").forEach(btn => {
+        btn.addEventListener("click", this._onDeleteTalent.bind(this));
+    });
+
 
     /* Click to open file picker */
     html.querySelector(".profile-img")?.addEventListener("click", () => {
@@ -72,17 +90,17 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   // Textbox changes
   async _onInputChange(event) {
     event.preventDefault();
-    if (activateLogging) { console.log("--- Input change event triggered: ", this.document.name); }
+    // if (activateLogging) { console.log("--- Input change event triggered: ", this.document.name); }
     const input = event.currentTarget;
     const path = input.name;
     const value = input.type === "checkbox" ? input.checked : input.value;
     const dataType = input.dataset.dtype;
-    if (activateLogging) {
-      console.log("-- input: ", input);
-      console.log("-- path: ", path);
-      console.log("-- value: ", value);
-      console.log("-- dataType: ", dataType);
-    }
+    // if (activateLogging) {
+    //   console.log("-- input: ", input);
+    //   console.log("-- path: ", path);
+    //   console.log("-- value: ", value);
+    //   console.log("-- dataType: ", dataType);
+    // }
 
     let updateValue = value;
     if (dataType === "Number") {
@@ -111,20 +129,109 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     await this.actor.update(updateData);
   }
 
+  // Add Talent
+  async _onAddTalent(event) {
+    event.preventDefault();
+
+    const baseValues = {
+        "str": "PnS2.STR",
+        "agi": "PnS2.AGI",
+        "pre": "PnS2.PRE",
+        "con": "PnS2.CON",
+        "int": "PnS2.INT",
+        "cha": "PnS2.CHA",
+        "wil": "PnS2.WIL"
+    };
+
+    const template = "systems/PnS2/templates/dialog/add-talent.hbs";
+    const html = await renderTemplate(template, { baseValues });
+
+    const dialog = new Dialog({
+        title: game.i18n.localize("PNS.Talent.Add"),
+        content: html,
+        buttons: {
+            apply: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize("PNS.Button.Apply"),
+                callback: async (html) => {
+                    const form = html[0].querySelector("form");
+                    const name = form.name.value;
+                    const base1 = form.base1.value;
+                    const base2 = form.base2.value;
+                    const base3 = form.base3.value;
+
+                    if (!name || !base1 || !base2 || !base3) {
+                        ui.notifications.warn("Please fill out all fields.");
+                        return;
+                    }
+
+                    const newTalent = {
+                        name: name,
+                        base1: base1,
+                        base2: base2,
+                        base3: base3,
+                        value: 0
+                    };
+
+                    const talents = this.actor.system.talents.concat([newTalent]);
+                    await this.actor.update({ "system.talents": talents });
+                }
+            },
+            cancel: {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize("PNS.Button.Cancel"),
+                callback: () => {}
+            }
+        },
+        default: "apply",
+        render: (html) => {
+            const form = html[0].querySelector("form");
+            const applyButton = html.parent().find(".dialog-button.apply");
+            const selects = form.querySelectorAll("select");
+
+            function checkDropdowns() {
+                let allSelected = true;
+                selects.forEach(select => {
+                    if (select.value === "") {
+                        allSelected = false;
+                    }
+                });
+                applyButton.prop("disabled", !allSelected);
+            }
+
+            selects.forEach(select => {
+                select.addEventListener("change", checkDropdowns);
+            });
+
+            checkDropdowns(); // Initial check
+        }
+    });
+    dialog.render(true);
+  }
+
+  // Delete Talent
+  async _onDeleteTalent(event) {
+    event.preventDefault();
+    const talentId = event.currentTarget.closest(".talent-row").dataset.talentId;
+    const talents = this.actor.system.talents.filter((_, id) => id != talentId);
+    await this.actor.update({ "system.talents": talents });
+  }
+
+
   // Roll event
   async _onRoll(event) {
-    if (activateLogging) { console.log("--- rollable event triggered: ", this.document.name); }
+    // if (activateLogging) { console.log("--- rollable event triggered: ", this.document.name); }
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    if (activateLogging) {
-      console.log("-- element: ", element);
-      console.log("-- dataset: ", dataset);
-    }
+    // if (activateLogging) {
+    //   console.log("-- element: ", element);
+    //   console.log("-- dataset: ", dataset);
+    // }
 
     if (dataset.roll) {
       const roll = new Roll("1d100",{},{rollMode: game.settings.get("core", "rollMode")});
-      if (activateLogging) { console.log("-- roll: ", roll); }
+      // if (activateLogging) { console.log("-- roll: ", roll); }
       let resultString;
       let resultIcon;
       const dice = roll.dice[0];
@@ -142,8 +249,8 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       const isCriticalFail = roll.total >= 98;
       const isSuccess = roll.total <= attributeTotal;
 
-      if (activateLogging) { console.log("-- roll.total: ", roll.total); }
-      if (activateLogging) { console.log("-- attributeTotal: ", attributeTotal); }
+    //   if (activateLogging) { console.log("-- roll.total: ", roll.total); }
+    //   if (activateLogging) { console.log("-- attributeTotal: ", attributeTotal); }
 
       if (isCriticalSuccess) 
       {

@@ -55,5 +55,17 @@
 
   "PnS2.HPPercent": "TEMP-Lebenspunkte Prozentual",
   "PnS2.Basiswerte": "Basiswerte",
-  "PnS2.Talente": "Talente"
+  "PnS2.Talente": "Talente",
+
+  "PNS.Talent.Tab": "Talente",
+  "PNS.Talent.Add": "Talent hinzufügen",
+  "PNS.Talent.Name": "Talentname",
+  "PNS.Talent.BaseValue1": "Basiswert 1",
+  "PNS.Talent.BaseValue2": "Basiswert 2",
+  "PNS.Talent.BaseValue3": "Basiswert 3",
+  "PNS.Talent.talentValue": "Talentwert",
+  "PNS.Talent.sum": "Summe",
+  "PNS.Talent.baseSum": "Basis",
+  "PNS.Button.Cancel": "Abbrechen",
+  "PNS.Button.Apply": "Übernehmen"
 }

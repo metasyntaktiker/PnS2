@@ -16,5 +16,17 @@
   "PnS2.HEAR": "Hear",
   "PnS2.SMELL": "Smell",
   "PnS2.Basiswerte": "Base Values",
-  "PnS2.Talente": "Talents"
+  "PnS2.Talente": "Talents",
+
+  "PNS.Talent.Tab": "Talents",
+  "PNS.Talent.Add": "Add Talent",
+  "PNS.Talent.Name": "Talent Name",
+  "PNS.Talent.BaseValue1": "Base Value 1",
+  "PNS.Talent.BaseValue2": "Base Value 2",
+  "PNS.Talent.BaseValue3": "Base Value 3",
+  "PNS.Talent.talentValue": "Talent Value",
+  "PNS.Talent.sum": "Sum",
+  "PNS.Talent.baseSum": "Base",
+  "PNS.Button.Cancel": "Cancel",
+  "PNS.Button.Apply": "Apply"
 }

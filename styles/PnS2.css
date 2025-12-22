@@ -134,3 +134,59 @@ progress:after
   display: none;
 }
 
+/* Talents Tab */
+.talents-header {
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 1fr 20px;
+  font-weight: bold;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  align-items: center;
+}
+
+.talent-row {
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 1fr 20px;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.talent-row input {
+  width: 50px;
+  text-align: center;
+}
+
+.talent-delete {
+  text-align: center;
+  color: #a00;
+  cursor: pointer;
+}
+
+.talent-delete:hover {
+  color: #F00;
+}
+
+.add-talent-button {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.add-talent {
+  cursor: pointer;
+}
+
+.add-talent:hover {
+  text-shadow: 0 0 5px yellow;
+}
+
+.dialog .form-group {
+    margin-bottom: 10px;
+}
+
+.dialog .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
