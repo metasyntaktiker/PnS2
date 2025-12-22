@@ -198,7 +198,7 @@
       <div class="talents-list">
         {{#each system.talents as |talent id|}}
           <div class="talent-row" data-talent-id="{{id}}">
-            <div class="talent-name">{{talent.name}}</div>
+            <div class="talent-name rollable" data-roll="1d100" data-key="talent-{{id}}">{{talent.name}}</div>
             <div class="talent-base">{{talent.baseSum}}</div>
             <input class="talent-value" type="number" name="system.talents.{{id}}.value" value="{{talent.value}}" />
             <div class="talent-total">{{talent.total}}</div>

@@ -220,74 +220,85 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
 
   // Roll event
   async _onRoll(event) {
-    // if (activateLogging) { console.log("--- rollable event triggered: ", this.document.name); }
+    if (activateLogging) { console.log("--- rollable event triggered: ", this.document.name); }
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    // if (activateLogging) {
-    //   console.log("-- element: ", element);
-    //   console.log("-- dataset: ", dataset);
-    // }
+    if (activateLogging) {
+      console.log("-- element: ", element);
+      console.log("-- dataset: ", dataset);
+    }
 
     if (dataset.roll) {
-      const roll = new Roll("1d100",{},{rollMode: game.settings.get("core", "rollMode")});
-      // if (activateLogging) { console.log("-- roll: ", roll); }
-      let resultString;
-      let resultIcon;
+      const roll = new Roll("1d100", {}, { rollMode: game.settings.get("core", "rollMode") });
+      if (activateLogging) { console.log("-- roll: ", roll); }
       const dice = roll.dice[0];
       const attributeKey = dataset.key;
-      const attributeLabel = game.i18n.localize(`PnS2.${attributeKey.toUpperCase()}`);
-      const attributeTotal = this.actor.system[dataset.key].total;
-      const stat = this.actor.system[attributeKey];
-      const value = Number(stat.value);
-      const modifier = Number(stat.modifier);
-      const total = Number(stat.total);
-      
+
+      let attributeLabel;
+      let attributeTotal;
+      let flavorText;
+      let chatFlavor;
+
+      // Handle Talent Rolls
+      if (attributeKey.startsWith('talent-')) {
+        const talentIndex = parseInt(attributeKey.split('-')[1], 10);
+        const talent = this.actor.system.talents[talentIndex];
+        if (!talent) return;
+
+        const base1 = this.actor.system[talent.base1]?.total || 0;
+        const base2 = this.actor.system[talent.base2]?.total || 0;
+        const base3 = this.actor.system[talent.base3]?.total || 0;
+        const baseSum = Math.round((base1 + base2 + base3) / 3);
+
+        attributeLabel = talent.name;
+        attributeTotal = baseSum + talent.value;
+        flavorText = `
+          ${game.i18n.localize('PNS.Talent.baseSum')}: ${baseSum} + 
+          ${game.i18n.localize('PNS.Talent.talentValue')}: ${talent.value}
+        `;
+        chatFlavor = `${attributeLabel} ${game.i18n.localize('PnS2.Roll')} (${game.i18n.localize('PnS2.RollTarget')}: ${attributeTotal})`;
+      }
+      // Handle Attribute Rolls
+      else {
+        const stat = this.actor.system[attributeKey];
+        if (!stat) return;
+        
+        const value = Number(stat.value);
+        const modifier = Number(stat.modifier);
+        
+        attributeLabel = game.i18n.localize(`PnS2.${attributeKey.toUpperCase()}`);
+        attributeTotal = stat.total;
+        flavorText = `${value} (${game.i18n.localize('PnS2.Base')}) + ${modifier} (${game.i18n.localize('PnS2.Modifier')}) = ${attributeTotal}`;
+        chatFlavor = `${attributeLabel} ${game.i18n.localize('PnS2.Roll')} (${game.i18n.localize('PnS2.RollTarget')}: ${attributeTotal})`;
+      }
+
       await roll.evaluate();
 
       const isCriticalSuccess = roll.total <= 2;
       const isCriticalFail = roll.total >= 98;
       const isSuccess = roll.total <= attributeTotal;
 
-    //   if (activateLogging) { console.log("-- roll.total: ", roll.total); }
-    //   if (activateLogging) { console.log("-- attributeTotal: ", attributeTotal); }
+      let resultString;
+      let resultIcon;
 
-      if (isCriticalSuccess) 
-      {
+      if (isCriticalSuccess) {
         resultString = `<strong>${game.i18n.localize("PnS2.CRITICALSUCCESS")}</strong>`;
         resultIcon = `<div><img class="roll-critical-success" src="systems/PnS2/assets/success.svg"/><img class="roll-critical-success" src="systems/PnS2/assets/success.svg"/><img class="roll-critical-success" src="systems/PnS2/assets/success.svg"/></div>`;
-      }
-      else if (isCriticalFail) 
-      {
+      } else if (isCriticalFail) {
         resultString = `<strong>${game.i18n.localize("PnS2.CRITICALFAIL")}</strong>`;
         resultIcon = `<div><img class="roll-critical-fail" src="systems/PnS2/assets/fail.svg"/><img class="roll-critical-fail" src="systems/PnS2/assets/fail.svg"/><img class="roll-critical-fail" src="systems/PnS2/assets/fail.svg"/></div>`;
-      }
-      else if (isSuccess) 
-      {
+      } else if (isSuccess) {
         resultString = `<strong>${game.i18n.localize("PnS2.SUCCESS")}</strong>`;
-        //resultIcon = `<img src="systems/PnS2/assets/success.svg" title="${roll.formula}" style="vertical-align: middle; height: 2em; border: none;"/>`;
         resultIcon = `<div> <img class="roll-success" src="systems/PnS2/assets/success.svg"/></div>`;
-      } 
-      else 
-      {
+      } else {
         resultString = `<strong>${game.i18n.localize("PnS2.FAIL")}</strong>`;
-        //resultIcon = `<img src="systems/PnS2/assets/fail.svg" title="${roll.formula}" style="vertical-align: middle; height: 2em; border: none;"/>`;
         resultIcon = `<div> <img class="roll-fail" src="systems/PnS2/assets/fail.svg"/> </div>`;
       }
 
-      dice.options.flavor = `
-        ${attributeKey}
-        ${value} (value) + ${modifier} (modifier) = ${total}
-      `;
+      dice.options.flavor = flavorText;
       dice.options.label = resultIcon;
 
-      const rollHtml = await roll.render();
-      const flavor = `${attributeLabel} ${game.i18n.localize(`PnS2.Roll`)} (${game.i18n.localize(`PnS2.RollTarget`)}: ${attributeTotal})`;
-      /* This part into the content will include the "normal" drop down behaviour
-      <br/>
-      ${rollHtml}
-      <br/>
-      */
       const content = `
         <div class="dice-roll">
             <div class="dice-result">
@@ -300,13 +311,13 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
 
       ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        flavor: flavor,
+        flavor: chatFlavor,
         content: content,
-        rolls: [roll],              // THIS enables click-to-inspect
+        rolls: [roll],
         flags: {
           PnS2: {
             attribute: attributeKey,
-            target: total,
+            target: attributeTotal,
             isSuccess
           }
         }
