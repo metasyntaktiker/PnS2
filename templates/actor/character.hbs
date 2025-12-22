@@ -1,180 +1,197 @@
-<section class="character-section">
+<form class="character-section" autocomplete="off">
   <header>
     <h1>{{actor.name}}</h1>
     <!-- Character Image -->
     <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
   </header>
-  <body>
-    <div class="character-stats">
-      <!-- ######## Extra stats ######## -->
-      <div class="character-basestats-row">
-        <label title="{{localize "PnS2.EXP_MouseOver"}}">{{localize "PnS2.EXP"}}</label>
-        <input type="number" name="system.exp.value" value="{{system.exp.value}}" />
-        <span>{{system.exp.value}}</span>
-      </div>
-      <div class="character-basestats-row">
-        <label title="{{localize "PnS2.LUCK_MouseOver"}}">{{localize "PnS2.LUCK"}}</label>
-        <input type="number" name="system.luck.value" value="{{system.luck.value}}" />
-        <span>{{system.luck.value}}</span>
-      </div>
-      <br/>
-      <!-- ######## Headline ######## -->
-      <div class="character-basestats-row">
-        <div></div>
-        <label>{{localize "PnS2.Base"}}</label>
-        <label>{{localize "PnS2.Modifier"}}</label>
-      </div>
-      <!-- ######## Base Stats ######## -->
-      <!-- Strength-->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="str" title="{{localize "PnS2.STR_MouseOver"}}">{{localize "PnS2.STR"}}</label>
-        <input type="number" name="system.str.value" value="{{system.str.value}}" />
-        <input type="number" name="system.str.modifier" value="{{system.str.modifier}}" />
-        <span>{{system.str.value}} + {{system.str.modifier}} = {{system.str.total}}</span>
-      </div>
-      <!-- Agility -->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="agi" title="{{localize "PnS2.AGI_MouseOver"}}">{{localize "PnS2.AGI"}}</label>
-        <input type="number" name="system.agi.value" value="{{system.agi.value}}" />
-        <input type="number" name="system.agi.modifier" value="{{system.agi.modifier}}" />
-        <span>{{system.agi.value}} + {{system.agi.modifier}} = {{system.agi.total}}</span>
-      </div>
-      <!-- Precision -->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="pre" title="{{localize "PnS2.PRE_MouseOver"}}">{{localize "PnS2.PRE"}}</label>
-        <input type="number" name="system.pre.value" value="{{system.pre.value}}" />
-        <input type="number" name="system.pre.modifier" value="{{system.pre.modifier}}" />
-        <span>{{system.pre.value}} + {{system.pre.modifier}} = {{system.pre.total}}</span>
-      </div>
-      <!-- Constitution -->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="con" title="{{localize "PnS2.CON_MouseOver"}}">{{localize "PnS2.CON"}}</label>
-        <input type="number" name="system.con.value" value="{{system.con.value}}" />
-        <input type="number" name="system.con.modifier" value="{{system.con.modifier}}" />
-        <span>{{system.con.value}} + {{system.con.modifier}} = {{system.con.total}}</span>
-      </div>
-      <!-- Intelligence -->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="int" title="{{localize "PnS2.INT_MouseOver"}}">{{localize "PnS2.INT"}}</label>
-        <input type="number" name="system.int.value" value="{{system.int.value}}" />
-        <input type="number" name="system.int.modifier" value="{{system.int.modifier}}" />
-        <span>{{system.int.value}} + {{system.int.modifier}} = {{system.int.total}}</span>
-      </div>
-      <!-- Charisma -->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="cha" title="{{localize "PnS2.CHA_MouseOver"}}">{{localize "PnS2.CHA"}}</label>
-        <input type="number" name="system.cha.value" value="{{system.cha.value}}" />
-        <input type="number" name="system.cha.modifier" value="{{system.cha.modifier}}" />
-        <span>{{system.cha.value}} + {{system.cha.modifier}} = {{system.cha.total}}</span>
-      </div>
-      <!-- Will -->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="wil" title="{{localize "PnS2.WIL_MouseOver"}}">{{localize "PnS2.WIL"}}</label>
-        <input type="number" name="system.wil.value" value="{{system.wil.value}}" />
-        <input type="number" name="system.wil.modifier" value="{{system.wil.modifier}}" />
-        <span>{{system.wil.value}} + {{system.wil.modifier}} = {{system.wil.total}}</span>
-      </div>
-      <br/>
-      <!-- ######## Sensory stats ######## -->
-      <!-- See -->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="see" title="{{localize "PnS2.SEE_MouseOver"}}">{{localize "PnS2.SEE"}}</label>
-        <input type="number" name="system.see.value" value="{{system.see.value}}" />
-        <input type="number" name="system.see.modifier" value="{{system.see.modifier}}" />
-        <span>{{system.see.value}} + {{system.see.modifier}} = {{system.see.total}}</span>
-      </div>
-      <!-- Hear -->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="hear" title="{{localize "PnS2.HEAR_MouseOver"}}">{{localize "PnS2.HEAR"}}</label>
-        <input type="number" name="system.hear.value" value="{{system.hear.value}}" />
-        <input type="number" name="system.hear.modifier" value="{{system.hear.modifier}}" />
-        <span>{{system.hear.value}} + {{system.hear.modifier}} = {{system.hear.total}}</span>
-      </div>
-      <!-- Smell -->
-      <div class="character-basestats-row">
-        <label class="rollable" data-roll="1d100" data-key="smell" title="{{localize "PnS2.SMELL_MouseOver"}}">{{localize "PnS2.SMELL"}}</label>
-        <input type="number" name="system.smell.value" value="{{system.smell.value}}" />
-        <input type="number" name="system.smell.modifier" value="{{system.smell.modifier}}" />
-        <span>{{system.smell.value}} + {{system.smell.modifier}} = {{system.smell.total}}</span>
-      </div>
-      <br/>
-      <!-- ######## Headline ######## -->
-      <div class="character-basestats-row">
-        <div></div>
-        <label>{{localize "PnS2.Current"}}</label>
-        <label>{{localize "PnS2.Base"}}</label>
-        <label>{{localize "PnS2.Modifier"}}</label>
-      </div>
-      <!-- Health / Health Points -->
-      <div class="character-calculated-row">
-        <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>
-        <input type="number" name="system.hp.currentValue" value="{{system.hp.currentValue}}" />
-        <input type="number" name="system.hp.value" value="{{system.hp.value}}" />
-        <input type="number" name="system.hp.modifier" value="{{system.hp.modifier}}" />
-        <span>{{system.hp.currentValue}} | {{system.hp.value}} + {{system.hp.modifier}} = {{system.hp.total}}</span>
-        <progress value="{{system.hp.currentValue}}" max="{{system.hp.total}}"/>
-      </div>
-      <!-- Mana / Mana Points -->
-      <div class="character-calculated-row">
-        <label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>
-        <input type="number" name="system.mp.currentValue" value="{{system.mp.currentValue}}" />
-        <input type="number" name="system.mp.value" value="{{system.mp.value}}" />
-        <input type="number" name="system.mp.modifier" value="{{system.mp.modifier}}" />
-        <span>{{system.mp.currentValue}} | {{system.mp.value}} + {{system.mp.modifier}} = {{system.mp.total}}</span>
-        <progress value="{{system.mp.currentValue}}" max="{{system.mp.total}}"/>
-      </div>
-      <!-- Karma / Karma Points -->
-      <div class="character-calculated-row">
-        <label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>
-        <input type="number" name="system.kp.currentValue" value="{{system.kp.currentValue}}" />
-        <input type="number" name="system.kp.value" value="{{system.kp.value}}" />
-        <input type="number" name="system.kp.modifier" value="{{system.kp.modifier}}" />
-        <span>{{system.kp.currentValue}} | {{system.kp.value}} + {{system.kp.modifier}} = {{system.kp.total}}</span>
-        <progress value="{{system.kp.currentValue}}" max="{{system.kp.total}}"/>
-      </div>
-      <!-- Spirit / Spirit Points -->
-      <div class="character-calculated-row">
-        <label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>
-        <input type="number" name="system.sp.currentValue" value="{{system.sp.currentValue}}" />
-        <input type="number" name="system.sp.value" value="{{system.sp.value}}" />
-        <input type="number" name="system.sp.modifier" value="{{system.sp.modifier}}" />
-        <span>{{system.sp.currentValue}} | {{system.sp.value}} + {{system.sp.modifier}} = {{system.sp.total}}</span>
-        <progress value="{{system.sp.currentValue}}" max="{{system.sp.total}}"/>
-      </div>
-      <!-- ######## Headline ######## -->
-      <div class="character-basestats-row">
-        <div></div>
-        <label>{{localize "PnS2.Base"}}</label>
-        <label>{{localize "PnS2.Modifier"}}</label>
-      </div>
-      <!-- Magic Resistance -->
-      <div class="character-basestats-row">
-        <label title="{{localize "PnS2.RST_MouseOver"}}">{{localize "PnS2.RST"}}</label>
-        <input type="number" name="system.rst.value" value="{{system.rst.value}}" />
-        <input type="number" name="system.rst.modifier" value="{{system.rst.modifier}}" />
-        <span>{{system.rst.value}} + {{system.rst.modifier}} = {{system.rst.total}}</span>
-      </div>
-      <!-- Mental Resistance -->
-      <div class="character-basestats-row">
-        <label title="{{localize "PnS2.RES_MouseOver"}}">{{localize "PnS2.RES"}}</label>
-        <input type="number" name="system.res.value" value="{{system.res.value}}" />
-        <input type="number" name="system.res.modifier" value="{{system.res.modifier}}" />
-        <span>{{system.res.value}} + {{system.res.modifier}} = {{system.res.total}}</span>
-      </div>
-      <!-- Physical Resistance -->
-      <div class="character-basestats-row">
-        <label title="{{localize "PnS2.TOU_MouseOver"}}">{{localize "PnS2.TOU"}}</label>
-        <input type="number" name="system.tou.value" value="{{system.tou.value}}" />
-        <input type="number" name="system.tou.modifier" value="{{system.tou.modifier}}" />
-        <span>{{system.tou.value}} + {{system.tou.modifier}} = {{system.tou.total}}</span>
-      </div>
-      <!-- Speed -->
-      <div class="character-basestats-row">
-        <label title="{{localize "PnS2.SPE_MouseOver"}}">{{localize "PnS2.SPE"}}</label>
-        <input type="number" name="system.speed.value" value="{{system.speed.value}}" />
-        <input type="number" name="system.speed.modifier" value="{{system.speed.modifier}}" />
-        <span>{{system.speed.value}} + {{system.speed.modifier}} = {{system.speed.total}}</span>
+  <!-- Tab area -->
+  <nav class="sheet-tabs tabs" data-group="primary">
+  <a class="item" data-action="tab" data-group="primary" data-tab="basiswerte">
+    {{localize "PnS2.Basiswerte"}}
+  </a>
+  <a class="item" data-action="tab" data-group="primary" data-tab="talente">
+    {{localize "PnS2.Talente"}}
+  </a>
+</nav>
+  <div class="sheet-body">
+    <div class="tab active" data-group="primary" data-tab="basiswerte">
+      <div class="character-stats">
+        <!-- ######## Extra stats ######## -->
+        <div class="character-basestats-row">
+          <label title="{{localize "PnS2.EXP_MouseOver"}}">{{localize "PnS2.EXP"}}</label>
+          <input type="number" name="system.exp.value" value="{{system.exp.value}}" />
+          <span>{{system.exp.value}}</span>
+        </div>
+        <div class="character-basestats-row">
+          <label title="{{localize "PnS2.LUCK_MouseOver"}}">{{localize "PnS2.LUCK"}}</label>
+          <input type="number" name="system.luck.value" value="{{system.luck.value}}" />
+          <span>{{system.luck.value}}</span>
+        </div>
+        <br/>
+        <!-- ######## Headline ######## -->
+        <div class="character-basestats-row">
+          <div></div>
+          <label>{{localize "PnS2.Base"}}</label>
+          <label>{{localize "PnS2.Modifier"}}</label>
+        </div>
+        <!-- ######## Base Stats ######## -->
+        <!-- Strength-->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="str" title="{{localize "PnS2.STR_MouseOver"}}">{{localize "PnS2.STR"}}</label>
+          <input type="number" name="system.str.value" value="{{system.str.value}}" />
+          <input type="number" name="system.str.modifier" value="{{system.str.modifier}}" />
+          <span>{{system.str.value}} + {{system.str.modifier}} = {{system.str.total}}</span>
+        </div>
+        <!-- Agility -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="agi" title="{{localize "PnS2.AGI_MouseOver"}}">{{localize "PnS2.AGI"}}</label>
+          <input type="number" name="system.agi.value" value="{{system.agi.value}}" />
+          <input type="number" name="system.agi.modifier" value="{{system.agi.modifier}}" />
+          <span>{{system.agi.value}} + {{system.agi.modifier}} = {{system.agi.total}}</span>
+        </div>
+        <!-- Precision -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="pre" title="{{localize "PnS2.PRE_MouseOver"}}">{{localize "PnS2.PRE"}}</label>
+          <input type="number" name="system.pre.value" value="{{system.pre.value}}" />
+          <input type="number" name="system.pre.modifier" value="{{system.pre.modifier}}" />
+          <span>{{system.pre.value}} + {{system.pre.modifier}} = {{system.pre.total}}</span>
+        </div>
+        <!-- Constitution -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="con" title="{{localize "PnS2.CON_MouseOver"}}">{{localize "PnS2.CON"}}</label>
+          <input type="number" name="system.con.value" value="{{system.con.value}}" />
+          <input type="number" name="system.con.modifier" value="{{system.con.modifier}}" />
+          <span>{{system.con.value}} + {{system.con.modifier}} = {{system.con.total}}</span>
+        </div>
+        <!-- Intelligence -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="int" title="{{localize "PnS2.INT_MouseOver"}}">{{localize "PnS2.INT"}}</label>
+          <input type="number" name="system.int.value" value="{{system.int.value}}" />
+          <input type="number" name="system.int.modifier" value="{{system.int.modifier}}" />
+          <span>{{system.int.value}} + {{system.int.modifier}} = {{system.int.total}}</span>
+        </div>
+        <!-- Charisma -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="cha" title="{{localize "PnS2.CHA_MouseOver"}}">{{localize "PnS2.CHA"}}</label>
+          <input type="number" name="system.cha.value" value="{{system.cha.value}}" />
+          <input type="number" name="system.cha.modifier" value="{{system.cha.modifier}}" />
+          <span>{{system.cha.value}} + {{system.cha.modifier}} = {{system.cha.total}}</span>
+        </div>
+        <!-- Will -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="wil" title="{{localize "PnS2.WIL_MouseOver"}}">{{localize "PnS2.WIL"}}</label>
+          <input type="number" name="system.wil.value" value="{{system.wil.value}}" />
+          <input type="number" name="system.wil.modifier" value="{{system.wil.modifier}}" />
+          <span>{{system.wil.value}} + {{system.wil.modifier}} = {{system.wil.total}}</span>
+        </div>
+        <br/>
+        <!-- ######## Sensory stats ######## -->
+        <!-- See -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="see" title="{{localize "PnS2.SEE_MouseOver"}}">{{localize "PnS2.SEE"}}</label>
+          <input type="number" name="system.see.value" value="{{system.see.value}}" />
+          <input type="number" name="system.see.modifier" value="{{system.see.modifier}}" />
+          <span>{{system.see.value}} + {{system.see.modifier}} = {{system.see.total}}</span>
+        </div>
+        <!-- Hear -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="hear" title="{{localize "PnS2.HEAR_MouseOver"}}">{{localize "PnS2.HEAR"}}</label>
+          <input type="number" name="system.hear.value" value="{{system.hear.value}}" />
+          <input type="number" name="system.hear.modifier" value="{{system.hear.modifier}}" />
+          <span>{{system.hear.value}} + {{system.hear.modifier}} = {{system.hear.total}}</span>
+        </div>
+        <!-- Smell -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="smell" title="{{localize "PnS2.SMELL_MouseOver"}}">{{localize "PnS2.SMELL"}}</label>
+          <input type="number" name="system.smell.value" value="{{system.smell.value}}" />
+          <input type="number" name="system.smell.modifier" value="{{system.smell.modifier}}" />
+          <span>{{system.smell.value}} + {{system.smell.modifier}} = {{system.smell.total}}</span>
+        </div>
+        <br/>
+        <!-- ######## Headline ######## -->
+        <div class="character-basestats-row">
+          <div></div>
+          <label>{{localize "PnS2.Current"}}</label>
+          <label>{{localize "PnS2.Base"}}</label>
+          <label>{{localize "PnS2.Modifier"}}</label>
+        </div>
+        <!-- Health / Health Points -->
+        <div class="character-calculated-row">
+          <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>
+          <input type="number" name="system.hp.currentValue" value="{{system.hp.currentValue}}" />
+          <input type="number" name="system.hp.value" value="{{system.hp.value}}" />
+          <input type="number" name="system.hp.modifier" value="{{system.hp.modifier}}" />
+          <span>{{system.hp.currentValue}} | {{system.hp.value}} + {{system.hp.modifier}} = {{system.hp.total}}</span>
+          <progress value="{{system.hp.currentValue}}" max="{{system.hp.total}}"/>
+        </div>
+        <!-- Mana / Mana Points -->
+        <div class="character-calculated-row">
+          <label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>
+          <input type="number" name="system.mp.currentValue" value="{{system.mp.currentValue}}" />
+          <input type="number" name="system.mp.value" value="{{system.mp.value}}" />
+          <input type="number" name="system.mp.modifier" value="{{system.mp.modifier}}" />
+          <span>{{system.mp.currentValue}} | {{system.mp.value}} + {{system.mp.modifier}} = {{system.mp.total}}</span>
+          <progress value="{{system.mp.currentValue}}" max="{{system.mp.total}}"/>
+        </div>
+        <!-- Karma / Karma Points -->
+        <div class="character-calculated-row">
+          <label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>
+          <input type="number" name="system.kp.currentValue" value="{{system.kp.currentValue}}" />
+          <input type="number" name="system.kp.value" value="{{system.kp.value}}" />
+          <input type="number" name="system.kp.modifier" value="{{system.kp.modifier}}" />
+          <span>{{system.kp.currentValue}} | {{system.kp.value}} + {{system.kp.modifier}} = {{system.kp.total}}</span>
+          <progress value="{{system.kp.currentValue}}" max="{{system.kp.total}}"/>
+        </div>
+        <!-- Spirit / Spirit Points -->
+        <div class="character-calculated-row">
+          <label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>
+          <input type="number" name="system.sp.currentValue" value="{{system.sp.currentValue}}" />
+          <input type="number" name="system.sp.value" value="{{system.sp.value}}" />
+          <input type="number" name="system.sp.modifier" value="{{system.sp.modifier}}" />
+          <span>{{system.sp.currentValue}} | {{system.sp.value}} + {{system.sp.modifier}} = {{system.sp.total}}</span>
+          <progress value="{{system.sp.currentValue}}" max="{{system.sp.total}}"/>
+        </div>
+        <!-- ######## Headline ######## -->
+        <div class="character-basestats-row">
+          <div></div>
+          <label>{{localize "PnS2.Base"}}</label>
+          <label>{{localize "PnS2.Modifier"}}</label>
+        </div>
+        <!-- Magic Resistance -->
+        <div class="character-basestats-row">
+          <label title="{{localize "PnS2.RST_MouseOver"}}">{{localize "PnS2.RST"}}</label>
+          <input type="number" name="system.rst.value" value="{{system.rst.value}}" />
+          <input type="number" name="system.rst.modifier" value="{{system.rst.modifier}}" />
+          <span>{{system.rst.value}} + {{system.rst.modifier}} = {{system.rst.total}}</span>
+        </div>
+        <!-- Mental Resistance -->
+        <div class="character-basestats-row">
+          <label title="{{localize "PnS2.RES_MouseOver"}}">{{localize "PnS2.RES"}}</label>
+          <input type="number" name="system.res.value" value="{{system.res.value}}" />
+          <input type="number" name="system.res.modifier" value="{{system.res.modifier}}" />
+          <span>{{system.res.value}} + {{system.res.modifier}} = {{system.res.total}}</span>
+        </div>
+        <!-- Physical Resistance -->
+        <div class="character-basestats-row">
+          <label title="{{localize "PnS2.TOU_MouseOver"}}">{{localize "PnS2.TOU"}}</label>
+          <input type="number" name="system.tou.value" value="{{system.tou.value}}" />
+          <input type="number" name="system.tou.modifier" value="{{system.tou.modifier}}" />
+          <span>{{system.tou.value}} + {{system.tou.modifier}} = {{system.tou.total}}</span>
+        </div>
+        <!-- Speed -->
+        <div class="character-basestats-row">
+          <label title="{{localize "PnS2.SPE_MouseOver"}}">{{localize "PnS2.SPE"}}</label>
+          <input type="number" name="system.speed.value" value="{{system.speed.value}}" />
+          <input type="number" name="system.speed.modifier" value="{{system.speed.modifier}}" />
+          <span>{{system.speed.value}} + {{system.speed.modifier}} = {{system.speed.total}}</span>
+        </div>
       </div>
     </div>
-  </body>
-</section>
+    <div class="tab" data-group="primary" data-tab="talente">
+      <h2>{{localize "PnS2.Talente"}}</h2>
+      <div style="color: red; font-size: 24px;">
+        TALENTE TAB IS WORKING
+      </div>
+    </div>
+  </div>
+</form>

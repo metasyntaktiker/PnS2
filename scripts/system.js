@@ -1,4 +1,4 @@
-globalThis.activateLogging = true;
+globalThis.activateLogging = false;
 
 import { PnS2CharacterData } from "./data/character.mjs";
 import { PnS2CharacterSheet } from "./sheets/character-sheet.mjs";

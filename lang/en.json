@@ -1,4 +1,20 @@
 {
   "PnS2.HP": "Hit Points",
-  "PnS2.HPPercent": "HP Percent"
+  "PnS2.HPPercent": "HP Percent",
+  "PnS2.SUCCESS": "SUCCESS!",
+  "PnS2.FAIL": "FAIL!",
+  "PnS2.Roll": "Roll",
+  "PnS2.RollTarget": "Target",
+  "PnS2.STR": "Strength",
+  "PnS2.AGI": "Agility",
+  "PnS2.PRE": "Precision",
+  "PnS2.CON": "Constitution",
+  "PnS2.INT": "Intelligence",
+  "PnS2.CHA": "Charisma",
+  "PnS2.WIL": "Will",
+  "PnS2.SEE": "See",
+  "PnS2.HEAR": "Hear",
+  "PnS2.SMELL": "Smell",
+  "PnS2.Basiswerte": "Base Values",
+  "PnS2.Talente": "Talents"
 }

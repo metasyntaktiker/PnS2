@@ -1,10 +1,11 @@
 export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) 
 {
-  // constructor(...args) 
-  // {
-  //   super(...args);
-  //   console.log("PnS2CharacterSheet opened for actor:", this.document.name);
-  // }
+  constructor(...args) 
+  {
+    super(...args);
+    if (activateLogging) { console.log("----PnS2CharacterSheet opened for actor:", this.document.name); }
+    
+  }
 
   static PARTS = {
     main: {
@@ -17,9 +18,11 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       classes: ["PnS2", "sheet", "actor", "character"],
       width: 600,
       height: "auto",
-      submitOnChange: false,    // IMPORTANT
-      submitOnClose: false,     // IMPORTANT
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "stats" }]
+      submitOnChange: false,
+      submitOnClose: false,
+      tabs: [
+        { group: "primary", navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "basiswerte" },
+      ]
     });
   }
 
@@ -29,13 +32,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     context.actor = this.actor;
     context.system = this.actor.system;
     context.img = this.actor.img;
-    
-    // context.system.hp ??= { value: 10, total: 10 };
-
-    // context.system.hpPercent =
-    //   context.system.hp.total > 0
-    //     ? Math.round((context.system.hp.value / context.system.hp.total) * 100)
-    //     : 0;
+  
     return context;
   }
 
