@@ -61,7 +61,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
 
     // Talents
     html.querySelector(".add-talent")?.addEventListener("click", this._onAddTalent.bind(this));
-    html.querySelectorAll(".talent-delete").forEach(btn => {
+    html.querySelectorAll(".talents-delete").forEach(btn => {
         btn.addEventListener("click", this._onDeleteTalent.bind(this));
     });
 
@@ -85,22 +85,42 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         await this.actor.update({ img: data.src });
       }
     });
+    
+    if ( this._focusTab ) {
+      const tabToActivate = this._focusTab;
+      delete this._focusTab;
+
+      // Manually activate the tab by manipulating classes
+      const nav = this.element.querySelector('.sheet-tabs');
+      const body = this.element.querySelector('.sheet-body');
+
+      if (nav && body) {
+        nav.querySelectorAll('.item').forEach(el => el.classList.remove('active'));
+        body.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+        
+        const navTab = nav.querySelector(`[data-tab="${tabToActivate}"]`);
+        if (navTab) navTab.classList.add('active');
+
+        const bodyTab = body.querySelector(`[data-tab="${tabToActivate}"]`);
+        if (bodyTab) bodyTab.classList.add('active');
+      }
+    }
   }
 
   // Textbox changes
   async _onInputChange(event) {
     event.preventDefault();
-    // if (activateLogging) { console.log("--- Input change event triggered: ", this.document.name); }
+    if (activateLogging) { console.log("--- Input change event triggered: ", this.document.name); }
     const input = event.currentTarget;
     const path = input.name;
     const value = input.type === "checkbox" ? input.checked : input.value;
     const dataType = input.dataset.dtype;
-    // if (activateLogging) {
-    //   console.log("-- input: ", input);
-    //   console.log("-- path: ", path);
-    //   console.log("-- value: ", value);
-    //   console.log("-- dataType: ", dataType);
-    // }
+    if (activateLogging) {
+      console.log("-- input: ", input);
+      console.log("-- path: ", path);
+      console.log("-- value: ", value);
+      console.log("-- dataType: ", dataType);
+    }
 
     let updateValue = value;
     if (dataType === "Number") {
@@ -174,6 +194,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
                     };
 
                     const talents = this.actor.system.talents.concat([newTalent]);
+                    this._focusTab = "talents";
                     await this.actor.update({ "system.talents": talents });
                 }
             },
@@ -210,16 +231,19 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   }
 
   // Delete Talent
-  async _onDeleteTalent(event) {
+  async _onDeleteTalent(event) 
+  {
     event.preventDefault();
-    const talentId = event.currentTarget.closest(".talent-row").dataset.talentId;
+    const talentId = event.currentTarget.closest(".talents-row").dataset.talentId;
     const talents = this.actor.system.talents.filter((_, id) => id != talentId);
+    this._focusTab = "talents";
     await this.actor.update({ "system.talents": talents });
   }
 
 
   // Roll event
-  async _onRoll(event) {
+  async _onRoll(event) 
+  {
     if (activateLogging) { console.log("--- rollable event triggered: ", this.document.name); }
     event.preventDefault();
     const element = event.currentTarget;

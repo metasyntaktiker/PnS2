@@ -9,8 +9,8 @@
   <a class="item" data-action="tab" data-group="primary" data-tab="basiswerte">
     {{localize "PnS2.Basiswerte"}}
   </a>
-  <a class="item" data-action="tab" data-group="primary" data-tab="talente">
-    {{localize "PnS2.Talente"}}
+  <a class="item" data-action="tab" data-group="primary" data-tab="talents">
+    {{localize "PnS2.Talents"}}
   </a>
 </nav>
   <div class="sheet-body">
@@ -187,7 +187,7 @@
         </div>
       </div>
     </div>
-    <div class="tab" data-group="primary" data-tab="talente">
+    <div class="tab" data-group="primary" data-tab="talents">
       <div class="talents-header">
         <div class="talent-name">{{localize "PNS.Talent.Name"}}</div>
         <div>{{localize "PNS.Talent.baseSum"}}</div>
@@ -197,12 +197,12 @@
       </div>
       <div class="talents-list">
         {{#each system.talents as |talent id|}}
-          <div class="talent-row" data-talent-id="{{id}}">
+          <div class="talents-row" data-talent-id="{{id}}">
             <div class="talent-name rollable" data-roll="1d100" data-key="talent-{{id}}">{{talent.name}}</div>
             <div class="talent-base">{{talent.baseSum}}</div>
             <input class="talent-value" type="number" name="system.talents.{{id}}.value" value="{{talent.value}}" />
             <div class="talent-total">{{talent.total}}</div>
-            <a class="talent-delete" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></a>
+            <a class="talents-delete" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></a>
           </div>
         {{/each}}
       </div>
