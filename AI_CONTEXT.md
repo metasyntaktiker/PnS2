@@ -3,6 +3,7 @@
 ## System Overview
 - **Target Platform**: Foundry VTT (Verified v13)
 - **Documentation Target Platform**: https://foundryvtt.com/api/index.html
+- **Link to the FoundryVTT Discord Server:** https://discord.com/invite/foundryvtt
 - **System ID**: `PnS2`
 - **Manifest**: `system.json`
 
@@ -36,3 +37,4 @@
 
 ## Important 
 - Never delete any kind of logging mechanisms
+- Never commit any kind of changes into git
