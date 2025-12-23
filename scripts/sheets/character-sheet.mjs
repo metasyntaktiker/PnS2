@@ -298,6 +298,19 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         `;
         chatFlavor = `${attributeLabel} ${game.i18n.localize('PnS2.Roll')} (${game.i18n.localize('PnS2.RollTarget')}: ${attributeTotal})`;
       }
+      // Handle Luck Rolls
+      else if (attributeKey.startsWith('luck'))
+      {
+        const stat = this.actor.system[attributeKey];
+        if (!stat) return;
+
+        const value = Number(stat.value);
+
+        attributeLabel = game.i18n.localize(`PnS2.${attributeKey.toUpperCase()}`);
+        attributeTotal = stat.value;
+        flavorText = `${value} (${game.i18n.localize('PnS2.Base')})`;
+        chatFlavor = `${attributeLabel} ${game.i18n.localize('PnS2.Roll')} (${game.i18n.localize('PnS2.RollTarget')}: ${attributeTotal})`;
+      }
       // Handle Attribute Rolls
       else 
       {
