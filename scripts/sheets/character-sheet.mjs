@@ -16,7 +16,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["PnS2", "sheet", "actor", "character"],
-      width: 600,
+      width: 800,
       height: "auto",
       submitOnChange: false,
       submitOnClose: false,
@@ -178,69 +178,54 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     };
 
     const template = "systems/PnS2/templates/dialog/add-talent.hbs";
-    const html = await renderTemplate(template, { baseValues });
+    const html = await foundry.applications.handlebars.renderTemplate(template, { baseValues });
+    const DialogClass = foundry.applications.api.DialogV2;
 
-    const dialog = new Dialog({
-        title: game.i18n.localize("PNS.Talent.Add"),
-        content: html,
-        buttons: {
-            apply: {
-                icon: '<i class="fas fa-check"></i>',
-                label: game.i18n.localize("PNS.Button.Apply"),
-                callback: async (html) => {
-                    const form = html[0].querySelector("form");
-                    const name = form.name.value;
-                    const base1 = form.base1.value;
-                    const base2 = form.base2.value;
-                    const base3 = form.base3.value;
+    const dialog = new DialogClass({
+    window: { title: game.i18n.localize("PNS.Talent.Add") },
+    content: html,
+    buttons: [
+    {
+      action: "apply",
+      label: game.i18n.localize("PNS.Button.Apply"),
+      default: true,
+      //callback: (event, button, dialog) => button.form.elements.choice.value
+        callback: async (event) => {
+          const form = event.currentTarget.closest('.dialog').querySelector('form');
+          const formData = new FormData(form);
+          const name = formData.get("name");
+          const base1 = formData.get("base1");
+          const base2 = formData.get("base2");
+          const base3 = formData.get("base3");
 
-                    if (!name || !base1 || !base2 || !base3) {
-                        ui.notifications.warn("Please fill out all fields.");
-                        return;
-                    }
+          if (!name || !base1 || !base2 || !base3) {
+            ui.notifications.warn("Please fill out all fields.");
+            return false; // Prevent dialog from closing on validation failure
+          }
 
-                    const newTalent = {
-                        name: name,
-                        base1: base1,
-                        base2: base2,
-                        base3: base3,
-                        value: 0
-                    };
+          const newTalent = {
+            name: name,
+            base1: base1,
+            base2: base2,
+            base3: base3,
+            value: 0
+          };
 
-                    const talents = this.actor.system.talents.concat([newTalent]);
-                    this._focusTab = "talents";
-                    await this.actor.update({ "system.talents": talents });
-                }
-            },
-            cancel: {
-                icon: '<i class="fas fa-times"></i>',
-                label: game.i18n.localize("PNS.Button.Cancel"),
-                callback: () => {}
-            }
-        },
-        default: "apply",
-        render: (html) => {
-            const form = html[0].querySelector("form");
-            const applyButton = html.parent().find(".dialog-button.apply");
-            const selects = form.querySelectorAll("select");
-
-            function checkDropdowns() {
-                let allSelected = true;
-                selects.forEach(select => {
-                    if (select.value === "") {
-                        allSelected = false;
-                    }
-                });
-                applyButton.prop("disabled", !allSelected);
-            }
-
-            selects.forEach(select => {
-                select.addEventListener("change", checkDropdowns);
-            });
-
-            checkDropdowns(); // Initial check
+          const talents = this.actor.system.talents.concat([newTalent]);
+          this._focusTab = "talents";
+          await this.actor.update({ "system.talents": talents });
         }
-    });
+    }, 
+    {
+      action: "cancel",
+      label: game.i18n.localize("PNS.Button.Cancel")
+    }],
+    submit: result => 
+    {
+      if ( result === "apply" ) console.log("-- user picked apply");
+      else console.log(`-- user picked cancel`);
+    }
+  })
     dialog.render(true);
   }
 
