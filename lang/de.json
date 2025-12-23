@@ -1,15 +1,14 @@
 {
-  "PnS2.Current": "Aktuell",
-  "PnS2.Base": "Basis",
-  "PnS2.Modifier": "Modifikator",
-  "PnS2.Roll": "Wurf",
+  "PnS2.CharacterSheet.Current": "Aktuell",
+  "PnS2.CharacterSheet.Base": "Basis",
+  "PnS2.CharacterSheet.Modifier": "Modifikator",
+  "PnS2.Roll.Text": "Wurf",
   "PnS2.RollTarget": "Zielwert",
   "PnS2.SUCCESS": "ERFOLG!",
   "PnS2.FAIL": "FEHLSCHLAG!",
   "PnS2.CRITICALSUCCESS": "KRITISCHER ERFOLG!",
   "PnS2.CRITICALFAIL": "KRITISCHER FEHLSCHLAG!",
   "PnS2.Portrait_MouseOver": "Klicken um das Charakterbild zu ändern.",
-
   "PnS2.STR": "Stärke",
   "PnS2.STR_MouseOver": "Beschreibt die Muskelkraft die der Charakter aufbringen kann.",
   "PnS2.AGI": "Gewandtheit",
@@ -52,12 +51,10 @@
   "PnS2.TOU_MouseOver": "Beschreibt die physische Resistenz des Charakters und wie gut er Schmerz ertragen kann.",
   "PnS2.SPE": "Geschwindigkeit",
   "PnS2.SPE_MouseOver": "Beschreibt wie schnell ein Charakter sich bewegen kann.",
-
   "PnS2.HPPercent": "TEMP-Lebenspunkte Prozentual",
   "PnS2.Basiswerte": "Basiswerte",
   "PnS2.Talents": "Talente",
   "PnS2.Combination": "Kombination",
-
   "PNS.Talent.Add": "Talent hinzufügen",
   "PNS.Talent.Name": "Talentname",
   "PNS.Talent.BaseValue1": "Basiswert 1",
@@ -67,5 +64,9 @@
   "PNS.Talent.sum": "Summe",
   "PNS.Talent.baseSum": "Basis",
   "PNS.Button.Cancel": "Abbrechen",
-  "PNS.Button.Apply": "Übernehmen"
+  "PNS.Button.Apply": "Übernehmen",
+  "PnS2.Roll.Modify": "Modifizieren",
+  "PnS2.Roll.RollButton": "Würfeln!",
+  "PnS2.Roll.TargetValue": "Zielwert",
+  "PnS2.Roll.DialogTitle": "Wurf modifizieren"
 }

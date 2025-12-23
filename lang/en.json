@@ -3,7 +3,7 @@
   "PnS2.HPPercent": "HP Percent",
   "PnS2.SUCCESS": "SUCCESS!",
   "PnS2.FAIL": "FAIL!",
-  "PnS2.Roll": "Roll",
+  "PnS2.Roll.Text": "Roll",
   "PnS2.RollTarget": "Target",
   "PnS2.STR": "Strength",
   "PnS2.AGI": "Agility",
@@ -18,7 +18,6 @@
   "PnS2.Basiswerte": "Base Values",
   "PnS2.Talents": "Talents",
   "PnS2.Combination": "Combination",
-
   "PNS.Talent.Tab": "Talents",
   "PNS.Talent.Add": "Add Talent",
   "PNS.Talent.Name": "Talent Name",
@@ -29,5 +28,9 @@
   "PNS.Talent.sum": "Sum",
   "PNS.Talent.baseSum": "Base",
   "PNS.Button.Cancel": "Cancel",
-  "PNS.Button.Apply": "Apply"
+  "PNS.Button.Apply": "Apply",
+  "PnS2.Roll.Modify": "Modify",
+  "PnS2.Roll.RollButton": "Roll!",
+  "PnS2.Roll.TargetValue": "Target Value",
+  "PnS2.Roll.DialogTitle": "Modify Roll"
 }
