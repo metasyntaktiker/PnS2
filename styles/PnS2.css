@@ -178,7 +178,7 @@ progress:after
 }
 
 .add-talent:hover {
-  text-shadow: 0 0 5px yellow;
+  text-shadow: 0 0 15px rgb(255, 255, 0);
 }
 
 .dialog .form-group {

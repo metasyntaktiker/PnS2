@@ -47,6 +47,14 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     return context;
   }
 
+  // Sets the size of the character-sheet to 800px
+  setPosition(position = {}) {
+    if ( typeof position.width === "number" ) {
+      position.width = Math.max(position.width, 800);
+    }
+    return super.setPosition(position);
+  }
+
   /** Wire input listeners */
   _attachPartListeners(partId, html) {
     super._attachPartListeners(partId, html);
