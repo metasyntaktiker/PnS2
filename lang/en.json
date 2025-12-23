@@ -1,4 +1,8 @@
 {
+  "PnS2.CharacterSheet.Charactername": "Character Name",
+  "PnS2.CharacterSheet.Current": "Current",
+  "PnS2.CharacterSheet.Base": "Base",
+  "PnS2.CharacterSheet.Modifier": "Modifier",
   "PnS2.HP": "Hit Points",
   "PnS2.HPPercent": "HP Percent",
   "PnS2.SUCCESS": "SUCCESS!",

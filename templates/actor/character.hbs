@@ -1,8 +1,10 @@
 <form class="character-section" autocomplete="off">
   <header>
-    <h1>{{actor.name}}</h1>
+    <h3>{{actor.name}}</h3>
     <!-- Character Image -->
     <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
+    <label>{{localize "PnS2.CharacterSheet.Charactername"}}</label>
+    <input type="text" name="name" value="{{actor.name}}" />
   </header>
   <!-- Tab area -->
   <nav class="sheet-tabs tabs" data-group="primary">

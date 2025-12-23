@@ -9,6 +9,7 @@
   "PnS2.CRITICALSUCCESS": "KRITISCHER ERFOLG!",
   "PnS2.CRITICALFAIL": "KRITISCHER FEHLSCHLAG!",
   "PnS2.Portrait_MouseOver": "Klicken um das Charakterbild zu ändern.",
+  "PnS2.CharacterSheet.Charactername": "Charaktername",
   "PnS2.STR": "Stärke",
   "PnS2.STR_MouseOver": "Beschreibt die Muskelkraft die der Charakter aufbringen kann.",
   "PnS2.AGI": "Gewandtheit",

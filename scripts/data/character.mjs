@@ -1,7 +1,20 @@
 export class PnS2CharacterData extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
-
+      character: new foundry.data.fields.ArrayField(new foundry.data.fields.ObjectField({
+        playername: new foundry.data.fields.StringField({ initial: "" }),
+        age: new foundry.data.fields.NumberField({ initial: 0 }),
+        placeofbirth: new foundry.data.fields.StringField({ initial: "" }),
+        home: new foundry.data.fields.StringField({ initial: "" }),
+        appearance: new foundry.data.fields.StringField({ initial: "" }),
+        gender: new foundry.data.fields.StringField({ initial: "" }),
+        job: new foundry.data.fields.StringField({ initial: "" }),
+        affiliation: new foundry.data.fields.StringField({ initial: "" }),
+        height: new foundry.data.fields.StringField({ initial: "" }),
+        weight: new foundry.data.fields.StringField({ initial: "" }),
+        backstory: new foundry.data.fields.StringField({ initial: "" }),
+        notes: new foundry.data.fields.StringField({ initial: "" })
+      })),
       // --- Base stats --- 
       /* ------------------------ Example ------------------------
       **          | Basevalue | Modifier (whatever reason) | Total
