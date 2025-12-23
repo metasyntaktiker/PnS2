@@ -137,7 +137,7 @@ progress:after
 /* Talents Tab */
 .talents-header {
   display: grid;
-  grid-template-columns: 4fr 1fr 1fr 1fr 20px;
+  grid-template-columns: 3fr 3fr 1fr 1fr 1fr 20px;
   font-weight: bold;
   border-bottom: 1px solid #CCC;
   padding-bottom: 5px;
@@ -147,7 +147,7 @@ progress:after
 
 .talents-row {
   display: grid;
-  grid-template-columns: 4fr 1fr 1fr 1fr 20px;
+  grid-template-columns: 3fr 3fr 1fr 1fr 1fr 20px;
   gap: 5px;
   align-items: center;
   margin-bottom: 5px;

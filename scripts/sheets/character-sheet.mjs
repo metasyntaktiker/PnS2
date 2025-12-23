@@ -41,6 +41,12 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         const base3 = context.system[talent.base3]?.total || 0;
         talent.baseSum = Math.round((base1 + base2 + base3) / 3);
         talent.total = talent.baseSum + talent.value;
+
+        const attr1 = game.i18n.localize(`PnS2.${talent.base1.toUpperCase()}`);
+        const attr2 = game.i18n.localize(`PnS2.${talent.base2.toUpperCase()}`);
+        const attr3 = game.i18n.localize(`PnS2.${talent.base3.toUpperCase()}`);
+        talent.combination = `${attr1}+${attr2}+${attr3}`;
+        talent.combinationTooltip = `(${attr1} (${base1}) + ${attr2} (${base2}) + ${attr3} (${base3})) / 3`;
       });
     }
   
@@ -260,7 +266,8 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       console.log("-- dataset: ", dataset);
     }
 
-    if (dataset.roll) {
+    if (dataset.roll) 
+    {
       const roll = new Roll("1d100", {}, { rollMode: game.settings.get("core", "rollMode") });
       if (activateLogging) { console.log("-- roll: ", roll); }
       const dice = roll.dice[0];
@@ -272,7 +279,8 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       let chatFlavor;
 
       // Handle Talent Rolls
-      if (attributeKey.startsWith('talent-')) {
+      if (attributeKey.startsWith('talent-')) 
+      {
         const talentIndex = parseInt(attributeKey.split('-')[1], 10);
         const talent = this.actor.system.talents[talentIndex];
         if (!talent) return;
@@ -291,7 +299,8 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         chatFlavor = `${attributeLabel} ${game.i18n.localize('PnS2.Roll')} (${game.i18n.localize('PnS2.RollTarget')}: ${attributeTotal})`;
       }
       // Handle Attribute Rolls
-      else {
+      else 
+      {
         const stat = this.actor.system[attributeKey];
         if (!stat) return;
         

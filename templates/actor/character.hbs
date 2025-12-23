@@ -190,6 +190,7 @@
     <div class="tab" data-group="primary" data-tab="talents">
       <div class="talents-header">
         <div class="talent-name">{{localize "PNS.Talent.Name"}}</div>
+        <div>{{localize "PnS2.Combination"}}</div>
         <div>{{localize "PNS.Talent.baseSum"}}</div>
         <div>{{localize "PNS.Talent.talentValue"}}</div>
         <div>{{localize "PNS.Talent.sum"}}</div>
@@ -199,6 +200,7 @@
         {{#each system.talents as |talent id|}}
           <div class="talents-row" data-talent-id="{{id}}">
             <div class="talent-name rollable" data-roll="1d100" data-key="talent-{{id}}">{{talent.name}}</div>
+            <div title="{{talent.combinationTooltip}}">{{talent.combination}}</div>
             <div class="talent-base">{{talent.baseSum}}</div>
             <input class="talent-value" type="number" name="system.talents.{{id}}.value" value="{{talent.value}}" data-dtype="Number" />
             <div class="talent-total">{{talent.total}}</div>
