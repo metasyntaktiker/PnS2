@@ -3,7 +3,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   constructor(...args) 
   {
     super(...args);
-    // if (activateLogging) { console.log("----PnS2CharacterSheet opened for actor:", this.document.name); }
+    if (activateLogging) { console.log("----PnS2CharacterSheet opened for actor:", this.document.name); }
     
   }
 
@@ -318,7 +318,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         originalFlavorText = `${value} (${game.i18n.localize('PnS2.CharacterSheet.Base')}) + ${modifier} (${game.i18n.localize('PnS2.CharacterSheet.Modifier')}) = ${attributeTotal}`;
       }
 
-      // Render dialog
+      // Modificator Roll Dialog
       const template = "systems/PnS2/templates/dialog/roll-dialog.hbs";
       const html = await foundry.applications.handlebars.renderTemplate(template, { targetValue: attributeTotal });
       const DialogClass = foundry.applications.api.DialogV2;

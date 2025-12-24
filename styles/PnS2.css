@@ -18,7 +18,29 @@
   color: #e0e0e0;
 }
 
-.character-section .character-basestats-row {
+.character-profile
+{
+  margin-bottom: 3px;
+  display: grid;
+  align-items: center;
+  /* gap: 0.5rem; */
+  /* grid-template-columns: repeat(4, 10%); */
+  grid-template-columns: 120px 100%;
+}
+.character-profile-row 
+{
+  /* background: #83d378; */
+  margin-bottom: 3px;
+  display: grid;
+  align-items: center;
+  /* gap: 0.5rem; */
+  /* grid-template-columns: repeat(4, 10%); */
+  grid-template-columns: 20% 15% 2% 20% 15%;
+  /* grid-template-rows: repeat(1, 22px); */
+}
+
+.character-section .character-basestats-row 
+{
   /* background: #83d378; */
   margin-bottom: 3px;
   display: grid;
@@ -182,11 +204,17 @@ progress:after
 }
 
 .dialog .form-group {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-.dialog .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+.dialog .form-group label 
+{
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.add-talent-form
+{
+  width: 300px;
 }
