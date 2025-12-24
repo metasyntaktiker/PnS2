@@ -143,6 +143,10 @@ progress:after
 /* Tab content */
 .sheet-body {
   overflow: hidden;
+  width: 100%;
+  height: 580px;
+  overflow-y: scroll;
+  scrollbar-color: #FFFFFF;
 }
 
 .PnS2.sheet .sheet-body .tab {
@@ -178,6 +182,7 @@ progress:after
 .talents-row input {
   width: 50px;
   text-align: center;
+  height: 20px;
 }
 
 .talents-delete {
@@ -217,4 +222,21 @@ progress:after
 .add-talent-form
 {
   width: 300px;
+}
+
+.pns2-add-talent-dialog.application.dialog {
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.pns2-add-talent-dialog.application.dialog .window-content {
+  width: 300px;
+  min-width: 300px;
+  box-sizing: border-box;
+}
+
+.pns2-add-talent-dialog.application.dialog .window-content .dialog-form {
+  width: 100%;
+  box-sizing: border-box;
 }

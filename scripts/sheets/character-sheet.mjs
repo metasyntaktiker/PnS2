@@ -197,6 +197,10 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
 
     const dialog = new DialogClass({
     window: { title: game.i18n.localize("PNS.Talent.Add") },
+    classes: ["pns2-add-talent-dialog"],
+    width: 300,
+    minWidth: 300,
+    maxWidth: 300,
     content: html,
     buttons: [
     {
@@ -229,12 +233,12 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
           this._focusTab = "talents";
           await this.actor.update({ "system.talents": talents });
         }
-    }, 
+    },
     {
       action: "cancel",
       label: game.i18n.localize("PNS.Button.Cancel")
     }],
-    submit: result => 
+    submit: result =>
     {
       if ( result === "apply" ) console.log("-- user picked apply");
       else console.log(`-- user picked cancel`);
