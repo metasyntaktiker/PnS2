@@ -2,9 +2,9 @@
   "id": "PnS2",
   "title": "Pen and Syntax 2",
   "description": "PnS2 — A clean, data-first tabletop RPG system.",
-  "version": "0.1.0",
-  "manifest": "https://github.com/metasyntaktiker/PnS2/releases/download/0.1.0/system.json",
-  "download": "https://github.com/metasyntaktiker/PnS2/archive/refs/tags/0.1.0.zip",
+  "version": "0.1.1",
+  "manifest": "https://github.com/metasyntaktiker/PnS2/releases/download/0.1.1/system.json",
+  "download": "https://github.com/metasyntaktiker/PnS2/archive/refs/tags/0.1.1.zip",
 
   "compatibility": {
     "minimum": "13",

@@ -144,7 +144,7 @@ progress:after
 .sheet-body {
   overflow: hidden;
   width: 100%;
-  height: 580px;
+  height: 540px;
   overflow-y: scroll;
   scrollbar-color: #FFFFFF;
 }
