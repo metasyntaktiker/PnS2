@@ -33,7 +33,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     context.system = this.actor.system;
     context.img = this.actor.img;
 
-    // Prepare talents
+    // Prepare talents 
     if (context.system.talents) {
       context.system.talents.forEach(talent => {
         const base1 = Math.floor(context.system[talent.base1]?.total / 3) || 0;
