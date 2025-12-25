@@ -36,10 +36,10 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     // Prepare talents
     if (context.system.talents) {
       context.system.talents.forEach(talent => {
-        const base1 = context.system[talent.base1]?.total || 0;
-        const base2 = context.system[talent.base2]?.total || 0;
-        const base3 = context.system[talent.base3]?.total || 0;
-        talent.baseSum = Math.round((base1 + base2 + base3) / 3);
+        const base1 = Math.floor(context.system[talent.base1]?.total) || 0;
+        const base2 = Math.floor(context.system[talent.base2]?.total) || 0;
+        const base3 = Math.floor(context.system[talent.base3]?.total) || 0;
+        talent.baseSum = Math.floor((base1 + base2 + base3) / 3);
         talent.total = talent.baseSum + talent.value;
 
         const attr1 = game.i18n.localize(`PnS2.${talent.base1.toUpperCase()}`);
@@ -287,7 +287,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         const base1 = this.actor.system[talent.base1]?.total || 0;
         const base2 = this.actor.system[talent.base2]?.total || 0;
         const base3 = this.actor.system[talent.base3]?.total || 0;
-        const baseSum = Math.round((base1 + base2 + base3) / 3);
+        const baseSum = Math.floor((base1 + base2 + base3) / 3);
 
         attributeLabel = talent.name;
         attributeTotal = baseSum + talent.value;
