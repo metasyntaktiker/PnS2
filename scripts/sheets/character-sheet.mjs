@@ -36,9 +36,9 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     // Prepare talents
     if (context.system.talents) {
       context.system.talents.forEach(talent => {
-        const base1 = Math.floor(context.system[talent.base1]?.total) || 0;
-        const base2 = Math.floor(context.system[talent.base2]?.total) || 0;
-        const base3 = Math.floor(context.system[talent.base3]?.total) || 0;
+        const base1 = Math.floor(context.system[talent.base1]?.total / 3) || 0;
+        const base2 = Math.floor(context.system[talent.base2]?.total / 3) || 0;
+        const base3 = Math.floor(context.system[talent.base3]?.total / 3) || 0;
         talent.baseSum = Math.floor((base1 + base2 + base3) / 3);
         talent.total = talent.baseSum + talent.value;
 
