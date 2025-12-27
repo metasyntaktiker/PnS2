@@ -284,9 +284,9 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         const talent = this.actor.system.talents[talentIndex];
         if (!talent) return;
 
-        const base1 = this.actor.system[talent.base1]?.total || 0;
-        const base2 = this.actor.system[talent.base2]?.total || 0;
-        const base3 = this.actor.system[talent.base3]?.total || 0;
+        const base1 = Math.floor(this.actor.system[talent.base1]?.total / 3) || 0;
+        const base2 = Math.floor(this.actor.system[talent.base2]?.total / 3) || 0;
+        const base3 = Math.floor(this.actor.system[talent.base3]?.total / 3) || 0;
         const baseSum = Math.floor((base1 + base2 + base3) / 3);
 
         attributeLabel = talent.name;
