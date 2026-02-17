@@ -1,5 +1,4 @@
 .profile-img {
-  flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
   border: 1px solid #ccc;
@@ -46,6 +45,122 @@
 
 .toggle-edit-mode.disabled:hover {
   text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.header-current-values {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 5px 0;
+  flex-wrap: wrap;
+}
+
+.current-value-item {
+  display: grid;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 90px;
+  align-items: left;
+}
+
+.current-value-item label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #e0e0e0;
+}
+
+.current-value-item input[type="number"] {
+  width: 45px;
+  height: 20px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.current-progress {
+  width: 60px;
+  height: 15px;
+}
+
+.custom-progress-bar {
+  width: 150px;
+  height: 20px;
+  background-color: #333;
+  border: 1px solid #666;
+  border-radius: 3px;
+  overflow: visible;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff00, #00cc00);
+  transition: width 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.custom-progress-bar input[type="number"] {
+  position: relative;
+  z-index: 2;
+  width: 35px;
+  height: 18px;
+  padding: 1px 2px;
+  text-align: center;
+  font-size: 0.9rem;
+  border: none;
+  background-color: transparent;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.custom-progress-bar input[type="number"]:disabled {
+  background-color: transparent;
+  opacity: 1;
+  color: #a0a0a0;
+}
+
+.progress-text {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+  background-color: transparent;
+  padding: 2px 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.value-ratio {
+  font-size: 0.75rem;
+  color: #a0a0a0;
+  margin-left: 5px;
+}
+
+.hp-bar .progress-fill {
+  background: linear-gradient(90deg, #ff4444, #8f0101);
+}
+
+.ep-bar .progress-fill {
+  background: linear-gradient(90deg, #00ff00, #007d00);
+}
+
+.mp-bar .progress-fill {
+  background: linear-gradient(90deg, #4488ff, #003a8b);
+}
+
+.kp-bar .progress-fill {
+  background: linear-gradient(90deg, #ffaa00, #914d00);
+}
+
+.sp-bar .progress-fill {
+  background: linear-gradient(90deg, #dd44ff, #640381);
 }
 
 .character-stats {

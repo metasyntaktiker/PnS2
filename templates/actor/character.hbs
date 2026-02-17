@@ -6,7 +6,44 @@
         <i class="fas fa-lock-open"></i>
       </button>
     </div>
-    <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
+    <div class="header-current-values">
+      <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
+      <!-- Current Values Section -->
+      <div class="current-value-item">
+        <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>
+        <label title="{{localize "PnS2.EP_MouseOver"}}">{{localize "PnS2.EP"}}</label>
+        <label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>
+        <label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>
+        <label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>
+      </div>
+      <div class="current-value-item">
+        <div class="custom-progress-bar hp-bar">
+          <div class="progress-fill" style="width: {{#if system.hp.total}}{{multiply system.hp.currentValue 100 system.hp.total}}%{{else}}0%{{/if}}"></div>
+          <input type="number" name="system.hp.currentValue" value="{{system.hp.currentValue}}" data-dtype="Number" /> 
+          <span class="progress-text"> / {{system.hp.total}}</span>
+        </div>
+        <div class="custom-progress-bar ep-bar">
+          <div class="progress-fill" style="width: {{#if system.ep.total}}{{multiply system.ep.currentValue 100 system.ep.total}}%{{else}}0%{{/if}}"></div>
+          <input type="number" name="system.ep.currentValue" value="{{system.ep.currentValue}}" data-dtype="Number" />
+          <span class="progress-text"> / {{system.ep.total}}</span>
+        </div>
+        <div class="custom-progress-bar mp-bar">
+          <div class="progress-fill" style="width: {{#if system.mp.total}}{{multiply system.mp.currentValue 100 system.mp.total}}%{{else}}0%{{/if}}"></div>
+          <input type="number" name="system.mp.currentValue" value="{{system.mp.currentValue}}" data-dtype="Number" />
+          <span class="progress-text"> / {{system.mp.total}}</span>
+        </div>
+        <div class="custom-progress-bar kp-bar">
+          <div class="progress-fill" style="width: {{#if system.kp.total}}{{multiply system.kp.currentValue 100 system.kp.total}}%{{else}}0%{{/if}}"></div>
+          <input type="number" name="system.kp.currentValue" value="{{system.kp.currentValue}}" data-dtype="Number" />
+          <span class="progress-text"> / {{system.kp.total}}</span>
+        </div>
+        <div class="custom-progress-bar sp-bar">
+          <div class="progress-fill" style="width: {{#if system.sp.total}}{{multiply system.sp.currentValue 100 system.sp.total}}%{{else}}0%{{/if}}"></div>
+          <input type="number" name="system.sp.currentValue" value="{{system.sp.currentValue}}" data-dtype="Number" />
+          <span class="progress-text"> / {{system.sp.total}}</span>
+        </div>
+      </div>
+    </div>
   </header>
   <!-- Tab area -->
   <nav class="sheet-tabs tabs" data-group="primary">
@@ -118,54 +155,43 @@
         <!-- ######## Headline ######## -->
         <div class="character-basestats-row">
           <div></div>
-          <label>{{localize "PnS2.CharacterSheet.Current"}}</label>
           <label>{{localize "PnS2.CharacterSheet.Base"}}</label>
           <label>{{localize "PnS2.CharacterSheet.Modifier"}}</label>
         </div>
         <!-- Health / Health Points -->
         <div class="character-calculated-row">
           <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>
-          <input type="number" name="system.hp.currentValue" value="{{system.hp.currentValue}}" />
           <input type="number" name="system.hp.value" value="{{system.hp.value}}" />
           <input type="number" name="system.hp.modifier" value="{{system.hp.modifier}}" />
-          <span>{{system.hp.currentValue}} | {{system.hp.value}} + {{system.hp.modifier}} = {{system.hp.total}}</span>
-          <progress value="{{system.hp.currentValue}}" max="{{system.hp.total}}"/>
+          <span>{{system.hp.value}} + {{system.hp.modifier}} = {{system.hp.total}}</span>
         </div>
         <!-- Endurance / Endurance Points -->
         <div class="character-calculated-row">
           <label title="{{localize "PnS2.EP_MouseOver"}}">{{localize "PnS2.EP"}}</label>
-          <input type="number" name="system.ep.currentValue" value="{{system.ep.currentValue}}" />
           <input type="number" name="system.ep.value" value="{{system.ep.value}}" />
           <input type="number" name="system.ep.modifier" value="{{system.ep.modifier}}" />
-          <span>{{system.ep.currentValue}} | {{system.ep.value}} + {{system.ep.modifier}} = {{system.ep.total}}</span>
-          <progress value="{{system.ep.currentValue}}" max="{{system.ep.total}}"/>
+          <span>{{system.ep.value}} + {{system.ep.modifier}} = {{system.ep.total}}</span>
         </div>
         <!-- Mana / Mana Points -->
         <div class="character-calculated-row">
           <label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>
-          <input type="number" name="system.mp.currentValue" value="{{system.mp.currentValue}}" />
           <input type="number" name="system.mp.value" value="{{system.mp.value}}" />
           <input type="number" name="system.mp.modifier" value="{{system.mp.modifier}}" />
-          <span>{{system.mp.currentValue}} | {{system.mp.value}} + {{system.mp.modifier}} = {{system.mp.total}}</span>
-          <progress value="{{system.mp.currentValue}}" max="{{system.mp.total}}"/>
+          <span>{{system.mp.value}} + {{system.mp.modifier}} = {{system.mp.total}}</span>
         </div>
         <!-- Karma / Karma Points -->
         <div class="character-calculated-row">
           <label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>
-          <input type="number" name="system.kp.currentValue" value="{{system.kp.currentValue}}" />
           <input type="number" name="system.kp.value" value="{{system.kp.value}}" />
           <input type="number" name="system.kp.modifier" value="{{system.kp.modifier}}" />
-          <span>{{system.kp.currentValue}} | {{system.kp.value}} + {{system.kp.modifier}} = {{system.kp.total}}</span>
-          <progress value="{{system.kp.currentValue}}" max="{{system.kp.total}}"/>
+          <span>{{system.kp.value}} + {{system.kp.modifier}} = {{system.kp.total}}</span>
         </div>
         <!-- Spirit / Spirit Points -->
         <div class="character-calculated-row">
           <label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>
-          <input type="number" name="system.sp.currentValue" value="{{system.sp.currentValue}}" />
           <input type="number" name="system.sp.value" value="{{system.sp.value}}" />
           <input type="number" name="system.sp.modifier" value="{{system.sp.modifier}}" />
-          <span>{{system.sp.currentValue}} | {{system.sp.value}} + {{system.sp.modifier}} = {{system.sp.total}}</span>
-          <progress value="{{system.sp.currentValue}}" max="{{system.sp.total}}"/>
+          <span>{{system.sp.value}} + {{system.sp.modifier}} = {{system.sp.total}}</span>
         </div>
         <!-- ######## Headline ######## -->
         <div class="character-basestats-row">

@@ -18,6 +18,16 @@ Hooks.once("init", () => {
       makeDefault: true
     }
   );
+
+  // Register Handlebars helpers
+  Handlebars.registerHelper('multiply', function(a, b, c) {
+    if (c) {
+      // Three arguments: (current * b) / c * 100
+      return (a * b) / c;
+    }
+    // Two arguments: a * b
+    return a * b;
+  });
 });
 
 // Ensure default HP on creation

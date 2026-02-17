@@ -111,6 +111,13 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
 
     html.querySelectorAll("input[name]").forEach(input => {
       input.addEventListener("change", this._onInputChange.bind(this));
+      
+      // For progress bar inputs, also update the fill width on input
+      if (input.closest(".custom-progress-bar")) {
+        input.addEventListener("input", (event) => {
+          this._updateProgressBarFill(event.currentTarget);
+        });
+      }
     });
 
     html.querySelectorAll(".rollable").forEach(label => {
@@ -169,9 +176,14 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       button.style.pointerEvents = "auto";
     }
 
-    // Update inputs
+    // Update inputs (but keep progress bar inputs always enabled)
     inputs.forEach(input => {
-      input.disabled = isDisabled;
+      // Don't disable inputs inside custom-progress-bar
+      if (!input.closest(".custom-progress-bar")) {
+        input.disabled = isDisabled;
+      } else {
+        input.disabled = false;
+      }
     });
 
     // Update add talent button visibility
@@ -205,13 +217,15 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   async _onInputChange(event) {
     event.preventDefault();
     
-    // Prevent changes when edit mode is disabled
-    if (this._editModeDisabled) {
+    const input = event.currentTarget;
+    const isProgressBarInput = input.closest(".custom-progress-bar");
+    
+    // Prevent changes when edit mode is disabled (except for progress bar inputs which are always enabled)
+    if (this._editModeDisabled && !isProgressBarInput) {
       return;
     }
     
     if (activateLogging) { console.log("--- Input change event triggered: ", this.document.name); }
-    const input = event.currentTarget;
     const path = input.name;
     const value = input.type === "checkbox" ? input.checked : input.value;
 
@@ -496,5 +510,36 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       });
       dialog.render(true);
     }
+  }
+
+  // Update progress bar fill width
+  _updateProgressBarFill(input) {
+    const progressBar = input.closest(".custom-progress-bar");
+    if (!progressBar) return;
+
+    const fill = progressBar.querySelector(".progress-fill");
+    if (!fill) return;
+
+    // Get the current value and determine the total
+    const currentValue = Number(input.value) || 0;
+    let totalValue = 0;
+
+    // Determine which stat this is and get the total
+    const fieldName = input.name;
+    if (fieldName.includes("hp")) {
+      totalValue = this.actor.system.hp?.total || 0;
+    } else if (fieldName.includes("ep")) {
+      totalValue = this.actor.system.ep?.total || 0;
+    } else if (fieldName.includes("mp")) {
+      totalValue = this.actor.system.mp?.total || 0;
+    } else if (fieldName.includes("kp")) {
+      totalValue = this.actor.system.kp?.total || 0;
+    } else if (fieldName.includes("sp")) {
+      totalValue = this.actor.system.sp?.total || 0;
+    }
+
+    // Calculate percentage
+    const percentage = totalValue > 0 ? (currentValue / totalValue) * 100 : 0;
+    fill.style.width = `${Math.min(percentage, 100)}%`;
   }
 }
