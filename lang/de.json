@@ -81,5 +81,6 @@
   "PnS2.Roll.Modify": "Modifizieren",
   "PnS2.Roll.RollButton": "Würfeln!",
   "PnS2.Roll.TargetValue": "Zielwert",
-  "PnS2.Roll.DialogTitle": "Wurf modifizieren"
+  "PnS2.Roll.DialogTitle": "Wurf modifizieren",
+  "PnS2.ToggleEditMode": "Bearbeitungsmodus umschalten (Sperren/Entsperren)"
 }

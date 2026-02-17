@@ -4,7 +4,8 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   {
     super(...args);
     if (activateLogging) { console.log("----PnS2CharacterSheet opened for actor:", this.document.name); }
-    
+    // Set edit mode to locked by default
+    this._editModeDisabled = true;
   }
 
   static PARTS = {
@@ -56,6 +57,10 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   // Fixes the issue when the actor sheet was left with the talent tab active, opening it again and the talent tab coulnd't be opened any more
   async _onRender(context, options) {
     await super._onRender(context, options);
+    
+    // Apply the edit mode state
+    this._applyEditModeState(this.element, this._editModeDisabled);
+    
     // Restore the active tab after rendering
     if (this._sheetActiveTab) {
       const nav = this.element.querySelector('.sheet-tabs');
@@ -98,6 +103,12 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       });
     });
 
+    // Toggle edit mode button
+    html.querySelector(".toggle-edit-mode")?.addEventListener("click", (event) => {
+      event.preventDefault();
+      this._toggleEditMode(html);
+    });
+
     html.querySelectorAll("input[name]").forEach(input => {
       input.addEventListener("change", this._onInputChange.bind(this));
     });
@@ -132,11 +143,73 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         await this.actor.update({ img: data.src });
       }
     });
+
+    // Apply initial edit mode state if it was saved
+    if (this._editModeDisabled) {
+      this._applyEditModeState(html, true);
+    }
+  }
+
+  // Toggle edit mode on/off
+  _toggleEditMode(html) {
+    this._editModeDisabled = !this._editModeDisabled;
+    this._applyEditModeState(html, this._editModeDisabled);
+  }
+
+  // Apply edit mode state (disable/enable inputs and buttons)
+  _applyEditModeState(html, isDisabled) {
+    const button = html.querySelector(".toggle-edit-mode");
+    const inputs = html.querySelectorAll("input[type='text'], input[type='number']");
+    const addTalentBtn = html.querySelector(".add-talent");
+    const deleteTalentBtns = html.querySelectorAll(".talents-delete");
+
+    // Ensure the toggle button itself is always enabled and clickable
+    if (button) {
+      button.disabled = false;
+      button.style.pointerEvents = "auto";
+    }
+
+    // Update inputs
+    inputs.forEach(input => {
+      input.disabled = isDisabled;
+    });
+
+    // Update add talent button visibility
+    if (addTalentBtn) {
+      addTalentBtn.style.display = isDisabled ? "none" : "flex";
+    }
+
+    // Update delete talent buttons visibility
+    deleteTalentBtns.forEach(btn => {
+      btn.style.display = isDisabled ? "none" : "";
+    });
+
+    // Update button icon and state
+    if (button) {
+      const icon = button.querySelector("i");
+      if (icon) {
+        if (isDisabled) {
+          icon.classList.remove("fa-lock-open");
+          icon.classList.add("fa-lock");
+          button.classList.add("disabled");
+        } else {
+          icon.classList.remove("fa-lock");
+          icon.classList.add("fa-lock-open");
+          button.classList.remove("disabled");
+        }
+      }
+    }
   }
 
   // Textbox changes
   async _onInputChange(event) {
     event.preventDefault();
+    
+    // Prevent changes when edit mode is disabled
+    if (this._editModeDisabled) {
+      return;
+    }
+    
     if (activateLogging) { console.log("--- Input change event triggered: ", this.document.name); }
     const input = event.currentTarget;
     const path = input.name;

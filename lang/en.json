@@ -43,5 +43,6 @@
   "PnS2.Roll.Modify": "Modify",
   "PnS2.Roll.RollButton": "Roll!",
   "PnS2.Roll.TargetValue": "Target Value",
-  "PnS2.Roll.DialogTitle": "Modify Roll"
+  "PnS2.Roll.DialogTitle": "Modify Roll",
+  "PnS2.ToggleEditMode": "Toggle Edit Mode (Lock/Unlock)"
 }
