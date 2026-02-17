@@ -53,6 +53,29 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     return context;
   }
 
+  // Fixes the issue when the actor sheet was left with the talent tab active, opening it again and the talent tab coulnd't be opened any more
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    // Restore the active tab after rendering
+    if (this._sheetActiveTab) {
+      const nav = this.element.querySelector('.sheet-tabs');
+      const body = this.element.querySelector('.sheet-body');
+      
+      if (nav && body) {
+        // Remove active class from all tabs
+        nav.querySelectorAll('.item').forEach(el => el.classList.remove('active'));
+        body.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+        
+        // Add active class to the desired tab
+        const navTab = nav.querySelector(`[data-tab="${this._sheetActiveTab}"]`);
+        const bodyTab = body.querySelector(`[data-tab="${this._sheetActiveTab}"]`);
+        
+        if (navTab) navTab.classList.add('active');
+        if (bodyTab) bodyTab.classList.add('active');
+      }
+    }
+  }
+
   // Sets the size of the character-sheet to 800px
   setPosition(position = {}) {
     if ( typeof position.width === "number" ) {
@@ -64,6 +87,16 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   /** Wire input listeners */
   _attachPartListeners(partId, html) {
     super._attachPartListeners(partId, html);
+
+    // Listen for tab changes to save the active tab
+    html.querySelectorAll(".sheet-tabs .item").forEach(tab => {
+      tab.addEventListener("click", (event) => {
+        const tabName = event.currentTarget.dataset.tab;
+        if (tabName) {
+          this._sheetActiveTab = tabName;
+        }
+      });
+    });
 
     html.querySelectorAll("input[name]").forEach(input => {
       input.addEventListener("change", this._onInputChange.bind(this));
@@ -99,26 +132,6 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         await this.actor.update({ img: data.src });
       }
     });
-    
-    if ( this._focusTab ) {
-      const tabToActivate = this._focusTab;
-      delete this._focusTab;
-
-      // Manually activate the tab by manipulating classes
-      const nav = this.element.querySelector('.sheet-tabs');
-      const body = this.element.querySelector('.sheet-body');
-
-      if (nav && body) {
-        nav.querySelectorAll('.item').forEach(el => el.classList.remove('active'));
-        body.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-        
-        const navTab = nav.querySelector(`[data-tab="${tabToActivate}"]`);
-        if (navTab) navTab.classList.add('active');
-
-        const bodyTab = body.querySelector(`[data-tab="${tabToActivate}"]`);
-        if (bodyTab) bodyTab.classList.add('active');
-      }
-    }
   }
 
   // Textbox changes
@@ -136,7 +149,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       const talents = foundry.utils.deepClone(this.actor.system.talents);
       if (talents[index]) {
         talents[index].value = Number(value);
-        this._focusTab = "talents"; // Set the focus tab to "talents"
+        this._sheetActiveTab = "talents"; // Save the active tab
         return this.actor.update({ "system.talents": talents });
       }
     }
@@ -230,7 +243,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
           };
 
           const talents = this.actor.system.talents.concat([newTalent]);
-          this._focusTab = "talents";
+          this._sheetActiveTab = "talents";
           await this.actor.update({ "system.talents": talents });
         }
     },
@@ -253,7 +266,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     event.preventDefault();
     const talentId = event.currentTarget.closest(".talents-row").dataset.talentId;
     const talents = this.actor.system.talents.filter((_, id) => id != talentId);
-    this._focusTab = "talents";
+    this._sheetActiveTab = "talents";
     await this.actor.update({ "system.talents": talents });
   }
 
