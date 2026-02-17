@@ -6,42 +6,7 @@
         <i class="fas fa-lock-open"></i>
       </button>
     </div>
-    <!-- Character Image -->
-    <div class="character-profile">
-      <div>
-        <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
-      </div>
-      <div>
-        <div class="character-profile-row">
-          <label>{{localize "PnS2.CharacterSheet.Charactername"}}</label>
-          <input type="text" name="name" value="{{actor.name}}" />
-          <br/>
-          <label>{{localize "PnS2.CharacterSheet.Age"}}</label>
-          <input type="number" name="system.character.age" value="{{system.character.age}}" />
-        </div>
-        <div class="character-profile-row">
-          <label>{{localize "PnS2.CharacterSheet.Playername"}}</label>
-          <input type="text" name="system.character.playername" value="{{system.character.playername}}" />
-          <br/>
-          <label>{{localize "PnS2.CharacterSheet.Appearance"}}</label>
-          <input type="text" name="system.character.appearance" value="{{system.character.appearance}}" />
-        </div>
-        <div class="character-profile-row">
-          <label>{{localize "PnS2.CharacterSheet.PlaceOfBirth"}}</label>
-          <input type="text" name="system.character.placeofbirth" value="{{system.character.placeofbirth}}" />
-          <br/>
-          <label>{{localize "PnS2.CharacterSheet.Home"}}</label>
-          <input type="text" name="system.character.home" value="{{system.character.home}}" />
-        </div>
-        <div class="character-profile-row">
-          <label>{{localize "PnS2.CharacterSheet.Height"}}</label>
-          <input type="text" name="system.character.height" value="{{system.character.height}}" />
-          <br/>
-          <label>{{localize "PnS2.CharacterSheet.Weight"}}</label>
-          <input type="text" name="system.character.weight" value="{{system.character.weight}}" />
-        </div>
-      </div>
-    </div>
+    <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
   </header>
   <!-- Tab area -->
   <nav class="sheet-tabs tabs" data-group="primary">
@@ -50,6 +15,9 @@
   </a>
   <a class="item" data-action="tab" data-group="primary" data-tab="talents">
     {{localize "PnS2.Talents"}}
+  </a>
+  <a class="item" data-action="tab" data-group="primary" data-tab="profil">
+    {{localize "PnS2.Profil"}}
   </a>
 </nav>
   <div class="sheet-body">
@@ -258,6 +226,41 @@
       </div>
       <div class="add-talent-button">
           <a class="add-talent"><i class="fas fa-plus"></i> {{localize "PNS.Talent.Add"}}</a>
+      </div>
+    </div>
+    <div class="tab" data-group="primary" data-tab="profil">
+      <!-- Character Profile Information -->
+      <div class="character-profile">
+        <div>
+          <div class="character-profile-row">
+            <label>{{localize "PnS2.CharacterSheet.Charactername"}}</label>
+            <input type="text" name="name" value="{{actor.name}}" />
+            <br/>
+            <label>{{localize "PnS2.CharacterSheet.Age"}}</label>
+            <input type="number" name="system.character.age" value="{{system.character.age}}" />
+          </div>
+          <div class="character-profile-row">
+            <label>{{localize "PnS2.CharacterSheet.Playername"}}</label>
+            <input type="text" name="system.character.playername" value="{{system.character.playername}}" />
+            <br/>
+            <label>{{localize "PnS2.CharacterSheet.Appearance"}}</label>
+            <input type="text" name="system.character.appearance" value="{{system.character.appearance}}" />
+          </div>
+          <div class="character-profile-row">
+            <label>{{localize "PnS2.CharacterSheet.PlaceOfBirth"}}</label>
+            <input type="text" name="system.character.placeofbirth" value="{{system.character.placeofbirth}}" />
+            <br/>
+            <label>{{localize "PnS2.CharacterSheet.Home"}}</label>
+            <input type="text" name="system.character.home" value="{{system.character.home}}" />
+          </div>
+          <div class="character-profile-row">
+            <label>{{localize "PnS2.CharacterSheet.Height"}}</label>
+            <input type="text" name="system.character.height" value="{{system.character.height}}" />
+            <br/>
+            <label>{{localize "PnS2.CharacterSheet.Weight"}}</label>
+            <input type="text" name="system.character.weight" value="{{system.character.weight}}" />
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -61,11 +61,7 @@
 .character-profile
 {
   margin-bottom: 3px;
-  display: grid;
-  align-items: center;
-  /* gap: 0.5rem; */
-  /* grid-template-columns: repeat(4, 10%); */
-  grid-template-columns: 120px 100%;
+  display: block;
 }
 .character-profile-row 
 {
