@@ -158,6 +158,15 @@
           <span>{{system.hp.currentValue}} | {{system.hp.value}} + {{system.hp.modifier}} = {{system.hp.total}}</span>
           <progress value="{{system.hp.currentValue}}" max="{{system.hp.total}}"/>
         </div>
+        <!-- Endurance / Endurance Points -->
+        <div class="character-calculated-row">
+          <label title="{{localize "PnS2.EP_MouseOver"}}">{{localize "PnS2.EP"}}</label>
+          <input type="number" name="system.ep.currentValue" value="{{system.ep.currentValue}}" />
+          <input type="number" name="system.ep.value" value="{{system.ep.value}}" />
+          <input type="number" name="system.ep.modifier" value="{{system.ep.modifier}}" />
+          <span>{{system.ep.currentValue}} | {{system.ep.value}} + {{system.ep.modifier}} = {{system.ep.total}}</span>
+          <progress value="{{system.ep.currentValue}}" max="{{system.ep.total}}"/>
+        </div>
         <!-- Mana / Mana Points -->
         <div class="character-calculated-row">
           <label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>
