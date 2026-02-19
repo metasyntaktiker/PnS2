@@ -47,6 +47,34 @@
   text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
 }
 
+.toggle-calc-visibility {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  cursor: pointer;
+  font-size: 0.6rem;
+  padding: 5px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  flex: 0 0 auto;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.toggle-calc-visibility:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+/* Calculation spans - display controlled by JavaScript */
+.calc-span {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  padding: 2px 4px;
+  text-align: right;
+  white-space: nowrap;
+}
+
 .header-current-values {
   display: flex;
   gap: 10px;
@@ -198,7 +226,7 @@
   align-items: center;
   /* gap: 0.5rem; */
   /* grid-template-columns: repeat(4, 10%); */
-  grid-template-columns: 20% 8% 8% 14% 20%;
+  grid-template-columns: 20% 8% 8% 1fr;
   grid-template-rows: repeat(1, 22px);
 }
 
@@ -224,7 +252,7 @@
   align-items: center;
   /* gap: 0.5rem; */
   /* grid-template-columns: repeat(4, 10%); */
-  grid-template-columns: 20% 8% 8% 8% 16% 20%;
+  grid-template-columns: 20% 8% 8% 8% 1fr;
   grid-template-rows: repeat(1, 22px);
 }
 

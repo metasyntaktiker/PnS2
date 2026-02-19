@@ -46,4 +46,5 @@
   "PnS2.Roll.TargetValue": "Target Value",
   "PnS2.Roll.DialogTitle": "Modify Roll",
   "PnS2.ToggleEditMode": "Toggle Edit Mode (Lock/Unlock)"
+  ,"PnS2.ToggleCalcVisibility": "Toggle calculation visibility"
 }

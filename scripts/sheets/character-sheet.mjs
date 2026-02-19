@@ -6,6 +6,8 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     if (activateLogging) { console.log("----PnS2CharacterSheet opened for actor:", this.document.name); }
     // Set edit mode to locked by default
     this._editModeDisabled = true;
+    // Calculation visibility (hidden by default)
+    this._calcVisible = false;
   }
 
   static PARTS = {
@@ -60,6 +62,8 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     
     // Apply the edit mode state
     this._applyEditModeState(this.element, this._editModeDisabled);
+    // Apply the calculation visibility state
+    this._applyCalcVisibilityState(this.element, this._calcVisible);
     
     // Restore the active tab after rendering
     if (this._sheetActiveTab) {
@@ -109,6 +113,12 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       this._toggleEditMode(html);
     });
 
+    // Toggle calculation visibility button (eye)
+    html.querySelector(".toggle-calc-visibility")?.addEventListener("click", (event) => {
+      event.preventDefault();
+      this._toggleCalcVisibility(html);
+    });
+
     html.querySelectorAll("input[name]").forEach(input => {
       input.addEventListener("change", this._onInputChange.bind(this));
       
@@ -155,6 +165,9 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     if (this._editModeDisabled) {
       this._applyEditModeState(html, true);
     }
+
+    // Apply initial calculation visibility state
+    this._applyCalcVisibilityState(html, this._calcVisible);
   }
 
   // Toggle edit mode on/off
@@ -210,6 +223,49 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
           button.classList.remove("disabled");
         }
       }
+    }
+  }
+
+  // Toggle whether calculation spans are visible
+  _toggleCalcVisibility(html) {
+    this._calcVisible = !this._calcVisible;
+    this._applyCalcVisibilityState(html, this._calcVisible);
+  }
+
+  // Apply the calculation visibility state by toggling a class on the sheet
+  _applyCalcVisibilityState(html, visible) {
+    const button = html.querySelector(".toggle-calc-visibility");
+    if (button) {
+      button.disabled = false;
+      button.style.pointerEvents = "auto";
+      const icon = button.querySelector("i");
+      if (icon) {
+        if (!visible) {
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+          button.classList.add("calc-hidden-btn");
+        } else {
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+          button.classList.remove("calc-hidden-btn");
+        }
+      }
+    }
+
+    // Directly set display on all calc-span elements
+    const spans = html.querySelectorAll(".calc-span");
+    spans.forEach(span => {
+      if (visible) {
+        span.style.display = "block";
+        if (activateLogging) console.log("Made span visible:", span);
+      } else {
+        span.style.display = "none";
+        if (activateLogging) console.log("Hid span:", span);
+      }
+    });
+    
+    if (activateLogging) {
+      console.log(`Visibility toggle: ${visible ? 'visible' : 'hidden'}, found ${spans.length} spans`);
     }
   }
 
