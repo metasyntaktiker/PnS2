@@ -71,7 +71,7 @@
   color: #e0e0e0;
   font-size: 0.9rem;
   padding: 2px 4px;
-  text-align: right;
+  text-align: left;
   white-space: nowrap;
 }
 
@@ -102,11 +102,6 @@
   height: 20px;
   text-align: center;
   font-size: 0.8rem;
-}
-
-.current-progress {
-  width: 60px;
-  height: 15px;
 }
 
 .custom-progress-bar {
@@ -165,12 +160,6 @@
   white-space: nowrap;
 }
 
-.value-ratio {
-  font-size: 0.75rem;
-  color: #a0a0a0;
-  margin-left: 5px;
-}
-
 .hp-bar .progress-fill {
   background: linear-gradient(90deg, #ff4444, #8f0101);
 }
@@ -224,10 +213,15 @@
   margin-bottom: 3px;
   display: grid;
   align-items: center;
+  justify-items: center;
   /* gap: 0.5rem; */
   /* grid-template-columns: repeat(4, 10%); */
-  grid-template-columns: 20% 8% 8% 1fr;
+  grid-template-columns: 20% 8% 11% 8% 1fr;
   grid-template-rows: repeat(1, 22px);
+}
+
+.character-section .character-basestats-row > :first-child {
+  justify-self: start;
 }
 
 .character-section .character-basestats-row input[type=number], 
@@ -250,10 +244,15 @@
   margin-bottom: 3px;
   display: grid;
   align-items: center;
+  justify-items: center;
   /* gap: 0.5rem; */
   /* grid-template-columns: repeat(4, 10%); */
   grid-template-columns: 20% 8% 8% 8% 1fr;
   grid-template-rows: repeat(1, 22px);
+}
+
+.character-section .character-calculated-row > :first-child {
+  justify-self: start;
 }
 
 .character-section .character-calculated-row input[type=number], 

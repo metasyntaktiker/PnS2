@@ -67,7 +67,7 @@
         <div class="character-basestats-row">
           <label title="{{localize "PnS2.EXP_MouseOver"}}">{{localize "PnS2.EXP"}}</label>
           <input type="number" name="system.exp.value" value="{{system.exp.value}}" />
-          <span>{{system.exp.value}}</span>
+          <span class="calc-span">{{system.exp.value}}</span>
         </div>
         <div class="character-basestats-row">
           <label class="rollable" data-roll="1d100" data-key="luck" title="{{localize "PnS2.LUCK_MouseOver"}}">{{localize "PnS2.LUCK"}}</label>
@@ -80,6 +80,7 @@
           <div></div>
           <label>{{localize "PnS2.CharacterSheet.Base"}}</label>
           <label>{{localize "PnS2.CharacterSheet.Modifier"}}</label>
+          <label>{{localize "PnS2.CharacterSheet.Total"}}</label>
         </div>
         <!-- ######## Base Stats ######## -->
         <!-- Strength-->
@@ -87,6 +88,7 @@
           <label class="rollable" data-roll="1d100" data-key="str" title="{{localize "PnS2.STR_MouseOver"}}">{{localize "PnS2.STR"}}</label>
           <input type="number" name="system.str.value" value="{{system.str.value}}" />
           <input type="number" name="system.str.modifier" value="{{system.str.modifier}}" />
+          <label>{{system.str.total}}</label>
           <span class="calc-span">{{system.str.value}} + {{system.str.modifier}} = {{system.str.total}}</span>
         </div>
         <!-- Agility -->
@@ -94,6 +96,7 @@
           <label class="rollable" data-roll="1d100" data-key="agi" title="{{localize "PnS2.AGI_MouseOver"}}">{{localize "PnS2.AGI"}}</label>
           <input type="number" name="system.agi.value" value="{{system.agi.value}}" />
           <input type="number" name="system.agi.modifier" value="{{system.agi.modifier}}" />
+          <label>{{system.agi.total}}</label>
           <span class="calc-span">{{system.agi.value}} + {{system.agi.modifier}} = {{system.agi.total}}</span>
         </div>
         <!-- Precision -->
@@ -101,6 +104,7 @@
           <label class="rollable" data-roll="1d100" data-key="pre" title="{{localize "PnS2.PRE_MouseOver"}}">{{localize "PnS2.PRE"}}</label>
           <input type="number" name="system.pre.value" value="{{system.pre.value}}" />
           <input type="number" name="system.pre.modifier" value="{{system.pre.modifier}}" />
+          <label>{{system.pre.total}}</label>
           <span class="calc-span">{{system.pre.value}} + {{system.pre.modifier}} = {{system.pre.total}}</span>
         </div>
         <!-- Constitution -->
@@ -108,6 +112,7 @@
           <label class="rollable" data-roll="1d100" data-key="con" title="{{localize "PnS2.CON_MouseOver"}}">{{localize "PnS2.CON"}}</label>
           <input type="number" name="system.con.value" value="{{system.con.value}}" />
           <input type="number" name="system.con.modifier" value="{{system.con.modifier}}" />
+          <label>{{system.con.total}}</label>
           <span class="calc-span">{{system.con.value}} + {{system.con.modifier}} = {{system.con.total}}</span>
         </div>
         <!-- Intelligence -->
@@ -115,6 +120,7 @@
           <label class="rollable" data-roll="1d100" data-key="int" title="{{localize "PnS2.INT_MouseOver"}}">{{localize "PnS2.INT"}}</label>
           <input type="number" name="system.int.value" value="{{system.int.value}}" />
           <input type="number" name="system.int.modifier" value="{{system.int.modifier}}" />
+          <label>{{system.int.total}}</label>
           <span class="calc-span">{{system.int.value}} + {{system.int.modifier}} = {{system.int.total}}</span>
         </div>
         <!-- Charisma -->
@@ -122,6 +128,7 @@
           <label class="rollable" data-roll="1d100" data-key="cha" title="{{localize "PnS2.CHA_MouseOver"}}">{{localize "PnS2.CHA"}}</label>
           <input type="number" name="system.cha.value" value="{{system.cha.value}}" />
           <input type="number" name="system.cha.modifier" value="{{system.cha.modifier}}" />
+          <label>{{system.cha.total}}</label>
           <span class="calc-span">{{system.cha.value}} + {{system.cha.modifier}} = {{system.cha.total}}</span>
         </div>
         <!-- Will -->
@@ -129,15 +136,24 @@
           <label class="rollable" data-roll="1d100" data-key="wil" title="{{localize "PnS2.WIL_MouseOver"}}">{{localize "PnS2.WIL"}}</label>
           <input type="number" name="system.wil.value" value="{{system.wil.value}}" />
           <input type="number" name="system.wil.modifier" value="{{system.wil.modifier}}" />
+          <label>{{system.wil.total}}</label>
           <span class="calc-span">{{system.wil.value}} + {{system.wil.modifier}} = {{system.wil.total}}</span>
         </div>
         <br/>
         <!-- ######## Sensory stats ######## -->
         <!-- See -->
         <div class="character-basestats-row">
+          <div></div>
+          <label>{{localize "PnS2.CharacterSheet.Base"}}</label>
+          <label>{{localize "PnS2.CharacterSheet.Modifier"}}</label>
+          <label>{{localize "PnS2.CharacterSheet.Total"}}</label>
+        </div>
+        <!-- See -->
+        <div class="character-basestats-row">
           <label class="rollable" data-roll="1d100" data-key="see" title="{{localize "PnS2.SEE_MouseOver"}}">{{localize "PnS2.SEE"}}</label>
           <input type="number" name="system.see.value" value="{{system.see.value}}" />
           <input type="number" name="system.see.modifier" value="{{system.see.modifier}}" />
+          <label>{{system.see.total}}</label>
           <span class="calc-span">{{system.see.value}} + {{system.see.modifier}} = {{system.see.total}}</span>
         </div>
         <!-- Hear -->
@@ -145,6 +161,7 @@
           <label class="rollable" data-roll="1d100" data-key="hear" title="{{localize "PnS2.HEAR_MouseOver"}}">{{localize "PnS2.HEAR"}}</label>
           <input type="number" name="system.hear.value" value="{{system.hear.value}}" />
           <input type="number" name="system.hear.modifier" value="{{system.hear.modifier}}" />
+          <label>{{system.hear.total}}</label>
           <span class="calc-span">{{system.hear.value}} + {{system.hear.modifier}} = {{system.hear.total}}</span>
         </div>
         <!-- Smell -->
@@ -152,6 +169,7 @@
           <label class="rollable" data-roll="1d100" data-key="smell" title="{{localize "PnS2.SMELL_MouseOver"}}">{{localize "PnS2.SMELL"}}</label>
           <input type="number" name="system.smell.value" value="{{system.smell.value}}" />
           <input type="number" name="system.smell.modifier" value="{{system.smell.modifier}}" />
+          <label>{{system.smell.total}}</label>
           <span class="calc-span">{{system.smell.value}} + {{system.smell.modifier}} = {{system.smell.total}}</span>
         </div>
         <br/>
@@ -160,53 +178,61 @@
           <div></div>
           <label>{{localize "PnS2.CharacterSheet.Base"}}</label>
           <label>{{localize "PnS2.CharacterSheet.Modifier"}}</label>
+          <label>{{localize "PnS2.CharacterSheet.Total"}}</label>
         </div>
         <!-- Health / Health Points -->
-        <div class="character-calculated-row">
+        <div class="character-basestats-row">
           <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>
           <input type="number" name="system.hp.value" value="{{system.hp.value}}" />
           <input type="number" name="system.hp.modifier" value="{{system.hp.modifier}}" />
+          <label>{{system.hp.total}}</label>
           <span class="calc-span">{{system.hp.value}} + {{system.hp.modifier}} = {{system.hp.total}}</span>
         </div>
         <!-- Endurance / Endurance Points -->
-        <div class="character-calculated-row">
+        <div class="character-basestats-row">
           <label title="{{localize "PnS2.EP_MouseOver"}}">{{localize "PnS2.EP"}}</label>
           <input type="number" name="system.ep.value" value="{{system.ep.value}}" />
           <input type="number" name="system.ep.modifier" value="{{system.ep.modifier}}" />
+          <label>{{system.ep.total}}</label>
           <span class="calc-span">{{system.ep.value}} + {{system.ep.modifier}} = {{system.ep.total}}</span>
         </div>
         <!-- Mana / Mana Points -->
-        <div class="character-calculated-row">
+        <div class="character-basestats-row">
           <label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>
           <input type="number" name="system.mp.value" value="{{system.mp.value}}" />
           <input type="number" name="system.mp.modifier" value="{{system.mp.modifier}}" />
+          <label>{{system.mp.total}}</label>
           <span class="calc-span">{{system.mp.value}} + {{system.mp.modifier}} = {{system.mp.total}}</span>
         </div>
         <!-- Karma / Karma Points -->
-        <div class="character-calculated-row">
+        <div class="character-basestats-row">
           <label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>
           <input type="number" name="system.kp.value" value="{{system.kp.value}}" />
           <input type="number" name="system.kp.modifier" value="{{system.kp.modifier}}" />
+          <label>{{system.kp.total}}</label>
           <span class="calc-span">{{system.kp.value}} + {{system.kp.modifier}} = {{system.kp.total}}</span>
         </div>
         <!-- Spirit / Spirit Points -->
-        <div class="character-calculated-row">
+        <div class="character-basestats-row">
           <label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>
           <input type="number" name="system.sp.value" value="{{system.sp.value}}" />
           <input type="number" name="system.sp.modifier" value="{{system.sp.modifier}}" />
+          <label>{{system.sp.total}}</label>
           <span class="calc-span">{{system.sp.value}} + {{system.sp.modifier}} = {{system.sp.total}}</span>
         </div>
         <!-- ######## Headline ######## -->
         <div class="character-basestats-row">
           <div></div>
           <label>{{localize "PnS2.CharacterSheet.Base"}}</label>
-          <label>{{localize "PnS2.CharacterSheet.Modifier"}}</label>
+          <label>{{localize "PnS2.CharacterSheet.Modifier"}}</label>          
+          <label>{{localize "PnS2.CharacterSheet.Total"}}</label>        
         </div>
         <!-- Magic Resistance -->
         <div class="character-basestats-row">
           <label title="{{localize "PnS2.RST_MouseOver"}}">{{localize "PnS2.RST"}}</label>
           <input type="number" name="system.rst.value" value="{{system.rst.value}}" />
           <input type="number" name="system.rst.modifier" value="{{system.rst.modifier}}" />
+          <label>{{system.rst.total}}</label>
           <span class="calc-span">{{system.rst.value}} + {{system.rst.modifier}} = {{system.rst.total}}</span>
         </div>
         <!-- Mental Resistance -->
@@ -214,6 +240,7 @@
           <label title="{{localize "PnS2.RES_MouseOver"}}">{{localize "PnS2.RES"}}</label>
           <input type="number" name="system.res.value" value="{{system.res.value}}" />
           <input type="number" name="system.res.modifier" value="{{system.res.modifier}}" />
+          <label>{{system.res.total}}</label>
           <span class="calc-span">{{system.res.value}} + {{system.res.modifier}} = {{system.res.total}}</span>
         </div>
         <!-- Physical Resistance -->
@@ -221,6 +248,7 @@
           <label title="{{localize "PnS2.TOU_MouseOver"}}">{{localize "PnS2.TOU"}}</label>
           <input type="number" name="system.tou.value" value="{{system.tou.value}}" />
           <input type="number" name="system.tou.modifier" value="{{system.tou.modifier}}" />
+          <label>{{system.tou.total}}</label>
           <span class="calc-span">{{system.tou.value}} + {{system.tou.modifier}} = {{system.tou.total}}</span>
         </div>
         <!-- Speed -->
@@ -228,6 +256,7 @@
           <label title="{{localize "PnS2.SPE_MouseOver"}}">{{localize "PnS2.SPE"}}</label>
           <input type="number" name="system.speed.value" value="{{system.speed.value}}" />
           <input type="number" name="system.speed.modifier" value="{{system.speed.modifier}}" />
+          <label>{{system.speed.total}}</label>
           <span class="calc-span">{{system.speed.value}} + {{system.speed.modifier}} = {{system.speed.total}}</span>
         </div>
       </div>
