@@ -199,9 +199,11 @@
         <!-- Endurance / Endurance Points -->
         <div class="character-basestats-row">
           <label title="{{localize "PnS2.EP_MouseOver"}}" class="label-with-button">
+            {{#if _calcVisible}}
             <button type="button" class="toggle-bar-visibility" data-action="toggle-bar" data-bar="ep">
               <i class="fas {{#if system.settings.showEpBar}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
             </button>
+            {{/if}}
             {{localize "PnS2.EP"}}
           </label>
           <input type="number" name="system.ep.value" value="{{system.ep.value}}" />
@@ -212,9 +214,11 @@
         <!-- Mana / Mana Points -->
         <div class="character-basestats-row">
           <label title="{{localize "PnS2.MP_MouseOver"}}" class="label-with-button">
+            {{#if _calcVisible}}
             <button type="button" class="toggle-bar-visibility" data-action="toggle-bar" data-bar="mp">
               <i class="fas {{#if system.settings.showMpBar}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
             </button>
+            {{/if}}
             {{localize "PnS2.MP"}}
           </label>
           <input type="number" name="system.mp.value" value="{{system.mp.value}}" />
@@ -225,9 +229,11 @@
         <!-- Karma / Karma Points -->
         <div class="character-basestats-row">
           <label title="{{localize "PnS2.KP_MouseOver"}}" class="label-with-button">
+            {{#if _calcVisible}}
             <button type="button" class="toggle-bar-visibility" data-action="toggle-bar" data-bar="kp">
               <i class="fas {{#if system.settings.showKpBar}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
             </button>
+            {{/if}}
             {{localize "PnS2.KP"}}
           </label>
           <input type="number" name="system.kp.value" value="{{system.kp.value}}" />
@@ -238,9 +244,11 @@
         <!-- Spirit / Spirit Points -->
         <div class="character-basestats-row">
           <label title="{{localize "PnS2.SP_MouseOver"}}" class="label-with-button">
+            {{#if _calcVisible}}
             <button type="button" class="toggle-bar-visibility" data-action="toggle-bar" data-bar="sp">
               <i class="fas {{#if system.settings.showSpBar}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
             </button>
+            {{/if}}
             {{localize "PnS2.SP"}}
           </label>
           <input type="number" name="system.sp.value" value="{{system.sp.value}}" />

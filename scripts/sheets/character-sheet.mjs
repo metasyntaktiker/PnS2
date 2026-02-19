@@ -35,6 +35,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     context.actor = this.actor;
     context.system = this.actor.system;
     context.img = this.actor.img;
+    context._calcVisible = this._calcVisible;
 
     // Prepare talents 
     if (context.system.talents) {
@@ -241,6 +242,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
   _toggleCalcVisibility(html) {
     this._calcVisible = !this._calcVisible;
     this._applyCalcVisibilityState(html, this._calcVisible);
+    this.render(true);
   }
 
   // Apply the calculation visibility state by toggling a class on the sheet
