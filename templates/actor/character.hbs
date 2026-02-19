@@ -14,10 +14,10 @@
       <!-- Current Values Section -->
       <div class="current-value-item">
         <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>
-        <label title="{{localize "PnS2.EP_MouseOver"}}">{{localize "PnS2.EP"}}</label>
-        <label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>
-        <label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>
-        <label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>
+        {{#if system.settings.showEpBar}}<label title="{{localize "PnS2.EP_MouseOver"}}">{{localize "PnS2.EP"}}</label>{{/if}}
+        {{#if system.settings.showMpBar}}<label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>{{/if}}
+        {{#if system.settings.showKpBar}}<label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>{{/if}}
+        {{#if system.settings.showSpBar}}<label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>{{/if}}
       </div>
       <div class="current-value-item">
         <div class="custom-progress-bar hp-bar">
@@ -25,26 +25,34 @@
           <input type="number" name="system.hp.currentValue" value="{{system.hp.currentValue}}" data-dtype="Number" /> 
           <span class="progress-text"> / {{system.hp.total}}</span>
         </div>
+        {{#if system.settings.showEpBar}}
         <div class="custom-progress-bar ep-bar">
           <div class="progress-fill" style="width: {{#if system.ep.total}}{{multiply system.ep.currentValue 100 system.ep.total}}%{{else}}0%{{/if}}"></div>
           <input type="number" name="system.ep.currentValue" value="{{system.ep.currentValue}}" data-dtype="Number" />
           <span class="progress-text"> / {{system.ep.total}}</span>
         </div>
+        {{/if}}
+        {{#if system.settings.showMpBar}}
         <div class="custom-progress-bar mp-bar">
           <div class="progress-fill" style="width: {{#if system.mp.total}}{{multiply system.mp.currentValue 100 system.mp.total}}%{{else}}0%{{/if}}"></div>
           <input type="number" name="system.mp.currentValue" value="{{system.mp.currentValue}}" data-dtype="Number" />
           <span class="progress-text"> / {{system.mp.total}}</span>
         </div>
+        {{/if}}
+        {{#if system.settings.showKpBar}}
         <div class="custom-progress-bar kp-bar">
           <div class="progress-fill" style="width: {{#if system.kp.total}}{{multiply system.kp.currentValue 100 system.kp.total}}%{{else}}0%{{/if}}"></div>
           <input type="number" name="system.kp.currentValue" value="{{system.kp.currentValue}}" data-dtype="Number" />
           <span class="progress-text"> / {{system.kp.total}}</span>
         </div>
+        {{/if}}
+        {{#if system.settings.showSpBar}}
         <div class="custom-progress-bar sp-bar">
           <div class="progress-fill" style="width: {{#if system.sp.total}}{{multiply system.sp.currentValue 100 system.sp.total}}%{{else}}0%{{/if}}"></div>
           <input type="number" name="system.sp.currentValue" value="{{system.sp.currentValue}}" data-dtype="Number" />
           <span class="progress-text"> / {{system.sp.total}}</span>
         </div>
+        {{/if}}
       </div>
     </div>
   </header>
@@ -190,7 +198,12 @@
         </div>
         <!-- Endurance / Endurance Points -->
         <div class="character-basestats-row">
-          <label title="{{localize "PnS2.EP_MouseOver"}}">{{localize "PnS2.EP"}}</label>
+          <label title="{{localize "PnS2.EP_MouseOver"}}" class="label-with-button">
+            <button type="button" class="toggle-bar-visibility" data-action="toggle-bar" data-bar="ep">
+              <i class="fas {{#if system.settings.showEpBar}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
+            </button>
+            {{localize "PnS2.EP"}}
+          </label>
           <input type="number" name="system.ep.value" value="{{system.ep.value}}" />
           <input type="number" name="system.ep.modifier" value="{{system.ep.modifier}}" />
           <label>{{system.ep.total}}</label>
@@ -198,7 +211,12 @@
         </div>
         <!-- Mana / Mana Points -->
         <div class="character-basestats-row">
-          <label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>
+          <label title="{{localize "PnS2.MP_MouseOver"}}" class="label-with-button">
+            <button type="button" class="toggle-bar-visibility" data-action="toggle-bar" data-bar="mp">
+              <i class="fas {{#if system.settings.showMpBar}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
+            </button>
+            {{localize "PnS2.MP"}}
+          </label>
           <input type="number" name="system.mp.value" value="{{system.mp.value}}" />
           <input type="number" name="system.mp.modifier" value="{{system.mp.modifier}}" />
           <label>{{system.mp.total}}</label>
@@ -206,7 +224,12 @@
         </div>
         <!-- Karma / Karma Points -->
         <div class="character-basestats-row">
-          <label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>
+          <label title="{{localize "PnS2.KP_MouseOver"}}" class="label-with-button">
+            <button type="button" class="toggle-bar-visibility" data-action="toggle-bar" data-bar="kp">
+              <i class="fas {{#if system.settings.showKpBar}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
+            </button>
+            {{localize "PnS2.KP"}}
+          </label>
           <input type="number" name="system.kp.value" value="{{system.kp.value}}" />
           <input type="number" name="system.kp.modifier" value="{{system.kp.modifier}}" />
           <label>{{system.kp.total}}</label>
@@ -214,7 +237,12 @@
         </div>
         <!-- Spirit / Spirit Points -->
         <div class="character-basestats-row">
-          <label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>
+          <label title="{{localize "PnS2.SP_MouseOver"}}" class="label-with-button">
+            <button type="button" class="toggle-bar-visibility" data-action="toggle-bar" data-bar="sp">
+              <i class="fas {{#if system.settings.showSpBar}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
+            </button>
+            {{localize "PnS2.SP"}}
+          </label>
           <input type="number" name="system.sp.value" value="{{system.sp.value}}" />
           <input type="number" name="system.sp.modifier" value="{{system.sp.modifier}}" />
           <label>{{system.sp.total}}</label>

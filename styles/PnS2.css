@@ -84,7 +84,7 @@
 }
 
 .current-value-item {
-  display: grid;
+  display: flex;
   flex-direction: column;
   gap: 3px;
   min-width: 90px;
@@ -287,6 +287,27 @@ progress:after
 {
   cursor: pointer;
   text-shadow: 0 0 15px rgb(255, 255, 0);
+}
+
+.label-with-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.toggle-bar-visibility {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0;
+  margin: 0;
+}
+
+.toggle-bar-visibility:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
 }
 
 .roll-success

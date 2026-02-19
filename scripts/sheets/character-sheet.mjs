@@ -119,6 +119,17 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
       this._toggleCalcVisibility(html);
     });
 
+    html.querySelectorAll('[data-action="toggle-bar"]').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const bar = event.currentTarget.dataset.bar;
+        if (!bar) return;
+
+        const setting = `show${bar.charAt(0).toUpperCase() + bar.slice(1)}Bar`;
+        const currentValue = this.actor.system.settings[setting];
+        this.actor.update({ [`system.settings.${setting}`]: !currentValue });
+      });
+    });
+
     html.querySelectorAll("input[name]").forEach(input => {
       input.addEventListener("change", this._onInputChange.bind(this));
       

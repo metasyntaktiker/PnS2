@@ -15,6 +15,12 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
         backstory: new foundry.data.fields.StringField({ initial: "" }),
         notes: new foundry.data.fields.StringField({ initial: "" })
       }),
+      settings: new foundry.data.fields.SchemaField({
+        showEpBar: new foundry.data.fields.BooleanField({ initial: true }),
+        showMpBar: new foundry.data.fields.BooleanField({ initial: true }),
+        showKpBar: new foundry.data.fields.BooleanField({ initial: true }),
+        showSpBar: new foundry.data.fields.BooleanField({ initial: true })
+      }),
       // --- Base stats --- 
       /* ------------------------ Example ------------------------
       **          | Basevalue | Modifier (whatever reason) | Total
