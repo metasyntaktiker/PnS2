@@ -1,5 +1,11 @@
+.profile-image-div {
+  width: 100px;
+  height: 115px;
+}
+
 .profile-img {
-  height: 100px;
+  max-height: 100px;
+  max-width: 100px;
   margin-right: 10px;
   border: 1px solid #ccc;
   position: relative;
@@ -11,12 +17,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: auto; /* Allow content to dictate width */
+  min-width: 150px;
 }
 
 .header-container h3 {
   margin: 0;
-  flex: 1;
+  /* Removed flex: 1; */
 }
 
 .toggle-edit-mode {
@@ -68,6 +75,11 @@
 
 header {
   position: relative;
+  display: flex; /* Make header a flex container */
+  flex-wrap: wrap; /* Allow items to wrap if needed */
+  align-items: flex-start; /* Align items to the top */
+  gap: 10px; /* Space between header sections */
+  padding-bottom: 10px; /* Ensure space for absolutely positioned buttons */
 }
 
 .header-buttons-container {
@@ -91,9 +103,9 @@ header {
 .header-current-values {
   display: flex;
   gap: 10px;
-  margin-top: 8px;
-  padding: 5px 0;
-  flex-wrap: wrap;
+  margin-top: 0; /* Adjusted from 8px */
+  padding: 0; /* Adjusted from 5px 0 */
+  flex-wrap: nowrap; /* Adjusted from wrap */
 }
 
 .current-value-item {
@@ -459,17 +471,36 @@ progress:after
   box-sizing: border-box;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-middle-section {
+  display: flex; /* Make header-middle-section a flex container */
+  align-items: flex-start;
+}
+
+.header-stats-wrapper {
+  display: flex; /* Arrange items inside side-by-side */
+  gap: 30px;
+  flex-wrap: wrap; /* Allow wrapping if space is constrained */
+  align-items: flex-start;
+}
+
 .header-basevalues {
     display: flex;
-    justify-content: space-around;
-    padding: 5px 0;
+    gap: 10px; /* Use gap for spacing */
+    padding: 0; /* Adjusted from 5px 0 */
 }
 
 .basevalue-button-container {
-    position: relative;
+    /* position: relative; removed as it's not needed here anymore */
     width: 40px;
     height: 40px;
     cursor: pointer;
+    position: relative;
 }
 
 .basevalue-button-container .rollable {
@@ -491,7 +522,7 @@ progress:after
 
 .basevalue-button-container:hover .fa-dice-d20 {
     color: #000;
-    text-shadow: 0 0 8px red;
+    text-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
 }
 
 .basevalue-button-label {

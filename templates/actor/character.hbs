@@ -1,105 +1,113 @@
 <form class="character-section" autocomplete="off">
   <header>
-    <div class="header-container">
-      <h3>{{actor.name}}</h3>
-    </div>
-    <div class="header-current-values">
-      <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
-      <!-- Current Values Section -->
-      <div class="current-value-item">
-        <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>
-        {{#if system.settings.showEpBar}}<label title="{{localize "PnS2.EP_MouseOver"}}">{{localize "PnS2.EP"}}</label>{{/if}}
-        {{#if system.settings.showMpBar}}<label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>{{/if}}
-        {{#if system.settings.showKpBar}}<label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>{{/if}}
-        {{#if system.settings.showSpBar}}<label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>{{/if}}
-      </div>
-      <div class="current-value-item">
-        <div class="custom-progress-bar hp-bar">
-          <div class="progress-fill" style="width: {{#if system.hp.total}}{{multiply system.hp.currentValue 100 system.hp.total}}%{{else}}0%{{/if}}"></div>
-          <input type="number" name="system.hp.currentValue" value="{{system.hp.currentValue}}" data-dtype="Number" /> 
-          <span class="progress-text"> / {{system.hp.total}}</span>
-        </div>
-        {{#if system.settings.showEpBar}}
-        <div class="custom-progress-bar ep-bar">
-          <div class="progress-fill" style="width: {{#if system.ep.total}}{{multiply system.ep.currentValue 100 system.ep.total}}%{{else}}0%{{/if}}"></div>
-          <input type="number" name="system.ep.currentValue" value="{{system.ep.currentValue}}" data-dtype="Number" />
-          <span class="progress-text"> / {{system.ep.total}}</span>
-        </div>
-        {{/if}}
-        {{#if system.settings.showMpBar}}
-        <div class="custom-progress-bar mp-bar">
-          <div class="progress-fill" style="width: {{#if system.mp.total}}{{multiply system.mp.currentValue 100 system.mp.total}}%{{else}}0%{{/if}}"></div>
-          <input type="number" name="system.mp.currentValue" value="{{system.mp.currentValue}}" data-dtype="Number" />
-          <span class="progress-text"> / {{system.mp.total}}</span>
-        </div>
-        {{/if}}
-        {{#if system.settings.showKpBar}}
-        <div class="custom-progress-bar kp-bar">
-          <div class="progress-fill" style="width: {{#if system.kp.total}}{{multiply system.kp.currentValue 100 system.kp.total}}%{{else}}0%{{/if}}"></div>
-          <input type="number" name="system.kp.currentValue" value="{{system.kp.currentValue}}" data-dtype="Number" />
-          <span class="progress-text"> / {{system.kp.total}}</span>
-        </div>
-        {{/if}}
-        {{#if system.settings.showSpBar}}
-        <div class="custom-progress-bar sp-bar">
-          <div class="progress-fill" style="width: {{#if system.sp.total}}{{multiply system.sp.currentValue 100 system.sp.total}}%{{else}}0%{{/if}}"></div>
-          <input type="number" name="system.sp.currentValue" value="{{system.sp.currentValue}}" data-dtype="Number" />
-          <span class="progress-text"> / {{system.sp.total}}</span>
-        </div>
-        {{/if}}
-      </div>
-    </div>
-    <div class="header-basevalues">
-      <div class="basevalue-button-container" title="{{localize 'PnS2.STR'}}">
-          <a class="rollable" data-roll="1d100" data-key="str"><i class="fas fa-dice-d20"></i></a>
-          <div class="basevalue-button-label">
-              <span class="basevalue-button-value">{{system.str.total}}</span>
-              <span class="basevalue-button-desc">{{localize 'PnS2.strength_short'}}</span>
-          </div>
-      </div>
-      <div class="basevalue-button-container" title="{{localize 'PnS2.AGI'}}">
-          <a class="rollable" data-roll="1d100" data-key="agi"><i class="fas fa-dice-d20"></i></a>
-          <div class="basevalue-button-label">
-              <span class="basevalue-button-value">{{system.agi.total}}</span>
-              <span class="basevalue-button-desc">{{localize 'PnS2.agility_short'}}</span>
-          </div>
-      </div>
-      <div class="basevalue-button-container" title="{{localize 'PnS2.PRE'}}">
-          <a class="rollable" data-roll="1d100" data-key="pre"><i class="fas fa-dice-d20"></i></a>
-          <div class="basevalue-button-label">
-              <span class="basevalue-button-value">{{system.pre.total}}</span>
-              <span class="basevalue-button-desc">{{localize 'PnS2.precision_short'}}</span>
-          </div>
-      </div>
-      <div class="basevalue-button-container" title="{{localize 'PnS2.CON'}}">
-          <a class="rollable" data-roll="1d100" data-key="con"><i class="fas fa-dice-d20"></i></a>
-          <div class="basevalue-button-label">
-              <span class="basevalue-button-value">{{system.con.total}}</span>
-              <span class="basevalue-button-desc">{{localize 'PnS2.constitution_short'}}</span>
-          </div>
-      </div>
-      <div class="basevalue-button-container" title="{{localize 'PnS2.INT'}}">
-          <a class="rollable" data-roll="1d100" data-key="int"><i class="fas fa-dice-d20"></i></a>
-          <div class="basevalue-button-label">
-              <span class="basevalue-button-value">{{system.int.total}}</span>
-              <span class="basevalue-button-desc">{{localize 'PnS2.intelligence_short'}}</span>
-          </div>
-      </div>
-      <div class="basevalue-button-container" title="{{localize 'PnS2.CHA'}}">
-          <a class="rollable" data-roll="1d100" data-key="cha"><i class="fas fa-dice-d20"></i></a>
-          <div class="basevalue-button-label">
-              <span class="basevalue-button-value">{{system.cha.total}}</span>
-              <span class="basevalue-button-desc">{{localize 'PnS2.charisma_short'}}</span>
-          </div>
-      </div>
-      <div class="basevalue-button-container" title="{{localize 'PnS2.WIL'}}">
-          <a class="rollable" data-roll="1d100" data-key="wil"><i class="fas fa-dice-d20"></i></a>
-          <div class="basevalue-button-label">
-              <span class="basevalue-button-value">{{system.wil.total}}</span>
-              <span class="basevalue-button-desc">{{localize 'PnS2.willpower_short'}}</span>
-          </div>
-      </div>
-    </div>
+            <div class="header-container">
+              <div class="header-left">
+                <h3>{{actor.name}}</h3>
+              </div>
+            </div>
+            <div class="header-middle-section">
+              <div class="header-stats-wrapper">
+                <div class="header-current-values">
+                  <div class="profile-image-div">
+                    <img class="profile-img" src="{{img}}" alt="{{actor.name}}" title="{{localize "PnS2.Portrait_MouseOver"}}" draggable="false" />
+                  </div>
+                  <!-- Current Values Section -->
+                  <div class="current-value-item">
+                    <label title="{{localize "PnS2.HP_MouseOver"}}">{{localize "PnS2.HP"}}</label>
+                    {{#if system.settings.showEpBar}}<label title="{{localize "PnS2.EP_MouseOver"}}">{{localize "PnS2.EP"}}</label>{{/if}}
+                    {{#if system.settings.showMpBar}}<label title="{{localize "PnS2.MP_MouseOver"}}">{{localize "PnS2.MP"}}</label>{{/if}}
+                    {{#if system.settings.showKpBar}}<label title="{{localize "PnS2.KP_MouseOver"}}">{{localize "PnS2.KP"}}</label>{{/if}}
+                    {{#if system.settings.showSpBar}}<label title="{{localize "PnS2.SP_MouseOver"}}">{{localize "PnS2.SP"}}</label>{{/if}}
+                  </div>
+                  <div class="current-value-item">
+                    <div class="custom-progress-bar hp-bar">
+                      <div class="progress-fill" style="width: {{#if system.hp.total}}{{multiply system.hp.currentValue 100 system.hp.total}}%{{else}}0%{{/if}}"></div>
+                      <input type="number" name="system.hp.currentValue" value="{{system.hp.currentValue}}" data-dtype="Number" /> 
+                      <span class="progress-text"> / {{system.hp.total}}</span>
+                    </div>
+                    {{#if system.settings.showEpBar}}
+                    <div class="custom-progress-bar ep-bar">
+                      <div class="progress-fill" style="width: {{#if system.ep.total}}{{multiply system.ep.currentValue 100 system.ep.total}}%{{else}}0%{{/if}}"></div>
+                      <input type="number" name="system.ep.currentValue" value="{{system.ep.currentValue}}" data-dtype="Number" />
+                      <span class="progress-text"> / {{system.ep.total}}</span>
+                    </div>
+                    {{/if}}
+                    {{#if system.settings.showMpBar}}
+                    <div class="custom-progress-bar mp-bar">
+                      <div class="progress-fill" style="width: {{#if system.mp.total}}{{multiply system.mp.currentValue 100 system.mp.total}}%{{else}}0%{{/if}}"></div>
+                      <input type="number" name="system.mp.currentValue" value="{{system.mp.currentValue}}" data-dtype="Number" />
+                      <span class="progress-text"> / {{system.mp.total}}</span>
+                    </div>
+                    {{/if}}
+                    {{#if system.settings.showKpBar}}
+                    <div class="custom-progress-bar kp-bar">
+                      <div class="progress-fill" style="width: {{#if system.kp.total}}{{multiply system.kp.currentValue 100 system.kp.total}}%{{else}}0%{{/if}}"></div>
+                      <input type="number" name="system.kp.currentValue" value="{{system.kp.currentValue}}" data-dtype="Number" />
+                      <span class="progress-text"> / {{system.kp.total}}</span>
+                    </div>
+                    {{/if}}
+                    {{#if system.settings.showSpBar}}
+                    <div class="custom-progress-bar sp-bar">
+                      <div class="progress-fill" style="width: {{#if system.sp.total}}{{multiply system.sp.currentValue 100 system.sp.total}}%{{else}}0%{{/if}}"></div>
+                      <input type="number" name="system.sp.currentValue" value="{{system.sp.currentValue}}" data-dtype="Number" />
+                      <span class="progress-text"> / {{system.sp.total}}</span>
+                    </div>
+                    {{/if}}
+                  </div>
+                </div>
+                <div class="header-basevalues">
+                  <div class="basevalue-button-container" title="{{localize 'PnS2.STR'}}">
+                      <a class="rollable" data-roll="1d100" data-key="str"><i class="fas fa-dice-d20"></i></a>
+                      <div class="basevalue-button-label">
+                          <span class="basevalue-button-value">{{system.str.total}}</span>
+                          <span class="basevalue-button-desc">{{localize 'PnS2.strength_short'}}</span>
+                      </div>
+                  </div>
+                  <div class="basevalue-button-container" title="{{localize 'PnS2.AGI'}}">
+                      <a class="rollable" data-roll="1d100" data-key="agi"><i class="fas fa-dice-d20"></i></a>
+                      <div class="basevalue-button-label">
+                          <span class="basevalue-button-value">{{system.agi.total}}</span>
+                          <span class="basevalue-button-desc">{{localize 'PnS2.agility_short'}}</span>
+                      </div>
+                  </div>
+                  <div class="basevalue-button-container" title="{{localize 'PnS2.PRE'}}">
+                      <a class="rollable" data-roll="1d100" data-key="pre"><i class="fas fa-dice-d20"></i></a>
+                      <div class="basevalue-button-label">
+                          <span class="basevalue-button-value">{{system.pre.total}}</span>
+                          <span class="basevalue-button-desc">{{localize 'PnS2.precision_short'}}</span>
+                      </div>
+                  </div>
+                  <div class="basevalue-button-container" title="{{localize 'PnS2.CON'}}">
+                      <a class="rollable" data-roll="1d100" data-key="con"><i class="fas fa-dice-d20"></i></a>
+                      <div class="basevalue-button-label">
+                          <span class="basevalue-button-value">{{system.con.total}}</span>
+                          <span class="basevalue-button-desc">{{localize 'PnS2.constitution_short'}}</span>
+                      </div>
+                  </div>
+                  <div class="basevalue-button-container" title="{{localize 'PnS2.INT'}}">
+                      <a class="rollable" data-roll="1d100" data-key="int"><i class="fas fa-dice-d20"></i></a>
+                      <div class="basevalue-button-label">
+                          <span class="basevalue-button-value">{{system.int.total}}</span>
+                          <span class="basevalue-button-desc">{{localize 'PnS2.intelligence_short'}}</span>
+                      </div>
+                  </div>
+                  <div class="basevalue-button-container" title="{{localize 'PnS2.CHA'}}">
+                      <a class="rollable" data-roll="1d100" data-key="cha"><i class="fas fa-dice-d20"></i></a>
+                      <div class="basevalue-button-label">
+                          <span class="basevalue-button-value">{{system.cha.total}}</span>
+                          <span class="basevalue-button-desc">{{localize 'PnS2.charisma_short'}}</span>
+                      </div>
+                  </div>
+                  <div class="basevalue-button-container" title="{{localize 'PnS2.WIL'}}">
+                      <a class="rollable" data-roll="1d100" data-key="wil"><i class="fas fa-dice-d20"></i></a>
+                      <div class="basevalue-button-label">
+                          <span class="basevalue-button-value">{{system.wil.total}}</span>
+                          <span class="basevalue-button-desc">{{localize 'PnS2.willpower_short'}}</span>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
     <div class="header-buttons-container">
       <button type="button" class="toggle-edit-mode" title="{{localize 'PnS2.ToggleEditMode'}}">
         <i class="fas fa-lock-open"></i>
