@@ -36,5 +36,6 @@
 - **ESM**: All scripts are modules; imports are relative.
 
 ## Important 
-- Never delete any kind of logging mechanisms
-- Never commit any kind of changes into git
+- NEVER delete any kind of logging mechanisms
+- NEVER commit anything by git or bash
+- NEVER push anything by git or bash
