@@ -85,5 +85,12 @@
   "PnS2.Roll.TargetValue": "Zielwert",
   "PnS2.Roll.DialogTitle": "Wurf modifizieren",
   "PnS2.ToggleEditMode": "Bearbeitungsmodus umschalten (Sperren/Entsperren)"
-  ,"PnS2.ToggleCalcVisibility": "Berechnungen ein-/ausblenden"
+  "PnS2.ToggleCalcVisibility": "Berechnungen ein-/ausblenden",
+  "PnS2.strength_short": "STÄ",
+  "PnS2.agility_short": "BEW",
+  "PnS2.precision_short": "PRÄ",
+  "PnS2.constitution_short": "KON",
+  "PnS2.intelligence_short": "INT",
+  "PnS2.charisma_short": "CHA",
+  "PnS2.willpower_short": "WIL"
 }

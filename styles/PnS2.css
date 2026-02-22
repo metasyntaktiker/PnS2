@@ -458,3 +458,62 @@ progress:after
   width: 100%;
   box-sizing: border-box;
 }
+
+.header-basevalues {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 0;
+}
+
+.basevalue-button-container {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.basevalue-button-container .rollable {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.basevalue-button-container .fa-dice-d20 {
+    font-size: 36px;
+    color: #444;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.basevalue-button-container:hover .fa-dice-d20 {
+    color: #000;
+    text-shadow: 0 0 8px red;
+}
+
+.basevalue-button-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 3px black, 0 0 3px black; /* Make text more readable */
+    pointer-events: none; /* So the click goes to the <a> tag */
+}
+
+.basevalue-button-value {
+    font-size: 13px;
+    line-height: 1.1;
+}
+
+.basevalue-button-desc {
+    font-size: 9px;
+    line-height: 1;
+}

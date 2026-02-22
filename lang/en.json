@@ -49,5 +49,12 @@
   "PnS2.Roll.TargetValue": "Target Value",
   "PnS2.Roll.DialogTitle": "Modify Roll",
   "PnS2.ToggleEditMode": "Toggle Edit Mode (Lock/Unlock)"
-  ,"PnS2.ToggleCalcVisibility": "Toggle calculation visibility"
+  ,"PnS2.ToggleCalcVisibility": "Toggle calculation visibility",
+  "PnS2.strength_short": "STR",
+  "PnS2.agility_short": "AGI",
+  "PnS2.precision_short": "PRE",
+  "PnS2.constitution_short": "CON",
+  "PnS2.intelligence_short": "INT",
+  "PnS2.charisma_short": "CHA",
+  "PnS2.willpower_short": "WIL"
 }
