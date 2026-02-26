@@ -56,54 +56,65 @@
                   </div>
                 </div>
                 <div class="header-basevalues">
-                  <div class="basevalue-button-container" title="{{localize 'PnS2.STR'}}">
-                      <a class="rollable" data-roll="1d100" data-key="str"><i class="fas fa-dice-d20"></i></a>
-                      <div class="basevalue-button-label">
-                          <span class="basevalue-button-value">{{system.str.total}}</span>
-                          <span class="basevalue-button-desc">{{localize 'PnS2.strength_short'}}</span>
-                      </div>
+                  <div class="basevalue-row">
+                    <div class="basevalue-button-container" title="{{localize 'PnS2.STR'}}">
+                        <a class="rollable" data-roll="1d100" data-key="str"><i class="fas fa-dice-d20"></i></a>
+                        <div class="basevalue-button-label">
+                            <span class="basevalue-button-value">{{system.str.total}}</span>
+                            <span class="basevalue-button-desc">{{localize 'PnS2.strength_short'}}</span>
+                        </div>
+                    </div>
+                    <div class="basevalue-button-container" title="{{localize 'PnS2.AGI'}}">
+                        <a class="rollable" data-roll="1d100" data-key="agi"><i class="fas fa-dice-d20"></i></a>
+                        <div class="basevalue-button-label">
+                            <span class="basevalue-button-value">{{system.agi.total}}</span>
+                            <span class="basevalue-button-desc">{{localize 'PnS2.agility_short'}}</span>
+                        </div>
+                    </div>
+                    <div class="basevalue-button-container" title="{{localize 'PnS2.PRE'}}">
+                        <a class="rollable" data-roll="1d100" data-key="pre"><i class="fas fa-dice-d20"></i></a>
+                        <div class="basevalue-button-label">
+                            <span class="basevalue-button-value">{{system.pre.total}}</span>
+                            <span class="basevalue-button-desc">{{localize 'PnS2.precision_short'}}</span>
+                        </div>
+                    </div>
+                    <div class="basevalue-button-container" title="{{localize 'PnS2.CON'}}">
+                        <a class="rollable" data-roll="1d100" data-key="con"><i class="fas fa-dice-d20"></i></a>
+                        <div class="basevalue-button-label">
+                            <span class="basevalue-button-value">{{system.con.total}}</span>
+                            <span class="basevalue-button-desc">{{localize 'PnS2.constitution_short'}}</span>
+                        </div>
+                    </div>
                   </div>
-                  <div class="basevalue-button-container" title="{{localize 'PnS2.AGI'}}">
-                      <a class="rollable" data-roll="1d100" data-key="agi"><i class="fas fa-dice-d20"></i></a>
-                      <div class="basevalue-button-label">
-                          <span class="basevalue-button-value">{{system.agi.total}}</span>
-                          <span class="basevalue-button-desc">{{localize 'PnS2.agility_short'}}</span>
-                      </div>
-                  </div>
-                  <div class="basevalue-button-container" title="{{localize 'PnS2.PRE'}}">
-                      <a class="rollable" data-roll="1d100" data-key="pre"><i class="fas fa-dice-d20"></i></a>
-                      <div class="basevalue-button-label">
-                          <span class="basevalue-button-value">{{system.pre.total}}</span>
-                          <span class="basevalue-button-desc">{{localize 'PnS2.precision_short'}}</span>
-                      </div>
-                  </div>
-                  <div class="basevalue-button-container" title="{{localize 'PnS2.CON'}}">
-                      <a class="rollable" data-roll="1d100" data-key="con"><i class="fas fa-dice-d20"></i></a>
-                      <div class="basevalue-button-label">
-                          <span class="basevalue-button-value">{{system.con.total}}</span>
-                          <span class="basevalue-button-desc">{{localize 'PnS2.constitution_short'}}</span>
-                      </div>
-                  </div>
-                  <div class="basevalue-button-container" title="{{localize 'PnS2.INT'}}">
-                      <a class="rollable" data-roll="1d100" data-key="int"><i class="fas fa-dice-d20"></i></a>
-                      <div class="basevalue-button-label">
-                          <span class="basevalue-button-value">{{system.int.total}}</span>
-                          <span class="basevalue-button-desc">{{localize 'PnS2.intelligence_short'}}</span>
-                      </div>
-                  </div>
-                  <div class="basevalue-button-container" title="{{localize 'PnS2.CHA'}}">
-                      <a class="rollable" data-roll="1d100" data-key="cha"><i class="fas fa-dice-d20"></i></a>
-                      <div class="basevalue-button-label">
-                          <span class="basevalue-button-value">{{system.cha.total}}</span>
-                          <span class="basevalue-button-desc">{{localize 'PnS2.charisma_short'}}</span>
-                      </div>
-                  </div>
-                  <div class="basevalue-button-container" title="{{localize 'PnS2.WIL'}}">
-                      <a class="rollable" data-roll="1d100" data-key="wil"><i class="fas fa-dice-d20"></i></a>
-                      <div class="basevalue-button-label">
-                          <span class="basevalue-button-value">{{system.wil.total}}</span>
-                          <span class="basevalue-button-desc">{{localize 'PnS2.willpower_short'}}</span>
-                      </div>
+                  <div class="basevalue-row">
+                    <div class="basevalue-button-container" title="{{localize 'PnS2.INT'}}">
+                        <a class="rollable" data-roll="1d100" data-key="int"><i class="fas fa-dice-d20"></i></a>
+                        <div class="basevalue-button-label">
+                            <span class="basevalue-button-value">{{system.int.total}}</span>
+                            <span class="basevalue-button-desc">{{localize 'PnS2.intelligence_short'}}</span>
+                        </div>
+                    </div>
+                    <div class="basevalue-button-container" title="{{localize 'PnS2.CHA'}}">
+                        <a class="rollable" data-roll="1d100" data-key="cha"><i class="fas fa-dice-d20"></i></a>
+                        <div class="basevalue-button-label">
+                            <span class="basevalue-button-value">{{system.cha.total}}</span>
+                            <span class="basevalue-button-desc">{{localize 'PnS2.charisma_short'}}</span>
+                        </div>
+                    </div>
+                    <div class="basevalue-button-container" title="{{localize 'PnS2.WIL'}}">
+                        <a class="rollable" data-roll="1d100" data-key="wil"><i class="fas fa-dice-d20"></i></a>
+                        <div class="basevalue-button-label">
+                            <span class="basevalue-button-value">{{system.wil.total}}</span>
+                            <span class="basevalue-button-desc">{{localize 'PnS2.willpower_short'}}</span>
+                        </div>
+                    </div>
+                    <div class="basevalue-button-container" title="{{localize 'PnS2.LUCK'}}">
+                        <a class="rollable" data-roll="1d100" data-key="luck"><i class="fas fa-dice-d20"></i></a>
+                        <div class="basevalue-button-label">
+                            <span class="basevalue-button-value">{{system.luck.value}}</span>
+                            <span class="basevalue-button-desc">{{localize 'PnS2.luck_short'}}</span>
+                        </div>
+                    </div>
                   </div>
                 </div>
               </div>

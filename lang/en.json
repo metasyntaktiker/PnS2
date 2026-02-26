@@ -56,5 +56,6 @@
   "PnS2.constitution_short": "CON",
   "PnS2.intelligence_short": "INT",
   "PnS2.charisma_short": "CHA",
-  "PnS2.willpower_short": "WIL"
+  "PnS2.willpower_short": "WIL",
+  "PnS2.luck_short": "LUC"
 }

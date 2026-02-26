@@ -18,7 +18,7 @@
   justify-content: space-between;
   align-items: center;
   width: auto; /* Allow content to dictate width */
-  min-width: 150px;
+  min-width: 400px;
 }
 
 .header-container h3 {
@@ -491,8 +491,14 @@ progress:after
 
 .header-basevalues {
     display: flex;
-    gap: 10px; /* Use gap for spacing */
+    flex-direction: column;
+    gap: 5px; /* Use gap for spacing */
     padding: 0; /* Adjusted from 5px 0 */
+}
+
+.basevalue-row {
+    display: flex;
+    gap: 10px;
 }
 
 .basevalue-button-container {
