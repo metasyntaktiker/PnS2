@@ -554,3 +554,7 @@ progress:after
     font-size: 9px;
     line-height: 1;
 }
+
+.character-notes {
+  margin-top: 10px;
+}
