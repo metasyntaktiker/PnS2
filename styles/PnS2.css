@@ -29,7 +29,7 @@
 .toggle-edit-mode {
   background: none;
   border: none;
-  color: #e0e0e0;
+  /* color: #e0e0e0; */
   cursor: pointer;
   font-size: 0.6rem;
   padding: 5px 6px;
@@ -42,7 +42,7 @@
 
 .toggle-edit-mode:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  /* color: #fff; */
   text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
 }
 
@@ -57,7 +57,7 @@
 .toggle-calc-visibility {
   background: none;
   border: none;
-  color: #e0e0e0;
+  /* color: #e0e0e0; */
   cursor: pointer;
   font-size: 0.6rem;
   padding: 5px 6px;
@@ -70,7 +70,7 @@
 
 .toggle-calc-visibility:hover {
   background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  /* color: #fff; */
 }
 
 header {
@@ -93,7 +93,7 @@ header {
 
 /* Calculation spans - display controlled by JavaScript */
 .calc-span {
-  color: #e0e0e0;
+  /* color: #e0e0e0; */
   font-size: 0.9rem;
   padding: 2px 4px;
   text-align: left;
@@ -119,7 +119,7 @@ header {
 .current-value-item label {
   font-size: 0.85rem;
   font-weight: bold;
-  color: #e0e0e0;
+  /* color: #e0e0e0; */
 }
 
 .current-value-item input[type="number"] {
@@ -162,20 +162,20 @@ header {
   font-size: 0.9rem;
   border: none;
   background-color: transparent;
-  color: #ffffff;
+  color: #e1e1e1;
   font-weight: bold;
 }
 
 .custom-progress-bar input[type="number"]:disabled {
   background-color: transparent;
   opacity: 1;
-  color: #a0a0a0;
+  color: #e1e1e1;
 }
 
 .progress-text {
   position: relative;
   z-index: 2;
-  color: #ffffff;
+  color: #e1e1e1;
   font-size: 0.9rem;
   font-weight: bold;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
@@ -212,7 +212,7 @@ header {
 .character-section
 {
   /* background: #ec4343; */
-  color: #e0e0e0;
+  /* color: #e0e0e0; */
 }
 
 .character-profile
@@ -260,7 +260,7 @@ header {
 
 .character-section input:disabled {
   background-color: rgba(0, 0, 0, 0.3);
-  color: #999;
+  /* color: #999; */
   opacity: 0.6;
 }
 
@@ -323,7 +323,7 @@ progress:after
 .toggle-bar-visibility {
   background: none;
   border: none;
-  color: #e0e0e0;
+  /* color: #e0e0e0; */
   cursor: pointer;
   font-size: 0.8rem;
   padding: 0;
@@ -331,7 +331,7 @@ progress:after
 }
 
 .toggle-bar-visibility:hover {
-  color: #fff;
+  /* color: #fff; */
   text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
 }
 
@@ -366,6 +366,7 @@ progress:after
 /* Tab navigation */
 .sheet-tabs {
   flex: 0 0 40px;
+  color: unset;
   border-top: 1px solid #AAA;
   border-bottom: 1px solid #AAA;
 }
