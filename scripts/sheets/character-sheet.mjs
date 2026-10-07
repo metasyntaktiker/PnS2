@@ -40,17 +40,17 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     // Prepare talents 
     if (context.system.talents) {
       context.system.talents.forEach(talent => {
-        const base1 = Math.floor(context.system[talent.base1]?.total / 3) || 0;
-        const base2 = Math.floor(context.system[talent.base2]?.total / 3) || 0;
-        const base3 = Math.floor(context.system[talent.base3]?.total / 3) || 0;
-        talent.baseSum = Math.floor((base1 + base2 + base3) / 3);
+        const base1 = Math.floor((context.system[talent.base1]?.total) / 6) || 0;
+        const base2 = Math.floor((context.system[talent.base2]?.total) / 6) || 0;
+        const base3 = Math.floor((context.system[talent.base3]?.total) / 6) || 0;
+        talent.baseSum = Math.floor((base1 + base2 + base3));
         talent.total = talent.baseSum + talent.value;
 
         const attr1 = game.i18n.localize(`PnS2.${talent.base1.toUpperCase()}`);
         const attr2 = game.i18n.localize(`PnS2.${talent.base2.toUpperCase()}`);
         const attr3 = game.i18n.localize(`PnS2.${talent.base3.toUpperCase()}`);
         talent.combination = `${attr1}+${attr2}+${attr3}`;
-        talent.combinationTooltip = `(${attr1} (${base1}) + ${attr2} (${base2}) + ${attr3} (${base3})) / 3`;
+        talent.combinationTooltip = `(${attr1} (${context.system[talent.base1]?.total}) / 3 + ${attr2} (${context.system[talent.base2]?.total}) / 3 + ${attr3} (${context.system[talent.base3]?.total} / 3)) / 3 = ${talent.baseSum}`;
       });
     }
   
