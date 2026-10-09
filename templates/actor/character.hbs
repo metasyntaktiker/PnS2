@@ -139,6 +139,9 @@
   <a class="item" data-action="tab" data-group="primary" data-tab="profil">
     {{localize "PnS2.Profil"}}
   </a>
+  <a class="item" data-action="tab" data-group="primary" data-tab="import">
+    {{localize "PnS2.Import.Tab"}}
+  </a>
 </nav>
   <div class="sheet-body">
     <div class="tab active" data-group="primary" data-tab="basiswerte">
@@ -431,6 +434,13 @@
       <div class="character-notes">
           <label>{{localize "PnS2.CharacterSheet.Notes"}}</label>
           {{editor system.character.notes target="system.character.notes" button=true owner=owner editable=editable}}
+      </div>
+    </div>
+    <div class="tab" data-group="primary" data-tab="import">
+      <div class="import-section">
+        <label for="talent-import-data">{{localize "PnS2.CharacterSheet.Import"}}</label>
+        <textarea id="talent-import-data" class="talent-import-textarea" placeholder="{{localize "PnS2.ImportPlaceholder"}}"></textarea>
+        <button type="button" class="import-button">{{localize "PnS2.CharacterSheet.ImportButton"}}</button>
       </div>
     </div>
   </div>

@@ -559,3 +559,15 @@ progress:after
 .character-notes {
   margin-top: 10px;
 }
+
+.import-section textarea {
+  box-sizing: border-box;
+  display: block;
+  min-height: 300px;
+  resize: vertical;
+  width: 100%;
+}
+
+.import-section .import-button {
+  margin-top: 8px;
+}

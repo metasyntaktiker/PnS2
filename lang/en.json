@@ -57,5 +57,12 @@
   "PnS2.intelligence_short": "INT",
   "PnS2.charisma_short": "CHA",
   "PnS2.willpower_short": "WIL",
-  "PnS2.luck_short": "LUC"
+  "PnS2.luck_short": "LUC",
+  "PnS2.ImportPlaceholder": "Paste talent table data here",
+  "PnS2.Import.Tab": "Import",
+  "PnS2.CharacterSheet.Import": "Import character",
+  "PnS2.CharacterSheet.ImportButton": "Import character",
+  "PnS2.Import.NoData": "No recognized character, base value, or talent data was found in the pasted text.",
+  "PnS2.Import.Success": "Imported {talents} talents, {profile} profile fields, {baseValues} base values, and {calculatedValues} calculated values.",
+  "PnS2.Import.Skipped": "{count} rows could not be interpreted and were skipped."
 }

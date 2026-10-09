@@ -1,3 +1,5 @@
+import { parseTalentImport } from "./talent-import.mjs";
+
 export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) 
 {
   constructor(...args) 
@@ -148,6 +150,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
 
     // Talents
     html.querySelector(".add-talent")?.addEventListener("click", this._onAddTalent.bind(this));
+    html.querySelector(".import-button")?.addEventListener("click", this._onImportTalents.bind(this));
     html.querySelectorAll(".talents-delete").forEach(btn => {
         btn.addEventListener("click", this._onDeleteTalent.bind(this));
     });
@@ -194,6 +197,9 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     const inputs = html.querySelectorAll("input[type='text'], input[type='number']");
     const addTalentBtn = html.querySelector(".add-talent");
     const deleteTalentBtns = html.querySelectorAll(".talents-delete");
+    const importTextarea = html.querySelector(".talent-import-textarea");
+    const importButton = html.querySelector(".import-button");
+    const importTab = html.querySelector('.sheet-tabs [data-tab="import"]');
 
     // Ensure the toggle button itself is always enabled and clickable
     if (button) {
@@ -220,6 +226,17 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     deleteTalentBtns.forEach(btn => {
       btn.style.display = isDisabled ? "none" : "";
     });
+    if (importTextarea) importTextarea.disabled = isDisabled;
+    if (importButton) importButton.style.display = isDisabled ? "none" : "";
+    if (importTab) importTab.style.display = isDisabled ? "none" : "";
+
+    if (isDisabled && (this._sheetActiveTab === "import" || importTab?.classList.contains("active"))) {
+      this._sheetActiveTab = "basiswerte";
+      const nav = html.querySelector(".sheet-tabs");
+      const body = html.querySelector(".sheet-body");
+      nav?.querySelectorAll(".item").forEach(tab => tab.classList.toggle("active", tab.dataset.tab === "basiswerte"));
+      body?.querySelectorAll(".tab").forEach(tab => tab.classList.toggle("active", tab.dataset.tab === "basiswerte"));
+    }
 
     // Update button icon and state
     if (button) {
@@ -414,6 +431,53 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
     }
   })
     dialog.render(true);
+  }
+
+  async _onImportTalents(event) {
+    event.preventDefault();
+
+    const textarea = this.element.querySelector(".talent-import-textarea");
+    if (!textarea) return;
+
+    const result = parseTalentImport(textarea.value);
+    const profileCount = Object.keys(result.profile).length;
+    const baseValueCount = Object.keys(result.baseValues).length;
+    const calculatedValueCount = Object.keys(result.calculatedValues).length;
+    if (result.talents.length === 0 && profileCount === 0 && baseValueCount === 0 && calculatedValueCount === 0) {
+      ui.notifications.warn(game.i18n.localize("PnS2.Import.NoData"));
+      if (result.skippedRows > 0) {
+        ui.notifications.warn(game.i18n.format("PnS2.Import.Skipped", { count: result.skippedRows }));
+      }
+      return;
+    }
+
+    const updateData = {};
+    for (const [field, value] of Object.entries(result.profile)) {
+      updateData[field === "name" ? "name" : `system.character.${field}`] = value;
+    }
+    for (const [attribute, value] of Object.entries(result.baseValues)) {
+      updateData[`system.${attribute}.value`] = value;
+      updateData[`system.${attribute}.total`] = value + (Number(this.actor.system[attribute]?.modifier) || 0);
+    }
+    for (const [attribute, value] of Object.entries(result.calculatedValues)) {
+      updateData[`system.${attribute}.value`] = value;
+      updateData[`system.${attribute}.total`] = value + (Number(this.actor.system[attribute]?.modifier) || 0);
+    }
+    if (result.talents.length > 0) {
+      updateData["system.talents"] = this.actor.system.talents.concat(result.talents);
+    }
+
+    this._sheetActiveTab = result.talents.length > 0 ? "talents" : profileCount > 0 ? "profil" : "basiswerte";
+    await this.actor.update(updateData);
+    ui.notifications.info(game.i18n.format("PnS2.Import.Success", {
+      talents: result.talents.length,
+      profile: profileCount,
+      baseValues: baseValueCount,
+      calculatedValues: calculatedValueCount
+    }));
+    if (result.skippedRows > 0) {
+      ui.notifications.warn(game.i18n.format("PnS2.Import.Skipped", { count: result.skippedRows }));
+    }
   }
 
   // Delete Talent

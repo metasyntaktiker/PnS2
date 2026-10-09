@@ -93,5 +93,12 @@
   "PnS2.intelligence_short": "INT",
   "PnS2.charisma_short": "CHA",
   "PnS2.willpower_short": "WIL",
-  "PnS2.luck_short": "GLÜ"
+  "PnS2.luck_short": "GLÜ",
+  "PnS2.ImportPlaceholder": "Talentdaten hier einfügen",
+  "PnS2.Import.Tab": "Import",
+  "PnS2.CharacterSheet.Import": "Charakter importieren",
+  "PnS2.CharacterSheet.ImportButton": "Charakter importieren",
+  "PnS2.Import.NoData": "Im eingefügten Text wurden keine erkennbaren Charakter-, Basiswert- oder Talentdaten gefunden.",
+  "PnS2.Import.Success": "{talents} Talente, {profile} Profilfelder, {baseValues} Basiswerte und {calculatedValues} berechnete Werte importiert.",
+  "PnS2.Import.Skipped": "{count} Zeilen konnten nicht ausgewertet werden und wurden übersprungen."
 }
