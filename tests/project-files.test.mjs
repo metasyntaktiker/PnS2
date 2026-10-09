@@ -43,9 +43,22 @@ for (const locale of ["en", "de"]) {
   test(`${locale} localization parses and dotted keys have no namespace conflicts`, async () => {
     const messages = await readJson(`lang/${locale}.json`);
     const tree = expandLocalizationKeys(messages);
+    const expectedStats = locale === "en"
+      ? { SP: "Spirit", RST: "Resistance", RES: "Resilience", TOU: "Toughness" }
+      : { SP: "Geist", RST: "Widerstand", RES: "Belastbarkeit", TOU: "Zähigkeit" };
 
     assert.equal(typeof tree.PnS2.Import.Tab, "string");
     assert.equal(typeof tree.PnS2.Import.NoData, "string");
     assert.equal(typeof tree.PnS2.Import.Success, "string");
+    for (const [key, label] of Object.entries(expectedStats)) {
+      assert.equal(tree.PnS2[key], label);
+      assert.equal(typeof tree.PnS2[`${key}_MouseOver`], "string");
+    }
   });
 }
+
+test("English and German localizations contain the same translation keys", async () => {
+  const english = await readJson("lang/en.json");
+  const german = await readJson("lang/de.json");
+  assert.deepEqual(Object.keys(german).sort(), Object.keys(english).sort());
+});

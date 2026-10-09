@@ -179,11 +179,12 @@ test("recognizes every supported calculated-value label", () => {
     ["Mana", "mp"],
     ["Karma", "kp"],
     ["Geist", "sp"], ["Spirit", "sp"],
-    ["Widerstand / Magie Resistenz", "rst"], ["Magie Resistenz", "rst"],
+    ["Widerstand / Magie Resistenz", "rst"], ["Widerstand", "rst"], ["Magie Resistenz", "rst"],
     ["Magic Resistance", "rst"], ["Resistance", "rst"],
-    ["Belastbarkeit / Geistige Resistenz", "res"], ["Geistige Resistenz", "res"],
+    ["Belastbarkeit / Geistige Resistenz", "res"], ["Belastbarkeit", "res"], ["Geistige Resistenz", "res"],
     ["Mental Resistance", "res"], ["Resilience", "res"],
     ["Zähigkeit / Physische Resistenz", "tou"], ["Zahigkeit / Physische Resistenz", "tou"],
+    ["Zähigkeit", "tou"], ["Zahigkeit", "tou"],
     ["Physische Resistenz", "tou"], ["Physical Resistance", "tou"], ["Toughness", "tou"],
     ["Geschwindigkeit", "speed"], ["Speed", "speed"]
   ];
