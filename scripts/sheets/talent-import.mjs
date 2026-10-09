@@ -33,6 +33,7 @@ const PROFILE_FIELD_KEYS = new Map([
   ["charaktername", "name"],
   ["age", "age"],
   ["alter", "age"],
+  ["date of birth (age)", "age"],
   ["geburtstag (alter)", "age"],
   ["placeofbirth", "placeofbirth"],
   ["place of birth", "placeofbirth"],
@@ -75,16 +76,20 @@ const CALCULATED_VALUE_KEYS = new Map([
   ["mana", "mp"],
   ["karma", "kp"],
   ["geist", "sp"],
+  ["spirit", "sp"],
   ["widerstand / magie resistenz", "rst"],
   ["magie resistenz", "rst"],
   ["magic resistance", "rst"],
+  ["resistance", "rst"],
   ["belastbarkeit / geistige resistenz", "res"],
   ["geistige resistenz", "res"],
   ["mental resistance", "res"],
+  ["resilience", "res"],
   ["zähigkeit / physische resistenz", "tou"],
   ["zahigkeit / physische resistenz", "tou"],
   ["physische resistenz", "tou"],
   ["physical resistance", "tou"],
+  ["toughness", "tou"],
   ["geschwindigkeit", "speed"],
   ["speed", "speed"]
 ]);
@@ -143,7 +148,7 @@ function parseTalentRow(row) {
 
 export function parseTalentImport(text) {
   const rows = text.split(/\r?\n/).map(splitImportRow);
-  const talentSectionIndex = rows.findIndex(row => row.some(cell => normalizeLabel(cell) === "talente"));
+  const talentSectionIndex = rows.findIndex(row => row.some(cell => ["talente", "talents"].includes(normalizeLabel(cell))));
   const profile = {};
   const baseValues = {};
   const calculatedValues = {};

@@ -37,7 +37,7 @@ The character sheet reads Actor data in `_prepareContext`, renders Handlebars te
 - Base and calculated stat imports update `.value` and `.total` while preserving the existing `.modifier`. Do not overwrite current resource values (for example `hp.currentValue`) when importing calculated maxima.
 - Talent rows are found by their structure (a name, three recognized base labels, and three numbers); do not rely on fixed whitespace or all cells starting in column one. The talent value is the second numeric cell, corresponding to the assigned talent points. Append imported talents to `actor.system.talents` rather than replacing existing actor-specific talents.
 - Slash-separated base alternatives create aligned variants: if all three bases are `Gewandtheit / Stärke`, produce a triple-AGI variant and a triple-STR variant, not mixed combinations. Update the example files and verify output if changing this behavior.
-- The three root `Example*GermanImport.md` files are import fixtures and should remain representative test inputs.
+- `tests/Example1EnglishImport.md` and `tests/Example*GermanImport.md` are import fixtures. Keep them representative, and keep each fixture covered by `tests/talent-import.test.mjs`.
 
 ## Talent-system rules for code changes
 
@@ -54,5 +54,5 @@ The character sheet reads Actor data in `_prepareContext`, renders Handlebars te
 - Add or change user-visible text in both `lang/en.json` and `lang/de.json`; use the existing localization keys and conventions.
 - Preserve existing logging, including the `activateLogging` switch. Do not remove logging as incidental cleanup.
 - Do not commit or push changes unless the user explicitly asks.
-- Avoid unrelated changes. There is currently no package manifest, configured test runner, or automated test suite. Keep pure parsing logic testable with Node.js; validate it against all three example imports, check JavaScript syntax and localization JSON/template consistency, then smoke-test Foundry-dependent behavior in a disposable world.
+- Avoid unrelated changes. Use the dependency-free Node.js 18+ test procedure: `npm test` runs automated tests, and `npm run check` runs JavaScript syntax checks followed by the tests. Keep pure parsing logic testable without Foundry globals. Import tests should cover every fixture and supported label mapping, tab- and pipe-separated rows, shifted/blank columns, age extraction, numeric parsing, talent point selection, aligned combat alternatives, and malformed-row rejection. The broader suite also checks manifest metadata and localization JSON namespace consistency. Smoke-test Foundry-dependent behavior in a disposable world.
 - For releases, keep the version and manifest/download URLs in `system.json` aligned with the intended GitHub release. Do not create releases or publish files unless asked.

@@ -1,0 +1,12 @@
+{
+  "name": "pns2",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check scripts/system.js && node --check scripts/data/character.mjs && node --check scripts/sheets/character-sheet.mjs && node --check scripts/sheets/talent-import.mjs && npm test"
+  }
+}

@@ -46,11 +46,12 @@
 - Stat imports update each field's `value` and `total`, preserving its existing modifier. Import does not overwrite current HP or other current resource values.
 - Talent rows require a name, three recognized base labels, and three numeric cells. The imported talent `value` is taken from the second numeric cell ("Werte zuweisen"), not the base-value bonus or calculated sum. Existing talents are appended to, not replaced.
 - Slash-separated combat base alternatives expand to aligned variants. For example, three `Gewandtheit / Stärke` labels produce one talent with all three bases set to `agi` and another with all three set to `str`; alternatives are not mixed across base positions.
-- `Example1GermanImport.md`, `Example2GermanImport.md`, and `Example3GermanImport.md` are representative source documents. Keep parser mappings and import updates consistent with their table layout and the Actor schema.
+- `tests/Example1EnglishImport.md` and `tests/Example1GermanImport.md`, `tests/Example2GermanImport.md`, and `tests/Example3GermanImport.md` are representative source documents. Keep parser mappings and import updates consistent with their table layout and the Actor schema, and keep all four covered by `tests/talent-import.test.mjs`.
 
 ## Validation
-- There is currently no package manifest, configured test runner, or automated test suite.
-- Keep parsing logic independent of Foundry globals so it can be verified with Node.js tests. Cover all example documents, optional/shifted columns, profile and stat mappings, talent values, and combat alternatives.
+- Node.js 18+ is required for the dependency-free test procedure. Run `npm test` for automated tests or `npm run check` for JavaScript syntax checks followed by the tests.
+- Tests use Node's built-in test runner. Keep parsing logic independent of Foundry globals. Import tests cover all four example documents, every supported English/German label alias, tab- and pipe-separated rows, optional/shifted/blank columns, age extraction, numeric parsing and invalid values, profile/base/calculated mappings, the assigned talent-points cell, aligned combat alternatives, section detection, and malformed talent rows.
+- Test both localization JSON files and check dotted keys for namespace collisions.
 - For Foundry-dependent changes, also smoke-test imports in a disposable Foundry world; verify Actor data and sheet rendering. Do not use a live world as a test fixture.
 - At minimum, run JavaScript syntax checks and parse both localization JSON files after relevant changes. Preserve the repository's existing staged and unstaged changes when validating.
 
