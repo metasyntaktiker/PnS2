@@ -30,10 +30,10 @@ Hooks.once("init", () => {
   });
 });
 
-// Ensure default HP on creation
+// Set HP defaults before actor creation completes; do not persist an update from preCreateActor.
 Hooks.on("preCreateActor", (actor) => {
   if (actor.type === "character") {
-    actor.update({
+    actor.updateSource({
       "system.hp.value": actor.system.hp?.value ?? 10,
       "system.hp.total": actor.system.hp?.total ?? 10
     });
