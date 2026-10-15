@@ -6,21 +6,21 @@ import { parseTalentImport } from "../scripts/sheets/talent-import.mjs";
 const examples = [
   {
     file: "Example1GermanImport.md",
-    baseValues: { str: 35, agi: 55, pre: 70, con: 60, int: 40, cha: 55, wil: 60, see: 22, hear: 50, smell: 33, luck: 26 },
-    calculatedValues: { hp: 40, ep: 30, mp: 26, kp: 40, sp: 20, rst: 4, res: 6, tou: 6, speed: 6 },
-    balanceValue: 1
+    baseValues: { str: 36, agi: 59, pre: 35, con: 25, int: 74, cha: 43, wil: 26, see: 27, hear: 22, smell: 27, luck: 22 },
+    calculatedValues: { hp: 16, ep: 23, mp: 49, kp: 17, sp: 19, rst: 7, res: 2, tou: 2, speed: 6, initiative: 5, dodge: 23 },
+    balanceValue: 10
   },
   {
     file: "Example2GermanImport.md",
-    baseValues: { str: 45, agi: 71, pre: 42, con: 68, int: 59, cha: 71, wil: 41, see: 53, hear: 41, smell: 42, luck: 27 },
-    calculatedValues: { hp: 45, ep: 36, mp: 39, kp: 27, sp: 19, rst: 5, res: 4, tou: 6, speed: 7 },
-    balanceValue: 60
+    baseValues: { str: 71, agi: 26, pre: 26, con: 60, int: 75, cha: 70, wil: 27, see: 36, hear: 25, smell: 47, luck: 21 },
+    calculatedValues: { hp: 40, ep: 31, mp: 50, kp: 18, sp: 20, rst: 7, res: 2, tou: 6, speed: 5, initiative: 2, dodge: 22 },
+    balanceValue: 13
   },
   {
     file: "Example3GermanImport.md",
-    baseValues: { str: 29, agi: 42, pre: 70, con: 26, int: 50, cha: 31, wil: 58, see: 32, hear: 35, smell: 59, luck: 20 },
-    calculatedValues: { hp: 17, ep: 18, mp: 33, kp: 38, sp: 21, rst: 5, res: 5, tou: 2, speed: 6 },
-    balanceValue: 29
+    baseValues: { str: 51, agi: 36, pre: 33, con: 28, int: 57, cha: 60, wil: 54, see: 29, hear: 27, smell: 51, luck: 21 },
+    calculatedValues: { hp: 18, ep: 22, mp: 38, kp: 36, sp: 21, rst: 5, res: 5, tou: 2, speed: 5, initiative: 3, dodge: 18 },
+    balanceValue: 60
   }
 ];
 
@@ -32,7 +32,8 @@ for (const example of examples) {
     assert.equal(result.sectionFound, true);
     assert.deepEqual(result.profile, {
       playername: "Andy",
-      name: "Nagisa",
+      name: "NagisaImportDeutsch",
+      species: "Mensch",
       age: 19,
       placeofbirth: "Kalleth",
       home: "Kalleth",
@@ -60,8 +61,8 @@ test("expands slash-separated combat bases into aligned talent variants", async 
   const talents = parseTalentImport(text).talents.filter(talent => talent.name === "Faust");
 
   assert.deepEqual(talents, [
-    { name: "Faust", base1: "agi", base2: "agi", base3: "agi", value: 22 },
-    { name: "Faust", base1: "str", base2: "str", base3: "str", value: 22 }
+    { name: "Faust", base1: "agi", base2: "agi", base3: "agi", value: 59 },
+    { name: "Faust", base1: "str", base2: "str", base3: "str", value: 59 }
   ]);
 });
 
@@ -122,6 +123,10 @@ test("recognizes every supported profile label and parses ages with or without a
     ["Charactername", "name"],
     ["Character Name", "name"],
     ["Charaktername", "name"],
+    ["Species", "species"],
+    ["Race", "species"],
+    ["Rasse", "species"],
+    ["Spezies", "species"],
     ["Age", "age"],
     ["Alter", "age"],
     ["Date of Birth (Age)", "age"],
@@ -186,7 +191,9 @@ test("recognizes every supported calculated-value label", () => {
     ["Zähigkeit / Physische Resistenz", "tou"], ["Zahigkeit / Physische Resistenz", "tou"],
     ["Zähigkeit", "tou"], ["Zahigkeit", "tou"],
     ["Physische Resistenz", "tou"], ["Physical Resistance", "tou"], ["Toughness", "tou"],
-    ["Geschwindigkeit", "speed"], ["Speed", "speed"]
+    ["Geschwindigkeit", "speed"], ["Speed", "speed"],
+    ["Initiative", "initiative"],
+    ["Dodge", "dodge"], ["Ausweichen", "dodge"]
   ];
 
   for (const [label, field] of labels) {
@@ -241,6 +248,7 @@ test("imports profile, stats, calculated values, and talents from Example1Englis
   assert.deepEqual(result.profile, {
     playername: "Andy",
     name: "Chicken",
+    species: "Mensch",
     age: 19,
     placeofbirth: "Kalleth",
     home: "Kalleth",
@@ -250,28 +258,30 @@ test("imports profile, stats, calculated values, and talents from Example1Englis
     backstory: "Siehe Discord"
   });
   assert.deepEqual(result.baseValues, {
-    str: 61,
-    agi: 61,
-    pre: 66,
-    con: 60,
-    int: 31,
-    cha: 30,
-    wil: 25,
-    see: 30,
-    hear: 39,
-    smell: 25,
-    luck: 29
+    str: 38,
+    agi: 46,
+    pre: 59,
+    con: 63,
+    int: 36,
+    cha: 54,
+    wil: 34,
+    see: 55,
+    hear: 46,
+    smell: 36,
+    luck: 21
   });
   assert.deepEqual(result.calculatedValues, {
-    hp: 40,
-    ep: 36,
-    mp: 20,
-    kp: 16,
-    sp: 11,
+    hp: 42,
+    ep: 28,
+    mp: 24,
+    kp: 22,
+    sp: 13,
     rst: 3,
-    res: 2,
+    res: 3,
     tou: 6,
-    speed: 7
+    speed: 6,
+    initiative: 4,
+    dodge: 32
   });
   assert.equal(result.talents.length, 77);
   assert.equal(result.skippedRows, 0);
@@ -280,10 +290,10 @@ test("imports profile, stats, calculated values, and talents from Example1Englis
     base1: "agi",
     base2: "agi",
     base3: "str",
-    value: 15
+    value: 24
   });
   assert.deepEqual(result.talents.filter(talent => talent.name === "Fist"), [
-    { name: "Fist", base1: "agi", base2: "agi", base3: "agi", value: 48 },
-    { name: "Fist", base1: "str", base2: "str", base3: "str", value: 48 }
+    { name: "Fist", base1: "agi", base2: "agi", base3: "agi", value: 14 },
+    { name: "Fist", base1: "str", base2: "str", base3: "str", value: 14 }
   ]);
 });

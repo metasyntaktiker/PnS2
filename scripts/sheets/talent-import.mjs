@@ -31,6 +31,10 @@ const PROFILE_FIELD_KEYS = new Map([
   ["charactername", "name"],
   ["character name", "name"],
   ["charaktername", "name"],
+  ["species", "species"],
+  ["race", "species"],
+  ["rasse", "species"],
+  ["spezies", "species"],
   ["age", "age"],
   ["alter", "age"],
   ["date of birth (age)", "age"],
@@ -95,7 +99,10 @@ const CALCULATED_VALUE_KEYS = new Map([
   ["physical resistance", "tou"],
   ["toughness", "tou"],
   ["geschwindigkeit", "speed"],
-  ["speed", "speed"]
+  ["speed", "speed"],
+  ["initiative", "initiative"],
+  ["dodge", "dodge"],
+  ["ausweichen", "dodge"]
 ]);
 
 function normalizeLabel(label) {

@@ -4,7 +4,7 @@ Profile
 Characterpicture	Nagisa.png																						
 Playername	Andy																						
 Name	Chicken																						
-Race	Mensch																						
+Species	Mensch																						
 Date of Birth (Age)	788 BF (19)																						
 Place of birth	Kalleth																						
 Home	Kalleth																						
@@ -30,13 +30,13 @@ Assign the following fix values: 30, 40, 50, 50, 55, 60, 65
 Distribute the fixed point value of 350 across the base values.
 In this case, the values ​​must ONLY be between 25 and 75."																							
 Basicvalues	Assign values	Formular	Minimum value	Maximum value																			
-Strength	61	(2d6)*5+15	25	75																			
-Agility	61	(2d6)*5+15	25	75																			
-Precision	66	(2d6)*5+15	25	75																			
-Constitution	60	(2d6)*5+15	25	75																			
-Intelligence	31	(2d6)*5+15	25	75																			
-Charisma	30	(2d6)*5+15	25	75																			
-Will	25	(2d6)*5+15	25	75																			
+Strength	38	(2d6)*5+15	25	75																			
+Agility	46	(2d6)*5+15	25	75																			
+Precision	59	(2d6)*5+15	25	75																			
+Constitution	63	(2d6)*5+15	25	75																			
+Intelligence	36	(2d6)*5+15	25	75																			
+Charisma	54	(2d6)*5+15	25	75																			
+Will	34	(2d6)*5+15	25	75																			
 																							
 "Random values:
 - Determine (2d20)+20 3 times
@@ -50,108 +50,110 @@ Assign the following fix values: 30, 42, 50
 Distribute the fixed point value of 122 across the base values.
 In this case, the values ​​must ONLY be between 22 and 60."																							
 Additional basevalues	Assign values	Formular	Minimum value	Maximum value																			
-See	30	(2d20)+20	22	60																			
-Hear	39	(2d20)+20	22	60																			
-Smell	25	(2d20)+20	22	60																			
+See	55	(2d20)+20	22	60																			
+Hear	46	(2d20)+20	22	60																			
+Smell	36	(2d20)+20	22	60																			
 																							
 - Determine (2d6)+18 once																							
 Additional basevalues	Assign values	Formular	Minimum value	Maximum value																			
-Luck	29	(2d6)+18	20	30																			
+Luck	21	(2d6)+18	20	30																			
 																							
 - The following values ​​are calculated automatically																							
 Calculated values	Calculated	Formular	Minimum value	Maximum value																			
-Hit Points	40	Round down (Constitution / 1.5)	16	50																			
-Endurance	36	Round down (Strength / 5) + (Agility / 5) + (Constitution / 5)	15	45																			
-Mana	20	Round down (Intelligence / 1.5)	16	50																			
-Karma	16	Round down (Will / 1.5)	16	50																			
-Spirit	11	Round down (Intelligence / 5) + (Will / 5)	10	30																			
+Hit Points	42	Round down (Constitution / 1.5)	16	50																			
+Endurance	28	Round down (Strength / 5) + (Agility / 5) + (Constitution / 5)	15	45																			
+Mana	24	Round down (Intelligence / 1.5)	16	50																			
+Karma	22	Round down (Will / 1.5)	16	50																			
+Spirit	13	Round down (Intelligence / 5) + (Will / 5)	10	30																			
 Resistance	3	Round down (Intelligence / 10)	2	7																			
-Resilience	2	Round down (Will / 10)	2	7																			
+Resilience	3	Round down (Will / 10)	2	7																			
 Toughness	6	Round down (Constitution / 10)	2	7																			
-Speed	7	Round down (Agility / 20) + 4	5	7																			
-Initiative	6	Round down (Agility / 10)	2	7																			
+Speed	6	Round down (Agility / 20) + 4	5	7																			
+Initiative	4	Round down (Agility / 10)	2	7		NEU																	
+Dodge	32	Round down (Agility / 5) + (Precision / 5) + (Constitution / 5)	15	45		NEU																	
 																							
 "- First, calculate ([number of ALL subsequent talents] * [TalentMultiplier])
-- Then distribute the calculated point value among the talents"																							
-Talents	TalentMultiplier:	5	Number of all talents: 67	Talentpoints to be spend: 335	Talentpoints spent:2083																		
+- Then distribute the calculated point value among the talents
+- The total value of a talent must not exceed 75."																							
+Talents	TalentMultiplier:	8	Number of all talents: 67	Talentpoints to be spend: 536	Talentpoints spent:1871																		
 Physical Talents	Dependent Talent	Dependent Talent	Dependent Talent	Bonus from basicvalues	Assign values	Calculated Total																	
-Balance	Agility	Agility	Strength	30	15	45																	
-Climbing	Agility	Strength	Will	24	19	43																	
-Force	Strength	Strength	Constitution	30	35	65																	
-Riding	Agility	Strength	Precision	31	45	76																	
-Swimming	Constitution	Agility	Strength	30	36	66																	
-Hiding	Agility	Precision	Will	25	53	78																	
+Balance	Agility	Agility	Strength	20	24	44																	
+Climbing	Agility	Strength	Will	18	1	19																	
+Force	Strength	Strength	Constitution	22	57	79																	
+Riding	Agility	Strength	Precision	22	13	35																	
+Swimming	Constitution	Agility	Strength	23	6	29																	
+Hiding	Agility	Precision	Will	21	48	69																	
 																							
 Sozialtalente				Bonus from basicvalues	Assign values	Calculated Total																	
-Seduction	Charisma	Charisma	Will	14	57	71																	
-Intimidation	Charisma	Will	Constitution	19	46	65																	
-Etiquette	Intelligence	Intelligence	Charisma	15	46	61																	
-Street Wisdom	Intelligence	Intelligence	Will	14	53	67																	
-Lying & Cheating	Will	Will	Charisma	13	4	17																	
-People Skills	Intelligence	Charisma	Will	14	46	60																	
-Preaching & Public Speaking	Charisma	Charisma	Will	14	8	22																	
-Persuading & Convincing	Charisma	Charisma	Intelligence	15	0	15																	
-Self-Confidence	Will	Will	Charisma	13	40	53																	
-Disguise & Imitation	Charisma	Intelligence	Intelligence	15	0	15																	
+Seduction	Charisma	Charisma	Will	23	45	68																	
+Intimidation	Charisma	Will	Constitution	24	34	58																	
+Etiquette	Intelligence	Intelligence	Charisma	21	11	32																	
+Street Wisdom	Intelligence	Intelligence	Will	17	31	48																	
+Lying & Cheating	Will	Will	Charisma	19	5	24																	
+People Skills	Intelligence	Charisma	Will	20	60	80																	
+Preaching & Public Speaking	Charisma	Charisma	Will	23	44	67																	
+Persuading & Convincing	Charisma	Charisma	Intelligence	24	35	59																	
+Self-Confidence	Will	Will	Charisma	19	0	19																	
+Disguise & Imitation	Charisma	Intelligence	Intelligence	21	28	49																	
 																							
 Knowledge Talents				Bonus from basicvalues	Assign values	Calculated Total																	
-Astronomy	Intelligence	Intelligence	Charisma	15	60	75																	
-Elemental Lore	Intelligence	Intelligence	Constitution	20	37	57																	
-Geography & Orientation	Intelligence	Intelligence	Will	14	45	59																	
-History & Legends	Intelligence	Intelligence	Will	14	25	39																	
-Cultures & Customs	Intelligence	Intelligence	Will	14	33	47																	
-Warfare	Intelligence	Intelligence	Will	14	59	73																	
-Magic Lore	Intelligence	Intelligence	Charisma	15	5	20																	
-Mechanics	Intelligence	Intelligence	Precision	21	30	51																	
-Botany	Intelligence	Will	Precision	20	2	22																	
-Survival Skills	Intelligence	Constitution	Precision	26	47	73																	
-Animal Studies	Intelligence	Will	Charisma	14	53	67																	
-Computer Skills	Intelligence	Intelligence	Charisma	15	44	59																	
-Research	Intelligence	Intelligence	Will	14	14	28																	
-Occultism	Intelligence	Intelligence	Charisma	15	22	37																	
+Astronomy	Intelligence	Intelligence	Charisma	21	20	41																	
+Elemental Lore	Intelligence	Intelligence	Constitution	22	5	27																	
+Geography & Orientation	Intelligence	Intelligence	Will	17	25	42																	
+History & Legends	Intelligence	Intelligence	Will	17	31	48																	
+Cultures & Customs	Intelligence	Intelligence	Will	17	1	18																	
+Warfare	Intelligence	Intelligence	Will	17	50	67																	
+Magic Lore	Intelligence	Intelligence	Charisma	21	34	55																	
+Mechanics	Intelligence	Intelligence	Precision	21	44	65																	
+Botany	Intelligence	Will	Precision	20	49	69																	
+Survival Skills	Intelligence	Constitution	Precision	25	38	63																	
+Animal Studies	Intelligence	Will	Charisma	20	20	40																	
+Computer Skills	Intelligence	Intelligence	Charisma	21	46	67																	
+Research	Intelligence	Intelligence	Will	17	12	29																	
+Occultism	Intelligence	Intelligence	Charisma	21	60	81																	
 																							
 Berufstalente				Bonus from basicvalues	Assign values	Calculated Total																	
-Alchemy & Chemistry	Precision	Will	Intelligence	20	49	69																	
-Driving & Steering	Precision	Agility	Strength	31	19	50																	
-Trading & Haggling	Charisma	Charisma	Will	14	57	71																	
-Healing of the Mind	Charisma	Intelligence	Will	14	19	33																	
-Healing of the Body	Intelligence	Constitution	Precision	26	30	56																	
-Food Preparation & Cooking	Precision	Precision	Will	26	49	75																	
-Painting & Drawing	Precision	Precision	Will	26	42	68																	
-Open Locks	Precision	Precision	Will	26	26	52																	
-Tailor	Precision	Precision	Intelligence	27	48	75																	
-Blacksmithing	Precision	Precision	Strength	32	32	64																	
-Stealing	Precision	Agility	Will	25	54	79																	
+Alchemy & Chemistry	Precision	Will	Intelligence	20	47	67																	
+Driving & Steering	Precision	Agility	Strength	22	16	38																	
+Trading & Haggling	Charisma	Charisma	Will	23	57	80																	
+Healing of the Mind	Charisma	Intelligence	Will	20	12	32																	
+Healing of the Body	Intelligence	Constitution	Precision	25	25	50																	
+Food Preparation & Cooking	Precision	Precision	Will	23	51	74																	
+Painting & Drawing	Precision	Precision	Will	23	45	68																	
+Open Locks	Precision	Precision	Will	23	35	58																	
+Tailor	Precision	Precision	Intelligence	24	25	49																	
+Blacksmithing	Precision	Precision	Strength	24	22	46																	
+Stealing	Precision	Agility	Will	21	14	35																	
 																							
 Entertainment Talents				Bonus from basicvalues	Assign values	Calculated Total																	
-Fishing	Precision	Agility	Constitution	31	40	71																	
-Magic tricks	Precision	Will	Constitution	25	0	25																	
-Juggling	Precision	Will	Charisma	20	49	69																	
-Gambling	Intelligence	Intelligence	Will	14	41	55																	
-Making music	Precision	Charisma	Constitution	26	25	51																	
-Singing	Constitution	Constitution	Precision	31	44	75																	
-Dancing	Agility	Intelligence	Charisma	20	42	62																	
-Drinking	Constitution	Constitution	Strength	30	6	36																	
+Fishing	Precision	Agility	Constitution	26	56	82																	
+Magic tricks	Precision	Will	Constitution	24	6	30																	
+Juggling	Precision	Will	Charisma	23	50	73																	
+Gambling	Intelligence	Intelligence	Will	17	2	19																	
+Making music	Precision	Charisma	Constitution	28	26	54																	
+Singing	Constitution	Constitution	Precision	29	29	58																	
+Dancing	Agility	Intelligence	Charisma	22	36	58																	
+Drinking	Constitution	Constitution	Strength	26	11	37																	
 																							
 Combat Talents																							
 Melee Combat				Bonus from basicvalues	Assign values	Calculated Total																	
-Fist	Agility / Strength	Agility / Strength	Agility / Strength	30	48	78																	
-Dagger	Agility / Precision	Agility / Precision	Agility / Precision	33	50	83																	
-Sword	Agility / Strength	Agility / Strength	Agility / Strength	30	16	46																	
-Two-handed swords	Strength	Strength	Strength	30	35	65																	
-Blunt weapon	Strength	Strength	Strength	30	15	45																	
-Two-handed blunt weapon	Strength	Strength	Strength	30	7	37																	
-Chain weapon / Whip	Agility / Precision	Agility / Precision	Agility / Precision	33	27	60																	
-Pole weapon	Agility	Agility	Agility	30	16	46																	
-Fencing weapon	Agility / Precision	Agility / Precision	Agility / Precision	33	42	75																	
-Shields	Strength	Strength	Strength	30	39	69																	
+Fist	Agility / Strength	Agility / Strength	Agility / Strength	23	14	37																	
+Dagger	Agility / Precision	Agility / Precision	Agility / Precision	29	14	43																	
+Sword	Agility / Strength	Agility / Strength	Agility / Strength	23	20	43																	
+Two-handed swords	Strength	Strength	Strength	18	11	29																	
+Blunt weapon	Strength	Strength	Strength	18	11	29																	
+Two-handed blunt weapon	Strength	Strength	Strength	18	14	32																	
+Chain weapon / Whip	Agility / Precision	Agility / Precision	Agility / Precision	29	23	52																	
+Pole weapon	Agility	Agility	Agility	21	22	43																	
+Fencing weapon	Agility / Precision	Agility / Precision	Agility / Precision	29	8	37																	
+Shields	Strength	Strength	Strength	18	1	19																	
 																							
 Ranged Combat				Bonus from basicvalues	Assign values	Calculated Total																	
-Crossbow	Agility / Strength	Agility / Strength	Agility / Strength	30	16	46																	
-Bow	Agility / Precision	Agility / Precision	Agility / Precision	33	50	83																	
-Handgun	Precision	Precision	Precision	33	7	40																	
-Light rifle	Agility / Precision	Agility / Precision	Agility / Precision	33	10	43																	
-Precision rifle	Precision	Precision	Precision	33	20	53																	
-Heavy rifle	Strength	Strength	Strength	30	20	50																	
-Slingshot	Agility / Precision	Agility / Precision	Agility / Precision	33	11	44																	
-Thrown weapon	Strength / Precision	Strength / Precision	Strength / Precision	33	3	36																	
+Crossbow	Agility / Strength	Agility / Strength	Agility / Strength	23	14	37																	
+Bow	Agility / Precision	Agility / Precision	Agility / Precision	29	33	62																	
+Handgun	Precision	Precision	Precision	27	47	74																	
+Light rifle	Agility / Precision	Agility / Precision	Agility / Precision	29	48	77																	
+Precision rifle	Precision	Precision	Precision	27	54	81																	
+Heavy rifle	Strength	Strength	Strength	18	17	35																	
+Slingshot	Agility / Precision	Agility / Precision	Agility / Precision	29	59	88																	
+Thrown weapon	Strength / Precision	Strength / Precision	Strength / Precision	29	19	48

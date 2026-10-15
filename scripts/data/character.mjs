@@ -3,6 +3,7 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
     return {
       character: new foundry.data.fields.SchemaField({
         playername: new foundry.data.fields.StringField({ initial: "" }),
+        species: new foundry.data.fields.StringField({ initial: "" }),
         age: new foundry.data.fields.NumberField({ initial: 0 }),
         placeofbirth: new foundry.data.fields.StringField({ initial: "" }),
         home: new foundry.data.fields.StringField({ initial: "" }),
@@ -174,6 +175,20 @@ export class PnS2CharacterData extends foundry.abstract.DataModel {
       // Speed
       speed: new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 1, min: 1}), // Later calculated
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
+      }),
+
+      // Initiative
+      initiative: new foundry.data.fields.SchemaField({
+        value: new foundry.data.fields.NumberField({ initial: 0, min: 0}), // Later calculated
+        modifier: new foundry.data.fields.NumberField({ initial: 0 }),
+        total: new foundry.data.fields.NumberField({ initial: 0 })
+      }),
+
+      // Dodge
+      dodge: new foundry.data.fields.SchemaField({
+        value: new foundry.data.fields.NumberField({ initial: 0, min: 0}), // Later calculated
         modifier: new foundry.data.fields.NumberField({ initial: 0 }),
         total: new foundry.data.fields.NumberField({ initial: 0 })
       }),

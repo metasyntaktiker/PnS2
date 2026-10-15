@@ -40,9 +40,9 @@
 ## Character Import
 - The Import tab is available only while the sheet's edit mode is enabled. Its textarea is temporary; imported text is not saved to the Actor.
 - `scripts/sheets/talent-import.mjs` parses tab-separated and pipe-separated pasted rows. It recognizes English and German labels and tolerates shifted/blank columns in talent rows.
-- Imported profile fields are player name, character name (written to the Actor's `name`), age, birthplace, home, appearance, height, weight, and backstory. Age can be extracted from a value such as `788 BF (19)`.
+- Imported profile fields are player name, character name (written to the Actor's `name`), species, age, birthplace, home, appearance, height, weight, and backstory. Species labels include Species, Rasse, and Spezies; legacy Race labels are also accepted. Age can be extracted from a value such as `788 BF (19)`.
 - Imported primary/additional base values are STR, AGI, PRE, CON, INT, CHA, WIL, SEE, HEAR, SMELL, and LUCK.
-- Imported calculated values map to existing schema fields: Leben/Lebenspunkte → `hp`, Ausdauer → `ep`, Mana → `mp`, Karma → `kp`, Geist → `sp`, magic resistance → `rst`, mental resistance → `res`, physical resistance → `tou`, and Geschwindigkeit → `speed`.
+- Imported calculated values map to existing schema fields: Leben/Lebenspunkte → `hp`, Ausdauer → `ep`, Mana → `mp`, Karma → `kp`, Geist → `sp`, magic resistance → `rst`, mental resistance → `res`, physical resistance → `tou`, Geschwindigkeit → `speed`, Initiative → `initiative`, and Dodge/Ausweichen → `dodge`.
 - Stat imports update each field's `value` and `total`, preserving its existing modifier. Import does not overwrite current HP or other current resource values.
 - Talent rows require a name, three recognized base labels, and three numeric cells. The imported talent `value` is taken from the second numeric cell ("Werte zuweisen"), not the base-value bonus or calculated sum. Existing talents are appended to, not replaced.
 - Slash-separated combat base alternatives expand to aligned variants. For example, three `Gewandtheit / Stärke` labels produce one talent with all three bases set to `agi` and another with all three set to `str`; alternatives are not mixed across base positions.

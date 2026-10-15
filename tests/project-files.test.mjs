@@ -44,8 +44,8 @@ for (const locale of ["en", "de"]) {
     const messages = await readJson(`lang/${locale}.json`);
     const tree = expandLocalizationKeys(messages);
     const expectedStats = locale === "en"
-      ? { SP: "Spirit", RST: "Resistance", RES: "Resilience", TOU: "Toughness" }
-      : { SP: "Geist", RST: "Widerstand", RES: "Belastbarkeit", TOU: "Zähigkeit" };
+      ? { SP: "Spirit", RST: "Resistance", RES: "Resilience", TOU: "Toughness", INIT: "Initiative", DOD: "Dodge" }
+      : { SP: "Geist", RST: "Widerstand", RES: "Belastbarkeit", TOU: "Zähigkeit", INIT: "Initiative", DOD: "Ausweichen" };
 
     assert.equal(typeof tree.PnS2.Import.Tab, "string");
     assert.equal(typeof tree.PnS2.Import.NoData, "string");
@@ -54,6 +54,10 @@ for (const locale of ["en", "de"]) {
       assert.equal(tree.PnS2[key], label);
       assert.equal(typeof tree.PnS2[`${key}_MouseOver`], "string");
     }
+    assert.equal(
+      tree.PnS2.CharacterSheet.Species,
+      locale === "en" ? "Species" : "Spezies"
+    );
   });
 }
 

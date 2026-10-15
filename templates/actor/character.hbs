@@ -370,6 +370,22 @@
           <label>{{system.speed.total}}</label>
           <span class="calc-span">{{system.speed.value}} + {{system.speed.modifier}} = {{system.speed.total}}</span>
         </div>
+        <!-- Initiative -->
+        <div class="character-basestats-row">
+          <label title="{{localize "PnS2.INIT_MouseOver"}}">{{localize "PnS2.INIT"}}</label>
+          <input type="number" name="system.initiative.value" value="{{system.initiative.value}}" />
+          <input type="number" name="system.initiative.modifier" value="{{system.initiative.modifier}}" />
+          <label>{{system.initiative.total}}</label>
+          <span class="calc-span">{{system.initiative.value}} + {{system.initiative.modifier}} = {{system.initiative.total}}</span>
+        </div>
+        <!-- Dodge -->
+        <div class="character-basestats-row">
+          <label title="{{localize "PnS2.DOD_MouseOver"}}">{{localize "PnS2.DOD"}}</label>
+          <input type="number" name="system.dodge.value" value="{{system.dodge.value}}" />
+          <input type="number" name="system.dodge.modifier" value="{{system.dodge.modifier}}" />
+          <label>{{system.dodge.total}}</label>
+          <span class="calc-span">{{system.dodge.value}} + {{system.dodge.modifier}} = {{system.dodge.total}}</span>
+        </div>
       </div>
     </div>
     <div class="tab" data-group="primary" data-tab="talents">
@@ -414,6 +430,10 @@
             <br/>
             <label>{{localize "PnS2.CharacterSheet.Appearance"}}</label>
             <input type="text" name="system.character.appearance" value="{{system.character.appearance}}" />
+          </div>
+          <div class="character-profile-row">
+            <label>{{localize "PnS2.CharacterSheet.Species"}}</label>
+            <input type="text" name="system.character.species" value="{{system.character.species}}" />
           </div>
           <div class="character-profile-row">
             <label>{{localize "PnS2.CharacterSheet.PlaceOfBirth"}}</label>
