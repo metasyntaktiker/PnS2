@@ -550,7 +550,8 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
         const value = Number(stat.value);
         const modifier = Number(stat.modifier);
         
-        attributeLabel = game.i18n.localize(`PnS2.${attributeKey.toUpperCase()}`);
+        const localizationKey = { dodge: "DOD", initiative: "INIT" }[attributeKey] ?? attributeKey.toUpperCase();
+        attributeLabel = game.i18n.localize(`PnS2.${localizationKey}`);
         attributeTotal = stat.total;
         originalFlavorText = `${value} (${game.i18n.localize('PnS2.CharacterSheet.Base')}) + ${modifier} (${game.i18n.localize('PnS2.CharacterSheet.Modifier')}) = ${attributeTotal}`;
       }
@@ -574,7 +575,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
               const modifier = parseInt(formData.get('modifier')) || 0;
               const newAttributeTotal = attributeTotal + modifier;
 
-              const roll = new Roll("1d100", {}, { rollMode: game.settings.get("core", "rollMode") });
+              const roll = new Roll(dataset.roll, {}, { rollMode: game.settings.get("core", "rollMode") });
               await roll.evaluate();
               
               const dice = roll.dice[0];
@@ -585,8 +586,9 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
               }
               const chatFlavor = `${attributeLabel} ${game.i18n.localize('PnS2.Roll.Text')} (${game.i18n.localize('PnS2.RollTarget')}: ${newAttributeTotal})`;
 
-              const isCriticalSuccess = roll.total <= 2;
-              const isCriticalFail = roll.total >= 98;
+              const isD20Roll = dice.faces === 20;
+              const isCriticalSuccess = isD20Roll ? roll.total === 1 : roll.total <= 2;
+              const isCriticalFail = isD20Roll ? roll.total === 20 : roll.total >= 98;
               const isSuccess = roll.total <= newAttributeTotal;
 
               let resultString;

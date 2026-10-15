@@ -158,6 +158,29 @@
           <span class="calc-span">{{system.luck.value}}</span>
         </div>
         <br/>
+        <div class="character-basestats-row">
+          <div></div>
+          <label>{{localize "PnS2.CharacterSheet.Base"}}</label>
+          <label>{{localize "PnS2.CharacterSheet.Modifier"}}</label>
+          <label>{{localize "PnS2.CharacterSheet.Total"}}</label>
+        </div>
+        <!-- Initiative -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d20" data-key="initiative" title="{{localize "PnS2.INIT_MouseOver"}}">{{localize "PnS2.INIT"}}</label>
+          <input type="number" name="system.initiative.value" value="{{system.initiative.value}}" />
+          <input type="number" name="system.initiative.modifier" value="{{system.initiative.modifier}}" />
+          <label>{{system.initiative.total}}</label>
+          <span class="calc-span">{{system.initiative.value}} + {{system.initiative.modifier}} = {{system.initiative.total}}</span>
+        </div>
+        <!-- Dodge -->
+        <div class="character-basestats-row">
+          <label class="rollable" data-roll="1d100" data-key="dodge" title="{{localize "PnS2.DOD_MouseOver"}}">{{localize "PnS2.DOD"}}</label>
+          <input type="number" name="system.dodge.value" value="{{system.dodge.value}}" />
+          <input type="number" name="system.dodge.modifier" value="{{system.dodge.modifier}}" />
+          <label>{{system.dodge.total}}</label>
+          <span class="calc-span">{{system.dodge.value}} + {{system.dodge.modifier}} = {{system.dodge.total}}</span>
+        </div>
+        <br/>
         <!-- ######## Headline ######## -->
         <div class="character-basestats-row">
           <div></div>
@@ -369,22 +392,6 @@
           <input type="number" name="system.speed.modifier" value="{{system.speed.modifier}}" />
           <label>{{system.speed.total}}</label>
           <span class="calc-span">{{system.speed.value}} + {{system.speed.modifier}} = {{system.speed.total}}</span>
-        </div>
-        <!-- Initiative -->
-        <div class="character-basestats-row">
-          <label title="{{localize "PnS2.INIT_MouseOver"}}">{{localize "PnS2.INIT"}}</label>
-          <input type="number" name="system.initiative.value" value="{{system.initiative.value}}" />
-          <input type="number" name="system.initiative.modifier" value="{{system.initiative.modifier}}" />
-          <label>{{system.initiative.total}}</label>
-          <span class="calc-span">{{system.initiative.value}} + {{system.initiative.modifier}} = {{system.initiative.total}}</span>
-        </div>
-        <!-- Dodge -->
-        <div class="character-basestats-row">
-          <label title="{{localize "PnS2.DOD_MouseOver"}}">{{localize "PnS2.DOD"}}</label>
-          <input type="number" name="system.dodge.value" value="{{system.dodge.value}}" />
-          <input type="number" name="system.dodge.modifier" value="{{system.dodge.modifier}}" />
-          <label>{{system.dodge.total}}</label>
-          <span class="calc-span">{{system.dodge.value}} + {{system.dodge.modifier}} = {{system.dodge.total}}</span>
         </div>
       </div>
     </div>
