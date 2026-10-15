@@ -54,6 +54,7 @@
 - Roll formulas come from each rollable element's `data-roll`: current base attributes, Luck, and Dodge use `1d100`; Initiative uses `1d20`; talents currently use `1d100`.
 - Luck targets its base `value` without a modifier. Other stat rolls, including Initiative and Dodge, target `total` (`value + modifier`). The roll dialog can add a temporary modifier.
 - Critical thresholds depend on die size: `1d20` uses natural 1/20; other rolls use totals ≤2/≥98. Success otherwise means roll total ≤ target.
+- Roll chat messages use the Foundry `core.messageMode` setting through `Roll.toMessage`; do not use deprecated `core.rollMode`.
 - Initiative label localization uses `PnS2.INIT`, and Dodge uses `PnS2.DOD`; their data keys are `initiative` and `dodge`.
 
 ## Validation

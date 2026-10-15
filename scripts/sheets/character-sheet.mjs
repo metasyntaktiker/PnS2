@@ -575,7 +575,7 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
               const modifier = parseInt(formData.get('modifier')) || 0;
               const newAttributeTotal = attributeTotal + modifier;
 
-              const roll = new Roll(dataset.roll, {}, { rollMode: game.settings.get("core", "rollMode") });
+              const roll = new Roll(dataset.roll);
               await roll.evaluate();
               
               const dice = roll.dice[0];
@@ -621,11 +621,10 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
                 <p>${resultString}</p>
               `;
 
-              ChatMessage.create({
+              await roll.toMessage({
                 speaker: ChatMessage.getSpeaker({ actor: this.actor }),
                 flavor: chatFlavor,
-                content: content,
-                rolls: [roll],
+                content,
                 flags: {
                   PnS2: {
                     attribute: attributeKey,
@@ -633,6 +632,8 @@ export class PnS2CharacterSheet extends foundry.applications.api.HandlebarsAppli
                     isSuccess
                   }
                 }
+              }, {
+                messageMode: game.settings.get("core", "messageMode")
               });
             }
           }, 
